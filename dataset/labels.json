@@ -1,0 +1,8 @@
+{
+  "ABBREVIATION": 0,
+  "ENTITY": 1,
+  "DESCRIPTION": 2,
+  "HUMAN": 3,
+  "LOCATION": 4,
+  "NUMERIC": 5
+}
