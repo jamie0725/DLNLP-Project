@@ -30,7 +30,7 @@ def main():
     location = []
     numeric = []
 
-    for lbl_file in glob.iglob(data_path + '/train_val/*.label'):
+    for lbl_file in glob.iglob(data_path + '/train/*.label'):
         with open(lbl_file) as fw:
             for line in fw:
                 words = line.split()
@@ -55,17 +55,47 @@ def main():
     # print(len(location))
     # print(len(numeric))
 
-    train_val = {}
-    random.seed(42)
-    train_val[cat2id['ABBREVIATION']] = random.sample(abbreviation, k=200)
-    train_val[cat2id['ENTITY']] = random.sample(entity, k=NUM_SAMPLE)
-    train_val[cat2id['DESCRIPTION']] = random.sample(description, k=NUM_SAMPLE)
-    train_val[cat2id['HUMAN']] = random.sample(human, k=NUM_SAMPLE)
-    train_val[cat2id['LOCATION']] = random.sample(location, k=NUM_SAMPLE)
-    train_val[cat2id['NUMERIC']] = random.sample(numeric, k=NUM_SAMPLE)
+    train = {}
+    val = {}
+    train_portion = 0.9
 
-    with open(data_path + '/train_val/train_val.json', 'w') as json_file:
-        json.dump(train_val, json_file, indent=2)
+    # Shuffle the data.
+    random.seed(42)
+    random.shuffle(abbreviation)
+    random.shuffle(entity)
+    random.shuffle(description)
+    random.shuffle(human)
+    random.shuffle(location)
+    random.shuffle(numeric)
+
+    # Truncate the data.
+    abbreviation = abbreviation[:200]
+    entity = entity[:NUM_SAMPLE]
+    description = description[:NUM_SAMPLE]
+    human = human[:NUM_SAMPLE]
+    location = location[:NUM_SAMPLE]
+    numeric = numeric[:NUM_SAMPLE]
+
+    # Split into training set and validation set.
+    train[cat2id['ABBREVIATION']] = abbreviation[:int(200 * train_portion)]
+    train[cat2id['ENTITY']] = entity[:int(NUM_SAMPLE * train_portion)]
+    train[cat2id['DESCRIPTION']] = description[:int(NUM_SAMPLE * train_portion)]
+    train[cat2id['HUMAN']] = human[:int(NUM_SAMPLE * train_portion)]
+    train[cat2id['LOCATION']] = location[:int(NUM_SAMPLE * train_portion)]
+    train[cat2id['NUMERIC']] = numeric[:int(NUM_SAMPLE * train_portion)]
+
+    val[cat2id['ABBREVIATION']] = abbreviation[int(200 * train_portion):]
+    val[cat2id['ENTITY']] = entity[int(NUM_SAMPLE * train_portion):]
+    val[cat2id['DESCRIPTION']] = description[int(NUM_SAMPLE * train_portion):]
+    val[cat2id['HUMAN']] = human[int(NUM_SAMPLE * train_portion):]
+    val[cat2id['LOCATION']] = location[int(NUM_SAMPLE * train_portion):]
+    val[cat2id['NUMERIC']] = numeric[int(NUM_SAMPLE * train_portion):]
+
+    with open(data_path + '/train/train.json', 'w') as json_file:
+        json.dump(train, json_file, indent=2)
+
+    with open(data_path + '/val/val.json', 'w') as json_file:
+        json.dump(val, json_file, indent=2)
 
     test = {}
     test[cat2id['ABBREVIATION']] = []
