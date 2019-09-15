@@ -1,0 +1,50 @@
+=============== HYPERPARAMETER SETTING ===============
+mode : eval
+lr : 0.1
+lr_update_rate : 100
+dim : 100
+ws : 5
+epoch : 5
+min_count : 1
+neg : 5
+word_ngrams : 1
+char_ngrams : 0
+loss : softmax
+verbose : 2
+=============== DATA PROCESSING ===============
+Statistics of Label Mapping:
+* Class: {0: 'ABBREVIATION', 1: 'ENTITY', 2: 'DESCRIPTION', 3: 'HUMAN', 4: 'LOCATION', 5: 'NUMERIC'}
++ Total: 6
+Statistics of Training Set:
+* Number of data in class ABB: 180
+* Number of data in class ENT: 1800
+* Number of data in class DES: 1800
+* Number of data in class HUM: 1800
+* Number of data in class LOC: 1800
+* Number of data in class NUM: 1800
++ Total: 9180
+Statistics of Validation Set:
+* Number of data in class ABB: 20
+* Number of data in class ENT: 200
+* Number of data in class DES: 200
+* Number of data in class HUM: 200
+* Number of data in class LOC: 200
+* Number of data in class NUM: 200
++ Total: 1020
+Statistics of Test Set:
+* Number of data in class ABB: 9
+* Number of data in class ENT: 94
+* Number of data in class DES: 138
+* Number of data in class HUM: 65
+* Number of data in class LOC: 81
+* Number of data in class NUM: 113
++ Total: 500
+=============== MODEL TESTING ===============
+Testing on 500 data:
++ Overall ACC: 0.862
+* LOC PREC: 0.87, LOC REC: 0.85, LOC F1: 0.86
+* HUM PREC: 0.88, HUM REC: 0.92, HUM F1: 0.90
+* DES PREC: 0.79, DES REC: 0.99, DES F1: 0.88
+* NUM PREC: 0.98, NUM REC: 0.87, NUM F1: 0.92
+* ABB PREC: 1.00, ABB REC: 0.78, ABB F1: 0.88
+* ENT PREC: 0.82, ENT REC: 0.65, ENT F1: 0.73
