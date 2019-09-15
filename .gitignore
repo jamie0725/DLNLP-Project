@@ -3,3 +3,5 @@
 *.pyc
 __pycache__
 .ipynb_checkpoints
+preprocessing/GoogleNews-vectors-negative300.bin
+preprocessing/GoogleNews-vectors-negative300.bin.gz
