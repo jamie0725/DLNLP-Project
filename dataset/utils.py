@@ -204,24 +204,23 @@ class QCDataset(data.Dataset):
         self.stemmer = PorterStemmer()
 
         with open(self.data_path + self.splits[self.split]) as json_file:
-            self.data = json.load(json_file)
+            data_dict = json.load(json_file)
 
-        self.len = 0
-        for class_ in self.classes:
-            self.len += len(self.data[str(class_)])
+        self.data = []
+        for class_, sentences in data_dict.items():
+            for sentence in sentences:
+                self.data.append((sentence, class_))
 
     def __getitem__(self, i):
         """Generator for the tensors of the input sentence (list of words) and its target class.
         """
-        target_class = np.random.choice(self.classes)
-        # input_sentence = np.random.choice(self.data[str(target_class)])
-        input_sentence = self.data[str(target_class)][i]
-        input_sentence = [self.token2ind.get(token, 0) for token in map(self.stemmer.stem, input_sentence)]
-        # return torch.LongTensor(input_sentence), torch.LongTensor(target_class)
+        input_sentence = self.data[i][0]
+        target_class = int(self.data[i][1])
+        input_sentence = [self.token2ind[token] for token in map(self.stemmer.stem, input_sentence)]
         return input_sentence, target_class
 
     def __len__(self):
-        return self.len
+        return len(self.data)
 
     def pad(self, sentence, max_length, pad_ind=1):
         return sentence + [pad_ind] * (max_length - len(sentence))

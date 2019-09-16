@@ -14,7 +14,7 @@ def main():
     embeddings = Embeddings()
     token2ind, ind2token = create_vocabulary(embeddings.model)
     qc_dataset = QCDataset(token2ind, ind2token)
-    qc_dataloader = DataLoader(qc_dataset, batch_size=5, collate_fn=qc_dataset.collate_fn, drop_last=True, pin_memory=True)
+    qc_dataloader = DataLoader(qc_dataset, batch_size=16, collate_fn=qc_dataset.collate_fn, drop_last=True, pin_memory=True)
 
     for i, (batch_inputs, batch_targets) in enumerate(qc_dataloader):
         print(batch_inputs.size())
