@@ -183,13 +183,28 @@ def create_vocabulary(embedding_model, data_path=data_path, train_file=train_fil
 class QCDataset(data.Dataset):
     """Create the dataset for Experimental Data for Question Classification (https://cogcomp.seas.upenn.edu/Data/QA/QC/).
 
+    Yield:
+        input_sentences (torch.LongTensor): token indices of shape (seq_length x batch_size)
+        target_classes (torch.LongTensor): target class indices of shape (batch_size)
+
+
     Example usage:
         1. Given the created vocabulary (token2ind, ind2token), first initialize an instance of the QCDataset `qc_dataset = QCDataset(token2ind, ind2token)`.
         2. Use torch.utils.data.DataLoader() to create the generator `DataLoader(qc_dataset, batch_size=batch_size, shuffle=False, collate_fn=qc_dataset.collate_fn)`
 
     """
 
-    def __init__(self, token2ind, ind2token, data_path=data_path, split='train', classes=all_classes):
+    def __init__(self, token2ind, ind2token, data_path=data_path, split='train', classes=all_classes, batch_first=False):
+        """Constructor of the QCDataset class.
+
+        Args:
+            token2ind (dict): dictionary to map from tokens to their corresponding indices (one to one except for unknowns)
+            ind2token (dict): dictionary to map from indeces to their corresponding tokens (one to one except for unknowns)
+            data_path (str, optional): path to the dataset folder. Defaults to data_path.
+            split (str, optional): what split of datasets is used ('train', 'val' and 'test'). Defaults to 'train'.
+            classes (list, optional): list of integers of picked classes. Defaults to all_classes (=[0, 1, 2, 3, 4, 5]).
+            batch_first (bool, optional): flag for having the batch_size as the first dimension. Defaults to False.
+        """
         self.token2ind = token2ind
         self.ind2token = ind2token
         self.data_path = data_path
@@ -200,6 +215,7 @@ class QCDataset(data.Dataset):
         }
         self.split = split
         self.classes = [cat2id[class_] for class_ in classes]
+        self.batch_first = batch_first
         self.num_classes = len(all_classes)
         self.stemmer = PorterStemmer()
 
@@ -233,14 +249,14 @@ class QCDataset(data.Dataset):
 
         max_length = max([len(b[0]) for b in batch])
         for b in batch:
-            one_hot_vector_input = np.zeros(shape=(max_length, len(self.ind2token)))
-            one_hot_vector_input[np.arange(max_length), np.array(self.pad(b[0], max_length), dtype=np.int)] = 1.
-            input_sentences.append(torch.LongTensor(one_hot_vector_input))
-            one_hot_vector_target = np.zeros(self.num_classes)
-            one_hot_vector_target[b[1]] = 1.
-            target_classes.append(torch.LongTensor(one_hot_vector_target))
-        # Dimension of input_sentences: batch_size x max_length x len(vocabulary)
-        input_sentences = torch.stack(input_sentences, dim=0)
-        # Dimension of target_classes: batch_size x len(classes)
-        target_classes = torch.stack(target_classes, dim=0)
+            # one_hot_vector_input = np.zeros(shape=(max_length, len(self.ind2token)))
+            # one_hot_vector_input[np.arange(max_length), np.array(self.pad(b[0], max_length), dtype=np.int)] = 1.
+            vector_input = np.array(self.pad(b[0], max_length), dtype=np.int)
+            input_sentences.append(torch.LongTensor(vector_input))
+            target_classes.append(b[1])
+        if self.batch_first:
+            input_sentences = torch.stack(input_sentences, dim=0)
+        else:
+            input_sentences = torch.stack(input_sentences, dim=1)
+        target_classes = torch.LongTensor(target_classes)
         return input_sentences, target_classes

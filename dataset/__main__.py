@@ -22,8 +22,8 @@ def main():
     # Get rid of Gensim's Word2Vec word embedding to release the memory.
     del embeddings
     # Instantiate the QCDataset and DataLoader accordingly.
-    qc_dataset = QCDataset(token2ind, ind2token)
-    qc_dataloader = DataLoader(qc_dataset, batch_size=16, collate_fn=qc_dataset.collate_fn, drop_last=True, pin_memory=True)
+    qc_dataset = QCDataset(token2ind, ind2token, split='train', batch_first=False)
+    qc_dataloader = DataLoader(qc_dataset, batch_size=16, collate_fn=qc_dataset.collate_fn, drop_last=True, pin_memory=True, shuffle=True)
 
     # Use the DataLoader instance as a generator to load the batches.
     for i, (batch_inputs, batch_targets) in enumerate(qc_dataloader):
