@@ -184,7 +184,7 @@ class QCDataset(data.Dataset):
     """Create the dataset for Experimental Data for Question Classification (https://cogcomp.seas.upenn.edu/Data/QA/QC/).
 
     Example usage:
-        1. Given the created vocabulary (token2ind, ind2token), first initialize and instance of the QCDataset `qc_dataset = QCDataset(token2ind, ind2token)`.
+        1. Given the created vocabulary (token2ind, ind2token), first initialize an instance of the QCDataset `qc_dataset = QCDataset(token2ind, ind2token)`.
         2. Use torch.utils.data.DataLoader() to create the generator `DataLoader(qc_dataset, batch_size=batch_size, shuffle=False, collate_fn=qc_dataset.collate_fn)`
 
     """
