@@ -1,17 +1,7 @@
 =============== HYPERPARAMETER SETTING ===============
-method : lstm
 mode : train
 lr : 0.1
-lr_update_rate : 100
-dim : 100
 batch_size : 45
-ws : 1
-epoch : 5
-min_count : 1
-neg : 5
-word_ngrams : 1
-char_ngrams : 0
-loss : softmax
 =============== DATA PROCESSING ===============
 Statistics of Label Mapping:
 * Class: {0: 'ABBREVIATION', 1: 'ENTITY', 2: 'DESCRIPTION', 3: 'HUMAN', 4: 'LOCATION', 5: 'NUMERIC'}
@@ -44,24 +34,16 @@ Statistics of Test Set:
 embeddings_shape:(4164, 300)
 vocab_size:4164
 =============== MODEL TRAINING ===============
-iter=0,loss=1.795653,acc=0.0444
-iter=10,loss=18.302496,acc=0.2667
-iter=20,loss=31.041145,acc=0.2000
-iter=30,loss=24.261732,acc=0.2444
-iter=40,loss=16.560293,acc=0.3556
-iter=50,loss=16.945000,acc=0.1111
-iter=60,loss=14.473144,acc=0.2000
-iter=70,loss=17.602438,acc=0.3111
-iter=80,loss=18.199732,acc=0.2444
-iter=90,loss=17.094767,acc=0.2222
-iter=100,loss=10.939029,acc=0.1778
-iter=110,loss=13.197027,acc=0.2000
-iter=120,loss=17.459734,acc=0.0222
-iter=130,loss=17.189243,acc=0.1556
-iter=140,loss=12.166161,acc=0.2889
-iter=150,loss=20.398539,acc=0.2222
-iter=160,loss=14.046596,acc=0.1778
-iter=170,loss=16.914185,acc=0.2222
-iter=180,loss=8.234179,acc=0.2889
-iter=190,loss=19.110146,acc=0.1778
-iter=200,loss=15.337533,acc=0.2000
+iter=0,loss=1.790460,acc=0.2000
+iter=10,loss=47.333736,acc=0.2000
+iter=20,loss=15.154628,acc=0.2667
+iter=30,loss=28.180746,acc=0.2000
+iter=40,loss=22.101479,acc=0.2222
+iter=50,loss=20.453802,acc=0.0889
+iter=60,loss=13.407680,acc=0.1778
+iter=70,loss=5.338432,acc=0.1333
+iter=80,loss=11.654568,acc=0.2222
+iter=90,loss=17.252625,acc=0.0889
+iter=100,loss=8.365111,acc=0.2667
+iter=110,loss=20.092579,acc=0.1778
+iter=120,loss=16.293041,acc=0.1778
