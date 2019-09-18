@@ -7,8 +7,8 @@ import fasttext
 import json
 
 # Some global parameters.
-TRAIN_LOG_LOC = 'train.log'
-TEST_LOG_LOC = 'test.log'
+TRAIN_LOG_LOC = './results/train.log'
+TEST_LOG_LOC = './results/test.log'
 LABEL_JSON_LOC = '../dataset/labels.json'
 TRAIN_JSON_LOC = '../dataset/train/train.json'
 VAL_JSON_LOC = '../dataset/val/val.json'
@@ -16,7 +16,7 @@ TEST_JSON_LOC = '../dataset/test/test.json'
 TRAIN_TXT_LOC = 'train.txt'
 VAL_TXT_LOC = 'val.txt'
 TEST_TXT_LOC = 'test.txt'
-MODEL_LOC = 'model.bin'
+MODEL_LOC = './model/model.bin'
 
 
 class Logger(object):
