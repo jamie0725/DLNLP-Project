@@ -4,11 +4,11 @@
 This repository contains code for mini-project of MSc. course Deep Learning for Natural Language Processing.
 
 ### Description
-- The dataset for learning question classification  can be found at
+- The dataset for learning question classification can be found at
 https://cogcomp.seas.upenn.edu/Data/QA/QC/
 
 
-- The project requirement
+- The project requirement can be found at
 https://canvas.uva.nl/courses/10769/pages/project-requirements?module_item_id=359508
 
 ### Configuration
@@ -30,7 +30,7 @@ Test LSTM model by running
 
 
 ### Division of labor
-- Data preprocessing：Vincent
+- Data preprocessing: Vincent
 - LSTM model: Robbie
-- FastText model：Kai
-- TextCNN model：Philip, Others
+- FastText model: Kai
+- TextCNN model: Philip & Others
