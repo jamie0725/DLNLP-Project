@@ -233,14 +233,14 @@ class QCDataset(data.Dataset):
 
         max_length = max([len(b[0]) for b in batch])
         for b in batch:
-            one_hot_vector_input = np.zeros(shape=(max_length, len(self.ind2token)))
-            one_hot_vector_input[np.arange(max_length), np.array(self.pad(b[0], max_length), dtype=np.int)] = 1.
-            input_sentences.append(torch.LongTensor(one_hot_vector_input))
-            one_hot_vector_target = np.zeros(self.num_classes)
-            one_hot_vector_target[b[1]] = 1.
-            target_classes.append(torch.LongTensor(one_hot_vector_target))
+            # one_hot_vector_input = np.zeros(shape=(max_length, len(self.ind2token)))
+            # one_hot_vector_input[np.arange(max_length), np.array(self.pad(b[0], max_length), dtype=np.int)] = 1.
+            vector_input = np.array(self.pad(b[0], max_length), dtype=np.int)
+            input_sentences.append(torch.LongTensor(vector_input))
+            target_classes.append(torch.LongTensor(b[1]))
         # Dimension of input_sentences: batch_size x max_length x len(vocabulary)
         input_sentences = torch.stack(input_sentences, dim=0)
+        input_sentences  = input_sentences.view(max_length,len(batch))
         # Dimension of target_classes: batch_size x len(classes)
-        target_classes = torch.stack(target_classes, dim=0)
+        target_classes = torch.tensor([b[1] for b in batch])
         return input_sentences, target_classes

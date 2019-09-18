@@ -2,7 +2,8 @@ import argparse
 from dataset.utils import parse_dataset, create_vocabulary, QCDataset
 from preprocessing.utils import Embeddings
 from torch.utils.data import DataLoader
-
+import pickle
+ 
 
 def main():
     """Example usage of the QCDataset and Embeddings classes.
@@ -30,6 +31,18 @@ def main():
         print(batch_inputs.size())
         print(batch_targets)
         break
+
+    embeddings_vector = embeddings.create_embeddings(token2ind)
+    print(embeddings_vector.shape)
+    with open('dataset/ind2token','wb') as f:
+        pickle.dump(ind2token,f) 
+        f.close()
+    with open('dataset/token2ind','wb') as f:
+        pickle.dump(token2ind,f) 
+        f.close()
+    with open('embeddings_vector','wb') as f:
+        pickle.dump(embeddings_vector,f) 
+    del embeddings
 
 
 if __name__ == '__main__':
