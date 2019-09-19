@@ -1,5 +1,8 @@
+import os
+import sys
 import argparse
 import torch
+from TextCNN.utils import *
 from TextCNN.model import train
 
 # Some global parameters.
@@ -8,7 +11,7 @@ TEST_LOG_LOC = 'TextCNN/results/test.log'
 TRAIN_TXT_LOC = 'TextCNN/results/train.txt'
 VAL_TXT_LOC = 'TextCNN/results/val.txt'
 TEST_TXT_LOC = 'TextCNN/results/test.txt'
-MODEL_LOC = 'TextCNN/results/model.bin'
+MODEL_LOC = 'TextCNN/model/'
 
 
 def main():
@@ -23,12 +26,18 @@ def main():
     parser.add_argument('--kernel_sizes', nargs='+', type=int, default=[2, 3, 4], help='kernel sizes for the convolution layer')
     parser.add_argument('--device', type=str, default=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'))
     parser.add_argument('--p', type=float, default=0.5, help='dropout rate')
-    parser.add_argument('--c_out', type=int, default=2, help='output channel size of the convolution layer')
+    parser.add_argument('--c_out', type=int, default=32, help='output channel size of the convolution layer')
     args = parser.parse_args()
 
     if args.mode == 'train':
+        sys.stdout = Logger(TRAIN_LOG_LOC)
+        print_statement('HYPERPARAMETER SETTING')
+        print_flags(args)
         train(args)
     else:
+        sys.stdout = Logger(TEST_LOG_LOC)
+        print_statement('HYPERPARAMETER SETTING')
+        print_flags(args)
         raise NotImplementedError
 
 

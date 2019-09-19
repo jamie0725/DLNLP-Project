@@ -24,7 +24,7 @@ TEST_JSON_LOC = 'dataset/test/test.json'
 TRAIN_TXT_LOC = 'LSTM/results/train.txt'
 VAL_TXT_LOC = 'LSTM/results/val.txt'
 TEST_TXT_LOC = 'LSTM/results/test.txt'
-MODEL_LOC = 'LSTM/results/model.bin'
+MODEL_LOC = 'LSTM/model/'
 EMBEDDINGS_LOC = 'GoogleNews-vectors-negative300.bin'
 
 
