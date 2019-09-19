@@ -18,7 +18,7 @@ We cover the classical NLP problem of question classification, which consists of
 
 
 ### Dataset
-The dataset for we use can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC/).
+The dataset we use can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC/).
 
 
 ### Prerequisites
