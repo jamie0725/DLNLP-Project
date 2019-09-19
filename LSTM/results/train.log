@@ -1,7 +1,13 @@
 =============== HYPERPARAMETER SETTING ===============
 mode : train
-lr : 0.1
-batch_size : 45
+lr : 0.001
+epochs : 10
+batch_size : 64
+num_hidden : 256
+max_norm : 5.0
+lstm_layer : 2
+lstm_bidirectional : True
+embed_trainable : False
 =============== DATA PROCESSING ===============
 Statistics of Label Mapping:
 * Class: {0: 'ABBREVIATION', 1: 'ENTITY', 2: 'DESCRIPTION', 3: 'HUMAN', 4: 'LOCATION', 5: 'NUMERIC'}
@@ -34,24 +40,147 @@ Statistics of Test Set:
 embeddings_shape:(4164, 300)
 vocab_size:4164
 =============== MODEL TRAINING ===============
-iter=0,loss=1.799333,acc=0.0222
-iter=10,loss=76.169136,acc=0.0222
-iter=20,loss=38.307186,acc=0.2444
-iter=30,loss=22.673201,acc=0.3556
-iter=40,loss=15.054039,acc=0.1778
-iter=50,loss=29.142717,acc=0.1778
-iter=60,loss=19.851284,acc=0.2000
-iter=70,loss=13.719686,acc=0.2000
-iter=80,loss=6.818943,acc=0.2000
-iter=90,loss=13.989790,acc=0.2000
-iter=100,loss=15.380713,acc=0.0889
-iter=110,loss=7.936372,acc=0.2222
-iter=120,loss=13.891691,acc=0.1111
-iter=130,loss=12.968213,acc=0.1111
-iter=140,loss=14.463688,acc=0.1333
-iter=150,loss=15.549921,acc=0.2222
-iter=160,loss=15.509185,acc=0.1333
-iter=170,loss=7.686517,acc=0.2444
-iter=180,loss=10.760620,acc=0.2444
-iter=190,loss=16.943621,acc=0.1333
-iter=200,loss=13.708610,acc=0.2889
+iter=10, loss=1.729828, acc=0.1406
+iter=20, loss=1.638857, acc=0.2656
+iter=30, loss=1.661862, acc=0.2812
+iter=40, loss=1.746484, acc=0.1875
+iter=50, loss=1.660394, acc=0.2500
+iter=60, loss=1.712772, acc=0.1719
+iter=70, loss=1.595451, acc=0.2656
+iter=80, loss=1.541226, acc=0.3750
+iter=90, loss=1.505364, acc=0.2969
+iter=100, loss=1.471655, acc=0.4531
+iter=110, loss=1.534731, acc=0.2656
+iter=120, loss=1.454968, acc=0.3594
+iter=130, loss=1.406802, acc=0.3438
+iter=140, loss=1.440675, acc=0.3438
+iter=150, loss=1.371135, acc=0.3438
+iter=160, loss=1.298817, acc=0.4531
+iter=170, loss=1.575498, acc=0.2969
+iter=180, loss=1.310564, acc=0.3906
+iter=190, loss=1.422570, acc=0.4531
+iter=200, loss=1.302092, acc=0.3281
+iter=210, loss=1.154297, acc=0.4844
+iter=220, loss=1.285021, acc=0.3594
+iter=230, loss=1.196404, acc=0.4531
+iter=240, loss=1.031487, acc=0.5469
+iter=250, loss=1.217115, acc=0.4375
+iter=260, loss=1.197821, acc=0.5000
+iter=270, loss=1.207613, acc=0.5156
+iter=280, loss=1.014755, acc=0.6250
+iter=290, loss=0.882021, acc=0.6250
+iter=300, loss=0.799144, acc=0.6875
+iter=310, loss=0.753558, acc=0.8281
+iter=320, loss=0.737333, acc=0.7344
+iter=330, loss=0.895780, acc=0.7344
+iter=340, loss=0.684609, acc=0.7969
+iter=350, loss=0.854120, acc=0.7500
+iter=360, loss=0.928885, acc=0.7344
+iter=370, loss=0.691105, acc=0.7656
+iter=380, loss=1.032779, acc=0.5938
+iter=390, loss=0.543691, acc=0.6719
+iter=400, loss=0.807199, acc=0.6094
+iter=410, loss=0.860565, acc=0.6562
+iter=420, loss=0.754137, acc=0.7656
+iter=430, loss=0.621345, acc=0.7500
+iter=440, loss=0.572096, acc=0.7344
+iter=450, loss=0.407202, acc=0.8750
+iter=460, loss=0.708291, acc=0.7344
+iter=470, loss=0.500446, acc=0.7812
+iter=480, loss=0.441889, acc=0.8594
+iter=490, loss=0.647071, acc=0.7969
+iter=500, loss=0.452047, acc=0.8750
+iter=510, loss=0.593635, acc=0.8281
+iter=520, loss=0.499701, acc=0.7656
+iter=530, loss=0.514221, acc=0.8438
+iter=540, loss=0.322815, acc=0.9062
+iter=550, loss=0.628476, acc=0.7812
+iter=560, loss=0.398225, acc=0.8438
+iter=570, loss=0.576259, acc=0.8438
+iter=580, loss=0.616369, acc=0.7656
+iter=590, loss=0.530975, acc=0.8594
+iter=600, loss=0.628867, acc=0.7969
+iter=610, loss=0.515846, acc=0.8906
+iter=620, loss=0.312658, acc=0.8750
+iter=630, loss=0.249116, acc=0.9062
+iter=640, loss=0.555122, acc=0.8750
+iter=650, loss=0.379195, acc=0.9062
+iter=660, loss=0.318609, acc=0.9219
+iter=670, loss=0.308704, acc=0.8906
+iter=680, loss=0.262712, acc=0.9531
+iter=690, loss=0.285107, acc=0.8906
+iter=700, loss=0.268783, acc=0.9375
+iter=710, loss=0.290368, acc=0.9219
+iter=720, loss=0.375929, acc=0.8929
+iter=730, loss=0.424933, acc=0.8750
+iter=740, loss=0.294031, acc=0.9062
+iter=750, loss=0.212199, acc=0.9531
+iter=760, loss=0.081503, acc=0.9688
+iter=770, loss=0.502765, acc=0.8594
+iter=780, loss=0.252474, acc=0.9688
+iter=790, loss=0.233383, acc=0.9375
+iter=800, loss=0.316160, acc=0.9219
+iter=810, loss=0.290777, acc=0.9062
+iter=820, loss=0.396556, acc=0.8750
+iter=830, loss=0.057906, acc=1.0000
+iter=840, loss=0.427932, acc=0.8594
+iter=850, loss=0.261285, acc=0.9219
+iter=860, loss=0.145869, acc=0.9688
+iter=870, loss=0.215564, acc=0.9375
+iter=880, loss=0.404566, acc=0.8750
+iter=890, loss=0.195532, acc=0.9375
+iter=900, loss=0.132709, acc=0.9688
+iter=910, loss=0.112633, acc=0.9688
+iter=920, loss=0.184282, acc=0.9531
+iter=930, loss=0.226305, acc=0.9219
+iter=940, loss=0.387011, acc=0.8750
+iter=950, loss=0.298445, acc=0.9062
+iter=960, loss=0.193110, acc=0.9375
+iter=970, loss=0.101250, acc=0.9844
+iter=980, loss=0.343431, acc=0.9219
+iter=990, loss=0.213157, acc=0.9219
+iter=1000, loss=0.254344, acc=0.9531
+iter=1010, loss=0.128326, acc=0.9531
+iter=1020, loss=0.099103, acc=0.9688
+iter=1030, loss=0.259692, acc=0.9531
+iter=1040, loss=0.335637, acc=0.9062
+iter=1050, loss=0.157534, acc=0.9375
+iter=1060, loss=0.187399, acc=0.9531
+iter=1070, loss=0.251262, acc=0.9375
+iter=1080, loss=0.176979, acc=0.9531
+iter=1090, loss=0.212436, acc=0.9375
+iter=1100, loss=0.223510, acc=0.9219
+iter=1110, loss=0.097848, acc=0.9844
+iter=1120, loss=0.151273, acc=0.9375
+iter=1130, loss=0.360487, acc=0.9062
+iter=1140, loss=0.323913, acc=0.9062
+iter=1150, loss=0.201170, acc=0.9375
+iter=1160, loss=0.056927, acc=0.9844
+iter=1170, loss=0.223756, acc=0.9219
+iter=1180, loss=0.049841, acc=1.0000
+iter=1190, loss=0.064696, acc=0.9844
+iter=1200, loss=0.077900, acc=0.9688
+iter=1210, loss=0.189018, acc=0.9531
+iter=1220, loss=0.168135, acc=0.9531
+iter=1230, loss=0.042976, acc=0.9844
+iter=1240, loss=0.018711, acc=1.0000
+iter=1250, loss=0.102142, acc=0.9844
+iter=1260, loss=0.128934, acc=0.9688
+iter=1270, loss=0.053956, acc=1.0000
+iter=1280, loss=0.110653, acc=0.9531
+iter=1290, loss=0.052089, acc=0.9844
+iter=1300, loss=0.085283, acc=0.9844
+iter=1310, loss=0.007893, acc=1.0000
+iter=1320, loss=0.054935, acc=0.9844
+iter=1330, loss=0.082986, acc=0.9688
+iter=1340, loss=0.028838, acc=1.0000
+iter=1350, loss=0.058192, acc=0.9688
+iter=1360, loss=0.195081, acc=0.9375
+iter=1370, loss=0.015647, acc=1.0000
+iter=1380, loss=0.035465, acc=0.9844
+iter=1390, loss=0.070999, acc=0.9844
+iter=1400, loss=0.011209, acc=1.0000
+iter=1410, loss=0.151064, acc=0.9531
+iter=1420, loss=0.130657, acc=0.9688
+iter=1430, loss=0.089650, acc=0.9688
+iter=1440, loss=0.067243, acc=0.9643

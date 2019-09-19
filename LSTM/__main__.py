@@ -34,12 +34,15 @@ if __name__ == "__main__":
 
     # Load LSTM parameters.
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', type=str, default='train',
-                        help='train or eval')
-    parser.add_argument('--lr', type=float, default=0.1,
-                        help='learning rate')
-    parser.add_argument('--batch_size', type=int, default=45,
-                        help='batch size')
+    parser.add_argument('--mode', type=str, default='train', help='train or eval')
+    parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
+    parser.add_argument('--epochs', type=int, default=10, help='number of training epochs')
+    parser.add_argument('--batch_size', type=int, default=64, help='number of examples to process in a batch')
+    parser.add_argument('--num_hidden', type=int, default=256, help='number of hidden units in the model')
+    parser.add_argument('--max_norm', type=float, default=5.0, help='max norm of gradient')
+    parser.add_argument('--lstm_layer', type=int, default=2, help='number of layers of lstm')
+    parser.add_argument('--lstm_bidirectional', type=bool, default=True, help='bi-direction of lstm')
+    parser.add_argument('--embed_trainable', type=bool, default=False, help='finetune pre-trained embeddings')
 
     args = parser.parse_args()
 
@@ -76,42 +79,51 @@ if __name__ == "__main__":
         print_value('vocab_size', len(ind2token))
         input_tensor, output_tensor = convert_to_tensor(train_data, label_map, token2ind)
         print_statement('MODEL TRAINING')
-        batch_size = args.batch_size
         embedding_length = embeddings_vector.shape[1]
-        vocab_size = embeddings_vector.shape[0]
         qcdataset = QCDataset(token2ind, ind2token)
-        dataloader_train = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+        dataloader_train = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
         qcdataset = QCDataset(token2ind, ind2token, split='val')
-        dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+        dataloader_validate = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
         qcdataset = QCDataset(token2ind, ind2token, split='test')
-        dataloader_test = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
-        model = LSTMClassifier(batch_size, len(label_map), 256, vocab_size, embedding_length, device)
+        dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+        embeddings_vector_tensor = torch.from_numpy(embeddings_vector)
+        model = LSTMClassifier(output_size=len(label_map),
+                               hidden_size=args.num_hidden,
+                               embedding_length=embedding_length,
+                               embeddings_vector=embeddings_vector_tensor,
+                               lstm_layer=args.lstm_layer,
+                               lstm_dirc=args.lstm_bidirectional,
+                               trainable=args.embed_trainable,
+                               device=device)
         model.to(device)
-        with torch.no_grad():
-            model.embed.weight.data.copy_(torch.from_numpy(embeddings_vector))
-            model.embed.weight.requires_grad = False
+        # with torch.no_grad():
+        #     model.embed.weight.data.copy_(torch.from_numpy(embeddings_vector))
+        #     model.embed.weight.requires_grad = False
         criterion = torch.nn.CrossEntropyLoss()
-        optim = torch.optim.RMSprop(model.parameters(), lr=args.lr)
+        optim = torch.optim.Adam(model.parameters(), lr=args.lr)
 
-        for step, (batch_inputs, batch_targets) in enumerate(dataloader_train):
-            batch_inputs = batch_inputs.to(device)
-            batch_targets = batch_targets.to(device)
-            model.train()
-            optim.zero_grad()
-            output = model(batch_inputs)
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=10)
-            loss = criterion(output, batch_targets)
-            accuracy = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
-            loss.backward()
-            optim.step()
-            if step % 10 == 0:
-                print('iter={:d},loss={:4f},acc={:.4f}'.format(step, loss, accuracy))
-            # if step % 50 ==0:
-            #     model.eval()
-            #     accs=[]
-            #     for i,(batch_inputs,batch_targets) in enumerate(dataloader_validate):
-            #         output =  model(batch_inputs)
-            #         acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
-            #         accs.append(acc)
-            #     print(f'{step},{np.mean(accs)}')
-            #     model.train()
+        iteration = 0
+        for i in range(args.epochs):
+            for step, (batch_inputs, batch_targets) in enumerate(dataloader_train):
+                iteration += 1
+                batch_inputs = batch_inputs.to(device)
+                batch_targets = batch_targets.to(device)
+                model.train()
+                optim.zero_grad()
+                output = model(batch_inputs)
+                loss = criterion(output, batch_targets)
+                accuracy = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=args.max_norm)
+                optim.step()
+                if iteration % 10 == 0:
+                    print('iter={:d}, loss={:4f}, acc={:.4f}'.format(iteration, loss, accuracy))
+                # if iteration % 50 ==0:
+                #     model.eval()
+                #     accs=[]
+                #     for i,(batch_inputs,batch_targets) in enumerate(dataloader_validate):
+                #         output =  model(batch_inputs)
+                #         acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
+                #         accs.append(acc)
+                #     print(f'{step},{np.mean(accs)}')
+                #     model.train()

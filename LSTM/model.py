@@ -7,25 +7,21 @@ from torch.nn import functional as F
 
 
 class LSTMClassifier(nn.Module):
-    def __init__(self, batch_size, output_size, hidden_size, vocab_size, embedding_length, device):
+    def __init__(self, output_size, hidden_size, embedding_length, embeddings_vector, lstm_layer, lstm_dirc, trainable, device):
         super(LSTMClassifier, self).__init__()
-        self.batch_size = batch_size
-        self.output_size = output_size
-        self.hidden_size = hidden_size
-        self.vocab_size = vocab_size
-        self.device = device
-        self.embedding_length = embedding_length
-        self.embed = nn.Embedding(vocab_size, embedding_length, padding_idx=1)
-        self.lstm = nn.LSTM(embedding_length, hidden_size)
-        self.label = nn.Linear(hidden_size, output_size)
+
+        self.embed = nn.Embedding.from_pretrained(embeddings_vector, freeze=trainable, padding_idx=1)
+        self.lstm = nn.LSTM(embedding_length, hidden_size, num_layers=lstm_layer, bidirectional=lstm_dirc)
+        if lstm_dirc:
+            multiple = 2
+        else:
+            multiple = 1
+        self.linear = nn.Linear(multiple*hidden_size, output_size)
         self.to(device)
 
     def forward(self, x):
-        batch_size = x.shape[1]
-        input = self.embed(x)
-        # Initial hidden state  the LSTM
-        h_0 = Variable(torch.zeros(1, batch_size, self.hidden_size)).to(self.device)
-        c_0 = Variable(torch.zeros(1, batch_size, self.hidden_size)).to(self.device)
-        lstm_out, (h_n, c_n) = self.lstm(input, (h_0, c_0))
-        output = self.label(h_n[-1])
+        embed_input = self.embed(x)
+        lstm_out, _ = self.lstm(embed_input)
+        output = self.linear(lstm_out[-1, :, :].squeeze())
+
         return output
