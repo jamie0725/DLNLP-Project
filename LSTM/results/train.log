@@ -34,16 +34,24 @@ Statistics of Test Set:
 embeddings_shape:(4164, 300)
 vocab_size:4164
 =============== MODEL TRAINING ===============
-iter=0,loss=1.790460,acc=0.2000
-iter=10,loss=47.333736,acc=0.2000
-iter=20,loss=15.154628,acc=0.2667
-iter=30,loss=28.180746,acc=0.2000
-iter=40,loss=22.101479,acc=0.2222
-iter=50,loss=20.453802,acc=0.0889
-iter=60,loss=13.407680,acc=0.1778
-iter=70,loss=5.338432,acc=0.1333
-iter=80,loss=11.654568,acc=0.2222
-iter=90,loss=17.252625,acc=0.0889
-iter=100,loss=8.365111,acc=0.2667
-iter=110,loss=20.092579,acc=0.1778
-iter=120,loss=16.293041,acc=0.1778
+iter=0,loss=1.799333,acc=0.0222
+iter=10,loss=76.169136,acc=0.0222
+iter=20,loss=38.307186,acc=0.2444
+iter=30,loss=22.673201,acc=0.3556
+iter=40,loss=15.054039,acc=0.1778
+iter=50,loss=29.142717,acc=0.1778
+iter=60,loss=19.851284,acc=0.2000
+iter=70,loss=13.719686,acc=0.2000
+iter=80,loss=6.818943,acc=0.2000
+iter=90,loss=13.989790,acc=0.2000
+iter=100,loss=15.380713,acc=0.0889
+iter=110,loss=7.936372,acc=0.2222
+iter=120,loss=13.891691,acc=0.1111
+iter=130,loss=12.968213,acc=0.1111
+iter=140,loss=14.463688,acc=0.1333
+iter=150,loss=15.549921,acc=0.2222
+iter=160,loss=15.509185,acc=0.1333
+iter=170,loss=7.686517,acc=0.2444
+iter=180,loss=10.760620,acc=0.2444
+iter=190,loss=16.943621,acc=0.1333
+iter=200,loss=13.708610,acc=0.2889

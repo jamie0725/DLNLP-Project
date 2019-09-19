@@ -152,7 +152,7 @@ def print_statement(statement, isCenter=False, symbol='=', number=15, newline=Fa
     '''
     Print required statement in a given format.
     '''
-    
+
     if newline:
         print()
     if number > 0:
