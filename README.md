@@ -21,18 +21,18 @@ We cover the classical NLP problem of question classification, which consists of
 The dataset for we use can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC/).
 
 
-### Configuration
-Install the conda environment by running `conda env create -f environment.yml`. 
+### Prerequisites
+1. Install the conda environment by running `conda env create -f environment.yml`. 
 
-Then activate it by `conda activate dlnlp`.
+2. Then activate it by `conda activate dlnlp`.
 
-Download the pre-trained [Word2Vec word embeddings](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) into folder **preprocessing**.
+3. Download the pre-trained [Word2Vec word embeddings](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) into folder _preprocessing_.
 
 ### Running Instructions
-Preprocess the dataset and extract word embeddings by running `python -m dataset`.
+* Preprocess the dataset and extract word embeddings by running `python -m dataset`.
 
-Test the FastText model by running `python FastText/model.py --mode=eval`.
+* Test the FastText model by running `python FastText/model.py --mode=eval`.
 
-Train the LSTM model by running `python -m LSTM`.
+* Train the LSTM model by running `python -m LSTM`.
 
-Train the TextCNN model by running `python -m TextCNN`.
+* Train the TextCNN model by running `python -m TextCNN`.
