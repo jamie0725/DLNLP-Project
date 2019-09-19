@@ -1,7 +1,6 @@
 import sys
 import os
 import argparse
-import fasttext
 import json
 import re
 import numpy as np
@@ -11,6 +10,8 @@ from torch.autograd import Variable
 from torch.nn import functional as F
 from gensim.models import KeyedVectors
 from nltk.stem.porter import PorterStemmer
+
+
 class Embeddings(object):
     """Class for creating an embedding vector with the pretrained Word2Vec embeddings.
 
@@ -24,8 +25,8 @@ class Embeddings(object):
 
     """
 
-    def __init__(self,filepath):
-        self.model = KeyedVectors.load_word2vec_format(os.path.dirname(os.path.realpath(__file__)) +filepath, binary=True)
+    def __init__(self, filepath):
+        self.model = KeyedVectors.load_word2vec_format(os.path.dirname(os.path.realpath(__file__)) + filepath, binary=True)
 
     def create_embeddings(self, token2ind):
         vectors = []
@@ -42,6 +43,8 @@ class Embeddings(object):
 
         vectors = np.stack(vectors, axis=0)
         return vectors
+
+
 class Logger(object):
     '''
     Export print to logs.
@@ -60,24 +63,26 @@ class Logger(object):
         # this handles the flush command by doing nothing.
         # you might want to specify some extra behavior here.
         pass
+
+
 class InputParser(object):
 
     def __init__(self, token2ind):
-        self.token2ind = token2ind    
+        self.token2ind = token2ind
         self.stemmer = PorterStemmer()
 
-    def word2id(self,word):
+    def word2id(self, word):
         if word in self.token2ind.keys():
             return self.token2ind[word]
         else:
             return 0
 
-    def sentence2id(self,word_list):
-        sentence = self.stemmer.stem(' '.join(word_list)) 
+    def sentence2id(self, word_list):
+        sentence = self.stemmer.stem(' '.join(word_list))
         sentence_id = [self.word2id(word) for word in self.clean_text(sentence).split()]
         return sentence_id
 
-    def clean_text(self,text):
+    def clean_text(self, text):
 
         # Clean the text
         text = re.sub(r"[^A-Za-z0-9^,!.\/'+-=]", " ", text)
@@ -110,6 +115,7 @@ class InputParser(object):
         text = re.sub(r"j k", "jk", text)
         text = re.sub(r"\s{2,}", " ", text)
         return text
+
 
 def load_json(file_loc, mapping=None, reverse=False, name=None):
     '''
@@ -146,6 +152,7 @@ def print_statement(statement, isCenter=False, symbol='=', number=15, newline=Fa
     '''
     Print required statement in a given format.
     '''
+    
     if newline:
         print()
     if number > 0:
@@ -162,6 +169,7 @@ def print_flags(args):
     """
     Print all entries in args variable.
     """
+
     for key, value in vars(args).items():
         print(key + ' : ' + str(value))
 
@@ -187,22 +195,12 @@ def print_result(result, keep=3):
     else:
         raise TypeError
 
-def print_value(name,value):
+
+def print_value(name, value):
     print(name + f':{value}')
 
-def convert_to_txt(data, label, file_loc):
-    '''
-    Convert data to fasttext training format.
-    '''
 
-    with open(file_loc, mode='w', encoding='utf-8') as file:
-        for key in data:
-            name = '__label__' + label[int(key)]
-            for query in data[key]:
-                file.write('{}\t{}\n'.format(name, ' '.join(query)))
-        file.close()
-
-def convert_to_tensor(data,label_map,token2ind):
+def convert_to_tensor(data, label_map, token2ind):
     parser = InputParser(token2ind)
     inputs = []
     outputs = []
@@ -211,14 +209,10 @@ def convert_to_tensor(data,label_map,token2ind):
             inputs.append(parser.sentence2id(line))
             outputs.append(str(i))
     max_length = np.max([len(line) for line in inputs])
-    input_tensor = torch.ones(len(inputs),max_length)
+    input_tensor = torch.ones(len(inputs), max_length)
     output_tensor = torch.zeros(len(inputs))
     for i, sentence in enumerate(inputs):
         output_tensor[i] = int(outputs[i])
-        for j,value in enumerate(sentence):
-            input_tensor[i][j]=value
-    return input_tensor,output_tensor
-
-
-    
-
+        for j, value in enumerate(sentence):
+            input_tensor[i][j] = value
+    return input_tensor, output_tensor
