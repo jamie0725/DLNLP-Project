@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--kernel_sizes', nargs='+', type=int, default=[2, 3, 4], help='kernel sizes for the convolution layer')
     parser.add_argument('--device', type=str, default=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'))
     parser.add_argument('--p', type=float, default=0.5, help='dropout rate')
+    parser.add_argument('--c_out', type=int, default=2, help='output channel size of the convolution layer')
     args = parser.parse_args()
 
     if args.mode == 'train':

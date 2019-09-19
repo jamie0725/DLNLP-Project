@@ -59,8 +59,15 @@ def train(args):
     dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
     qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
     dataloader_test = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
-    model = TextCNN(batch_size=batch_size, c_out=2, output_size=args.num_classes, vocab_size=len(ind2token),
-                    embedding_size=embedding_size, embeddings_vector=torch.from_numpy(embeddings_vector), kernel_sizes=args.kernel_sizes, trainable=args.embed_trainable, p=args.p)
+    model = TextCNN(batch_size=batch_size,
+                    c_out=args.c_out,
+                    output_size=args.num_classes,
+                    vocab_size=len(ind2token),
+                    embedding_size=embedding_size,
+                    embeddings_vector=torch.from_numpy(embeddings_vector),
+                    kernel_sizes=args.kernel_sizes,
+                    trainable=args.embed_trainable,
+                    p=args.p)
     model.to(args.device)
     criterion = nn.CrossEntropyLoss()
     optim = torch.optim.Adam(model.parameters(), lr=args.lr)
