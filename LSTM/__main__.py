@@ -30,6 +30,8 @@ EMBEDDINGS_LOC = 'GoogleNews-vectors-negative300.bin'
 
 if __name__ == "__main__":
 
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
     # Load LSTM parameters.
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', type=str, default='train',
@@ -83,7 +85,8 @@ if __name__ == "__main__":
         dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
         qcdataset = QCDataset(token2ind, ind2token, split='test')
         dataloader_test = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
-        model = LSTMClassifier(batch_size, len(label_map), 256, vocab_size, embedding_length)
+        model = LSTMClassifier(batch_size, len(label_map), 256, vocab_size, embedding_length, device)
+        model.to(device)
         with torch.no_grad():
             model.embed.weight.data.copy_(torch.from_numpy(embeddings_vector))
             model.embed.weight.requires_grad = False
@@ -91,10 +94,12 @@ if __name__ == "__main__":
         optim = torch.optim.RMSprop(model.parameters(), lr=args.lr)
 
         for step, (batch_inputs, batch_targets) in enumerate(dataloader_train):
+            batch_inputs = batch_inputs.to(device)
+            batch_targets = batch_targets.to(device)
             model.train()
             optim.zero_grad()
             output = model(batch_inputs)
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=10)
             loss = criterion(output, batch_targets)
             accuracy = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
             loss.backward()
