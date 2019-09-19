@@ -26,7 +26,7 @@ The dataset we use can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC
 
 2. Then activate it by `conda activate dlnlp`.
 
-3. Download the pre-trained [Word2Vec word embeddings](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) into folder _preprocessing_.
+3. Download the pre-trained [Word2Vec word embeddings](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) and unzip into folder _preprocessing_.
 
 ### Running Instructions
 * Preprocess the dataset and extract word embeddings by running `python -m dataset`.
