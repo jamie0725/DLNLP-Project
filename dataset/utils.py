@@ -7,7 +7,6 @@ import torch.utils.data as data
 import torch
 from collections import OrderedDict
 from nltk.stem.porter import PorterStemmer
-from preprocessing.utils import Embeddings
 
 NUM_SAMPLE = 2000
 
@@ -184,7 +183,7 @@ class QCDataset(data.Dataset):
     """Create the dataset for Experimental Data for Question Classification (https://cogcomp.seas.upenn.edu/Data/QA/QC/).
 
     Yield:
-        input_sentences (torch.LongTensor): token indices of shape (seq_length x batch_size)
+        input_sentences (torch.LongTensor): token indices of shape seq_length x batch_size (batch_first=False)
         target_classes (torch.LongTensor): target class indices of shape (batch_size)
 
 
