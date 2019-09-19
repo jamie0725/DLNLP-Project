@@ -4,31 +4,35 @@
 This repository contains code for mini-project of MSc. course Deep Learning for Natural Language Processing.
 
 ### Description
-- The dataset for learning question classification can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC/).
+We cover the classical NLP problem of question classification, which consists of two parts.
+
+Classification Task
+
+* We choose Facebook's FastText as our baseline, and further implement two neural models, namely LSTM and TextCNN.
+
+* The three models are compared in terms of the overall classification accuracy, and the precision, recall and F1-score values for each category.
+
+Adding Unsupervised Component for Better Interpretability
+
+* A layer of binary latent variables is added to our neural models that select what parts of the input expose features for classification.
 
 
-- The project requirement can be found [here](https://canvas.uva.nl/courses/10769/pages/project-requirements?module_item_id=359508).
+### Dataset
+The dataset for we use can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC/).
+
 
 ### Configuration
 Install the conda environment by running `conda env create -f environment.yml`. 
 
 Then activate it by `conda activate dlnlp`.
 
-Download the pretrained [Word2Vec word embeddings](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) into folder **preprocessing**.
+Download the pre-trained [Word2Vec word embeddings](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) into folder **preprocessing**.
 
 ### Running Instructions
-Preprocessing the dataset and generate wordembeddings by running
-`python -m dataset`.
+Preprocess the dataset and extract word embeddings by running `python -m dataset`.
 
-Test FastText model by running
-`python -m FastText`
+Test the FastText model by running `python FastText/model.py --mode=eval`.
 
-Test LSTM model by running
-`python -m LSTM`
+Train the LSTM model by running `python -m LSTM`.
 
-
-### Contributors
-- Data preprocessing: Vincent
-- LSTM model: Robbie
-- FastText model: Kai
-- TextCNN model: Philip & Others
+Train the TextCNN model by running `python -m TextCNN`.
