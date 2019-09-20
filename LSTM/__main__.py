@@ -70,14 +70,14 @@ if __name__ == "__main__":
     with open('dataset/embeddings_vector', 'rb') as f:
         embeddings_vector = pickle.load(f)
         f.close()
-    print_value('embeddings_shape', embeddings_vector.shape)
-    print_value('vocab_size', len(ind2token))
+    print_value('Embed shape: ', embeddings_vector.shape)
+    print_value('Vocab size ', len(ind2token))
     input_tensor, output_tensor = convert_to_tensor(train_data, label_map, token2ind)
     embedding_length = embeddings_vector.shape[1]
     qcdataset = QCDataset(token2ind, ind2token)
     dataloader_train = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     qcdataset = QCDataset(token2ind, ind2token, split='val')
-    dataloader_validate = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=False, collate_fn=qcdataset.collate_fn)
+    dataloader_validate = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     embeddings_vector_tensor = torch.from_numpy(embeddings_vector)
     model = LSTMClassifier(output_size=len(label_map),
                            hidden_size=args.num_hidden,
@@ -116,15 +116,18 @@ if __name__ == "__main__":
                     print_statement('MODEL VALIDATING')
                     model.eval()
                     accs = []
+                    length = []
                     for batch_inputs, batch_targets in dataloader_validate:
                         batch_inputs = batch_inputs.to(device)
                         batch_targets = batch_targets.to(device)
                         with torch.no_grad():
                             output = model(batch_inputs)
-                        acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
+                        acc = torch.sum(output.argmax(dim=1) == batch_targets)
+                        length.append(len(batch_targets))
                         accs.append(acc)
-                    validate_acc = np.mean(accs)
-                    print('Validation accuracy: {:.3f}'.format(validate_acc))
+                    validate_acc = float(np.sum(accs)) / sum(length)
+                    print('Testing on {} data:'.format(sum(length)))
+                    print('+ Validation accuracy: {:.3f}'.format(validate_acc))
                     # save best model parameters
                     if validate_acc > best_eval:
                         print("New highscore! Saving model...")
@@ -141,20 +144,22 @@ if __name__ == "__main__":
         model.eval()
         print_statement('MODEL TESTING')
         qcdataset = QCDataset(token2ind, ind2token, split='test')
-        dataloader_test = DataLoader(qcdataset, batch_size=17, shuffle=False, collate_fn=qcdataset.collate_fn)
+        dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
         ct = ClassificationTool(len(label_map))
         accs = []
+        length = []
         for batch_inputs, batch_targets in dataloader_test:
             batch_inputs = batch_inputs.to(device)
             batch_targets = batch_targets.to(device)
             with torch.no_grad():
                 output = model(batch_inputs)
-            acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
+            acc = torch.sum(output.argmax(dim=1) == batch_targets)
             accs.append(acc)
+            length.append(len(batch_targets))
             ct.update(output, batch_targets)
-        test_acc = np.mean(accs)
+        test_acc = float(np.sum(accs)) / sum(length)
+        print('Testing on {} data:'.format(sum(length)))
         print('+ Overall ACC: {:.3f}'.format(test_acc))
         PREC, REC, F1 = ct.get_result()
         for i, classname in enumerate(label_map.values()):
-            print('* {} PREC: {:.4f}, {} REC: {:.4f}, {} F1: {:.4f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))
-            # print(len(batch_targets))
+            print('* {} PREC: {:.3f}, {} REC: {:.3f}, {} F1: {:.3f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))

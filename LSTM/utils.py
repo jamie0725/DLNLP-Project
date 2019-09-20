@@ -142,7 +142,7 @@ class ClassificationTool(object):
             n_pred = ~pred
             n_truth = ~truth
             self.tp[cls] += pred.mul(truth).sum()
-            self.tn[cls] += n_pred .mul(n_truth).sum()
+            self.tn[cls] += n_pred.mul(n_truth).sum()
             self.fp[cls] += pred.mul(n_truth).sum()
             self.fn[cls] += n_pred.mul(truth).sum()
 
