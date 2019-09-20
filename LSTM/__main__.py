@@ -96,6 +96,7 @@ if __name__ == "__main__":
         optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
         best_eval = 0
         iteration = 0
+        max_iterations = args.epochs * len(dataloader_train)
         for i in range(args.epochs):
             for batch_inputs, batch_targets in dataloader_train:
                 iteration += 1
@@ -110,8 +111,8 @@ if __name__ == "__main__":
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=args.max_norm)
                 optimizer.step()
                 if iteration % 10 == 0:
-                    print('iter={:d}, loss={:4f}, acc={:.4f}'.format(iteration, loss, accuracy))
-                if iteration % 50 ==0 and iteration>0:
+                    print('iter={:d}/{:d}, loss={:4f}, acc={:.4f}'.format(iteration, max_iterations, loss, accuracy))
+                if iteration % 100 ==0 and iteration>0:
                     model.eval()
                     accs=[]
                     for batch_inputs,batch_targets in dataloader_validate:
@@ -120,11 +121,11 @@ if __name__ == "__main__":
                         acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
                         accs.append(acc)
                     validate_acc = np.mean(accs)
-                    print('===========================')
+                    print_statement('VALIDATING')
                     print('validate_accuarcy={:.4f}'.format(validate_acc))
                     # save best model parameters
                     if validate_acc > best_eval:
-                        print("new highscore")
+                        print("New highscore! Saving model...")
                         best_eval = validate_acc
                         ckpt = {
                             "state_dict": model.state_dict(),
@@ -132,7 +133,6 @@ if __name__ == "__main__":
                             "best_eval": best_eval,
                         }
                         torch.save(ckpt, MODEL_LOC)
-                    print('===========================')
                     model.train()
     else:
         ckpt = torch.load(MODEL_LOC)
@@ -140,13 +140,18 @@ if __name__ == "__main__":
         print_statement('MODEL TESTING')
         qcdataset = QCDataset(token2ind, ind2token, split='test')
         dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+        ct = ClassificationTool(len(label_map))
         accs=[]
         for batch_inputs,batch_targets in dataloader_validate:
             with torch.no_grad():
                 output =  model(batch_inputs)
             acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
             accs.append(acc)
+            ct.update(output,batch_targets)
         test_acc = np.mean(accs)
-        print('Best model test_acc={:.4f}'.format(test_acc))
-        
+        print('Overall ACC {:.4f}'.format(test_acc))
+        PREC,REC,F1 = ct.get_result()
+        for i,classname in enumerate(label_map.keys()): 
+            print('* {} PREC: {:.2f}, REC: {:.2f}, F1: {:.2f}'.format(classname, PREC[i], REC[i],F1[i]))
+
 
