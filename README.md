@@ -31,8 +31,8 @@ The dataset we use can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC
 ### Running Instructions
 * Preprocess the dataset and extract word embeddings by running `python -m dataset`.
 
-* Test the FastText model by running `python FastText/model.py --mode=eval`.
+* Test the FastText model by running `python -m FastText --mode=eval`.
 
-* Train the LSTM model by running `python -m LSTM`.
+* Test the LSTM model by running `python -m LSTM --mode=eval`.
 
-* Train the TextCNN model by running `python -m TextCNN`.
+* Test the TextCNN model by running `python -m TextCNN --mode=eval`.
