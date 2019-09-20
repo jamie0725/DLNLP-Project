@@ -141,7 +141,7 @@ if __name__ == "__main__":
         model.eval()
         print_statement('MODEL TESTING')
         qcdataset = QCDataset(token2ind, ind2token, split='test')
-        dataloader_test = DataLoader(qcdataset, batch_size=10, shuffle=True, collate_fn=qcdataset.collate_fn)
+        dataloader_test = DataLoader(qcdataset, batch_size=17, shuffle=False, collate_fn=qcdataset.collate_fn)
         ct = ClassificationTool(len(label_map))
         accs = []
         for batch_inputs, batch_targets in dataloader_test:
@@ -149,11 +149,12 @@ if __name__ == "__main__":
             batch_targets = batch_targets.to(device)
             with torch.no_grad():
                 output = model(batch_inputs)
-            acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) 
+            acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
             accs.append(acc)
             ct.update(output, batch_targets)
-        test_acc = np.mean(accs)/ len(batch_targets)
+        test_acc = np.mean(accs)
         print('+ Overall ACC: {:.3f}'.format(test_acc))
         PREC, REC, F1 = ct.get_result()
         for i, classname in enumerate(label_map.values()):
             print('* {} PREC: {:.4f}, {} REC: {:.4f}, {} F1: {:.4f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))
+            # print(len(batch_targets))
