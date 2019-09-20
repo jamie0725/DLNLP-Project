@@ -3,7 +3,7 @@ import sys
 import argparse
 import torch
 from TextCNN.utils import *
-from TextCNN.model import train
+from TextCNN.model import train, test
 
 # Some global parameters.
 TRAIN_LOG_LOC = 'TextCNN/results/train.log'
@@ -11,12 +11,13 @@ TEST_LOG_LOC = 'TextCNN/results/test.log'
 TRAIN_TXT_LOC = 'TextCNN/results/train.txt'
 VAL_TXT_LOC = 'TextCNN/results/val.txt'
 TEST_TXT_LOC = 'TextCNN/results/test.txt'
-MODEL_LOC = 'TextCNN/model/'
+MODEL_LOC = 'TextCNN/model/best_model.pt'
 
+LABEL_JSON_LOC = 'dataset/labels.json'
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', type=str, default='train', help='train or eval')
+    parser.add_argument('--mode', type=str, default='test', help='train or eval')
     parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
     parser.add_argument('--epochs', type=int, default=10, help='number of training epochs')
     parser.add_argument('--batch_size', type=int, default=64, help='number of examples to process in a batch')
@@ -33,12 +34,12 @@ def main():
         sys.stdout = Logger(TRAIN_LOG_LOC)
         print_statement('HYPERPARAMETER SETTING')
         print_flags(args)
-        train(args)
+        train(args, MODEL_LOC)
     else:
         sys.stdout = Logger(TEST_LOG_LOC)
         print_statement('HYPERPARAMETER SETTING')
         print_flags(args)
-        raise NotImplementedError
+        test(args, MODEL_LOC, LABEL_JSON_LOC)
 
 
 if __name__ == '__main__':
