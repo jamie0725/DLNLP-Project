@@ -47,18 +47,15 @@ def train(args, MODEL_LOC):
         token2ind = pickle.load(f)
     with open('dataset/embeddings_vector', 'rb') as f:
         embeddings_vector = pickle.load(f)
-    print_value('embeddings_shape', embeddings_vector.shape)
-    print_value('vocab_size', len(ind2token))
+    print_value('Embed shape', embeddings_vector.shape)
+    print_value('Vocab size', len(ind2token))
     print_statement('MODEL TRAINING')
     batch_size = args.batch_size
     embedding_size = embeddings_vector.shape[1]
-    vocab_size = embeddings_vector.shape[0]
     qcdataset = QCDataset(token2ind, ind2token, batch_first=True)
-    dataloader_train = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
+    dataloader_train = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     qcdataset = QCDataset(token2ind, ind2token, split='val', batch_first=True)
-    dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
-    qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
-    dataloader_test = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
+    dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     model = TextCNN(batch_size=batch_size,
                     c_out=args.c_out,
                     output_size=args.num_classes,
@@ -73,8 +70,9 @@ def train(args, MODEL_LOC):
     optim = torch.optim.Adam(model.parameters(), lr=args.lr)
     best_eval = 0
     iteration = 0
-    for i in np.arange(args.epochs):
-        for step, (batch_inputs, batch_targets) in enumerate(dataloader_train):
+    max_iterations = args.epochs * len(dataloader_train)
+    for i in range(args.epochs):
+        for batch_inputs, batch_targets in dataloader_train:
             iteration += 1
             batch_inputs = batch_inputs.to(args.device)
             batch_targets = batch_targets.to(args.device)
@@ -87,19 +85,23 @@ def train(args, MODEL_LOC):
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=args.max_norm)
             optim.step()
             if iteration % 10 == 0:
-                print('iter={:d}, loss={:4f}, acc={:.4f}'.format(iteration, loss, accuracy))
-            
-            if iteration % 100 ==0 and iteration>0:
+                print('Train step: {:d}/{:d}, Train loss: {:3f}, Train accuracy: {:.3f}'.format(iteration, max_iterations, loss, accuracy))
+            if iteration % 100 == 0 and iteration > 0:
+                print_statement('MODEL VALIDATING')
                 model.eval()
-                accs=[]
-                for batch_inputs,batch_targets in dataloader_validate:
+                accs = []
+                length = []
+                for batch_inputs, batch_targets in dataloader_validate:
+                    batch_inputs = batch_inputs.to(args.device)
+                    batch_targets = batch_targets.to(args.device)
                     with torch.no_grad():
-                        output =  model(batch_inputs)
-                    acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
+                        output = model(batch_inputs)
+                    acc = torch.sum(output.argmax(dim=1) == batch_targets)
+                    length.append(len(batch_targets))
                     accs.append(acc)
-                validate_acc = np.mean(accs)
-                print_statement('VALIDATING')
-                print('validate_accuarcy={:.4f}'.format(validate_acc))
+                validate_acc = float(np.sum(accs)) / sum(length)
+                print('Testing on {} data:'.format(sum(length)))
+                print('+ Validation accuracy: {:.3f}'.format(validate_acc))
                 # save best model parameters
                 if validate_acc > best_eval:
                     print("New highscore! Saving model...")
@@ -107,59 +109,55 @@ def train(args, MODEL_LOC):
                     ckpt = {
                         "state_dict": model.state_dict(),
                         "optimizerizer_state_dict": optim.state_dict(),
-                        "best_eval": best_eval,
+                        "best_eval": best_eval
                     }
                     torch.save(ckpt, MODEL_LOC)
-                model.train()
 
 
 def test(args, MODEL_LOC, LABEL_JSON_LOC):
     print_statement('LOAD EMBEDDINGS')
     label_map = load_json(LABEL_JSON_LOC, reverse=True, name='Label Mapping')
-
     with open('dataset/ind2token', 'rb') as f:
         ind2token = pickle.load(f)
     with open('dataset/token2ind', 'rb') as f:
         token2ind = pickle.load(f)
     with open('dataset/embeddings_vector', 'rb') as f:
         embeddings_vector = pickle.load(f)
-    print_value('embeddings_shape', embeddings_vector.shape)
-    print_value('vocab_size', len(ind2token))
+    print_value('Embed shape', embeddings_vector.shape)
+    print_value('Vocab size', len(ind2token))
     batch_size = args.batch_size
     embedding_size = embeddings_vector.shape[1]
-    vocab_size = embeddings_vector.shape[0]
-    qcdataset = QCDataset(token2ind, ind2token, batch_first=True)
-    dataloader_train = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
-    qcdataset = QCDataset(token2ind, ind2token, split='val', batch_first=True)
-    dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
-    qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
-    dataloader_test = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn, drop_last=True)
-
     model = TextCNN(batch_size=batch_size,
-                c_out=args.c_out,
-                output_size=args.num_classes,
-                vocab_size=len(ind2token),
-                embedding_size=embedding_size,
-                embeddings_vector=torch.from_numpy(embeddings_vector),
-                kernel_sizes=args.kernel_sizes,
-                trainable=args.embed_trainable,
-                p=args.p)
+                    c_out=args.c_out,
+                    output_size=args.num_classes,
+                    vocab_size=len(ind2token),
+                    embedding_size=embedding_size,
+                    embeddings_vector=torch.from_numpy(embeddings_vector),
+                    kernel_sizes=args.kernel_sizes,
+                    trainable=args.embed_trainable,
+                    p=args.p)
     model.to(args.device)
     ckpt = torch.load(MODEL_LOC)
     model.load_state_dict(ckpt["state_dict"])
+    model.eval()
     print_statement('MODEL TESTING')
-    qcdataset = QCDataset(token2ind, ind2token, split='test')
+    qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
     dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     ct = ClassificationTool(len(label_map))
-    accs=[]
-    for batch_inputs,batch_targets in dataloader_validate:
+    accs = []
+    length = []
+    for batch_inputs, batch_targets in dataloader_test:
+        batch_inputs = batch_inputs.to(args.device)
+        batch_targets = batch_targets.to(args.device)
         with torch.no_grad():
-            output =  model(batch_inputs)
-        acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
+            output = model(batch_inputs)
+        acc = torch.sum(output.argmax(dim=1) == batch_targets)
         accs.append(acc)
-        ct.update(output,batch_targets)
-    test_acc = np.mean(accs)
-    print('Overall ACC {:.4f}'.format(test_acc))
-    PREC,REC,F1 = ct.get_result()
-    for i,classname in enumerate(label_map.keys()): 
-        print('* {} PREC: {:.2f}, REC: {:.2f}, F1: {:.2f}'.format(classname, PREC[i], REC[i],F1[i]))
+        length.append(len(batch_targets))
+        ct.update(output, batch_targets)
+    test_acc = float(np.sum(accs)) / sum(length)
+    print('Testing on {} data:'.format(sum(length)))
+    print('+ Overall ACC: {:.3f}'.format(test_acc))
+    PREC, REC, F1 = ct.get_result()
+    for i, classname in enumerate(label_map.values()):
+        print('* {} PREC: {:.3f}, {} REC: {:.3f}, {} F1: {:.3f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))

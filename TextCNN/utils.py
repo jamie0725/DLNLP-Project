@@ -116,9 +116,11 @@ class InputParser(object):
         text = re.sub(r"\s{2,}", " ", text)
         return text
 
+
 class ClassificationTool(object):
     """Computes PRE, REC and F1"""
-    def __init__(self,output_length):
+
+    def __init__(self, output_length):
         self.output_length = output_length
         self.reset()
 
@@ -138,21 +140,20 @@ class ClassificationTool(object):
             pred = output.argmax(dim=1) == cls
             truth = target == cls
             n_pred = ~pred
-            n_truth = ~truth 
-            self.tp[cls] += pred.mul(truth).sum().float()
-            self.tn[cls] += n_pred .mul(n_truth).sum().float()
-            self.fp[cls] += pred.mul(n_truth).sum().float()
-            self.fn[cls] += n_pred.mul(truth).sum().float()
-            if self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls] != 0:
-                self.acc[cls] = (self.tp[cls] + self.tn[cls]).sum() / (self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls]).sum()
-            if self.tp[cls] + self.fp[cls] != 0:
-                self.pre[cls] = self.tp[cls] / (self.tp[cls] + self.fp[cls])
-            if self.tp[cls] + self.fn[cls] != 0:
-                self.rec[cls] = self.tp[cls] / (self.tp[cls] + self.fn[cls])
-            if (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls]) != 0:
-                self.f1[cls] = (2.0 * self.tp[cls]) / (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls])
+            n_truth = ~truth
+            self.tp[cls] += pred.mul(truth).sum()
+            self.tn[cls] += n_pred.mul(n_truth).sum()
+            self.fp[cls] += pred.mul(n_truth).sum()
+            self.fn[cls] += n_pred.mul(truth).sum()
+
     def get_result(self):
-        return self.pre,self.rec,self.f1
+        for cls in range(self.output_length):
+            self.acc[cls] = (self.tp[cls] + self.tn[cls]).sum() / (self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls]).sum()
+            self.pre[cls] = self.tp[cls] / (self.tp[cls] + self.fp[cls])
+            self.rec[cls] = self.tp[cls] / (self.tp[cls] + self.fn[cls])
+            self.f1[cls] = (2.0 * self.tp[cls]) / (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls])
+        return self.pre, self.rec, self.f1
+
 
 def load_json(file_loc, mapping=None, reverse=False, name=None):
     '''
@@ -210,8 +211,9 @@ def print_flags(args):
     for key, value in vars(args).items():
         print(key + ' : ' + str(value))
 
+
 def print_value(name, value):
-    print(name + f':{value}')
+    print(name + f': {value}')
 
 
 def convert_to_tensor(data, label_map, token2ind):

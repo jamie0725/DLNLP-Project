@@ -1,0 +1,27 @@
+=============== HYPERPARAMETER SETTING ===============
+mode : eval
+lr : 0.001
+epochs : 10
+batch_size : 64
+num_classes : 6
+max_norm : 5.0
+embed_trainable : False
+kernel_sizes : [2, 3, 4]
+device : cuda:0
+p : 0.5
+c_out : 32
+=============== LOAD EMBEDDINGS ===============
+Statistics of Label Mapping:
+* Class: {0: 'ABBREVIATION', 1: 'ENTITY', 2: 'DESCRIPTION', 3: 'HUMAN', 4: 'LOCATION', 5: 'NUMERIC'}
++ Total: 6
+Embed shape: (4164, 300)
+Vocab size: 4164
+=============== MODEL TESTING ===============
+Testing on 500 data:
++ Overall ACC: 0.872
+* ABB PREC: 1.000, ABB REC: 0.667, ABB F1: 0.800
+* ENT PREC: 0.896, ENT REC: 0.638, ENT F1: 0.745
+* DES PREC: 0.830, DES REC: 0.957, DES F1: 0.889
+* HUM PREC: 0.849, HUM REC: 0.954, HUM F1: 0.899
+* LOC PREC: 0.864, LOC REC: 0.938, LOC F1: 0.899
+* NUM PREC: 0.935, NUM REC: 0.885, NUM F1: 0.909
