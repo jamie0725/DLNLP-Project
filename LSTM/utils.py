@@ -213,7 +213,7 @@ def print_flags(args):
 
 
 def print_value(name, value):
-    print(name + f':{value}')
+    print(name + f': {value}')
 
 
 def convert_to_tensor(data, label_map, token2ind):

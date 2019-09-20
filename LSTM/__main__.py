@@ -70,8 +70,8 @@ if __name__ == "__main__":
     with open('dataset/embeddings_vector', 'rb') as f:
         embeddings_vector = pickle.load(f)
         f.close()
-    print_value('Embed shape: ', embeddings_vector.shape)
-    print_value('Vocab size ', len(ind2token))
+    print_value('Embed shape', embeddings_vector.shape)
+    print_value('Vocab size', len(ind2token))
     input_tensor, output_tensor = convert_to_tensor(train_data, label_map, token2ind)
     embedding_length = embeddings_vector.shape[1]
     qcdataset = QCDataset(token2ind, ind2token)
@@ -135,7 +135,7 @@ if __name__ == "__main__":
                         ckpt = {
                             "state_dict": model.state_dict(),
                             "optimizerizer_state_dict": optimizer.state_dict(),
-                            "best_eval": best_eval,
+                            "best_eval": best_eval
                         }
                         torch.save(ckpt, MODEL_LOC)
     else:

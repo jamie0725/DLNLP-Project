@@ -37,14 +37,14 @@ Statistics of Test Set:
 * Number of data in class NUM: 113
 + Total: 500
 =============== LOAD EMBEDDINGS ===============
-Embed shape: :(4164, 300)
-Vocab size :4164
+Embed shape: (4164, 300)
+Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.840
-* ABB PREC: 0.714, ABB REC: 0.556, ABB F1: 0.625
-* ENT PREC: 0.733, ENT REC: 0.670, ENT F1: 0.700
-* DES PREC: 0.821, DES REC: 0.899, DES F1: 0.858
-* HUM PREC: 0.877, HUM REC: 0.877, HUM F1: 0.877
-* LOC PREC: 0.807, LOC REC: 0.877, LOC F1: 0.840
-* NUM PREC: 0.971, NUM REC: 0.885, NUM F1: 0.926
++ Overall ACC: 0.836
+* ABB PREC: 0.500, ABB REC: 0.556, ABB F1: 0.526
+* ENT PREC: 0.821, ENT REC: 0.585, ENT F1: 0.683
+* DES PREC: 0.814, DES REC: 0.949, DES F1: 0.876
+* HUM PREC: 0.795, HUM REC: 0.954, HUM F1: 0.867
+* LOC PREC: 0.863, LOC REC: 0.852, LOC F1: 0.857
+* NUM PREC: 0.923, NUM REC: 0.850, NUM F1: 0.885
