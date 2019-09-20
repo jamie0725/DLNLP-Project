@@ -231,7 +231,7 @@ class QCDataset(data.Dataset):
         """
         input_sentence = self.data[i][0]
         target_class = int(self.data[i][1])
-        input_sentence = [self.token2ind[token] for token in map(self.stemmer.stem, input_sentence)]
+        input_sentence = [self.token2ind.get(token, 0) for token in map(self.stemmer.stem, input_sentence)]
         return input_sentence, target_class
 
     def __len__(self):
