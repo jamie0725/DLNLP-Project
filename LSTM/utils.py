@@ -117,6 +117,47 @@ class InputParser(object):
         return text
 
 
+class ClassificationTool(object):
+    """Computes PRE, REC and F1"""
+
+    def __init__(self, output_length):
+        self.output_length = output_length
+        self.reset()
+
+    def reset(self):
+        n = self.output_length
+        self.tp = np.zeros(n)
+        self.tn = np.zeros(n)
+        self.fp = np.zeros(n)
+        self.fn = np.zeros(n)
+        self.acc = np.zeros(n)
+        self.pre = np.zeros(n)
+        self.rec = np.zeros(n)
+        self.f1 = np.zeros(n)
+
+    def update(self, output, target):
+        for cls in range(self.output_length):
+            pred = output.argmax(dim=1) == cls
+            truth = target == cls
+            n_pred = ~pred
+            n_truth = ~truth
+            self.tp[cls] += pred.mul(truth).sum().float()
+            self.tn[cls] += n_pred .mul(n_truth).sum().float()
+            self.fp[cls] += pred.mul(n_truth).sum().float()
+            self.fn[cls] += n_pred.mul(truth).sum().float()
+            if self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls] != 0:
+                self.acc[cls] = (self.tp[cls] + self.tn[cls]).sum() / (self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls]).sum()
+            if self.tp[cls] + self.fp[cls] != 0:
+                self.pre[cls] = self.tp[cls] / (self.tp[cls] + self.fp[cls])
+            if self.tp[cls] + self.fn[cls] != 0:
+                self.rec[cls] = self.tp[cls] / (self.tp[cls] + self.fn[cls])
+            if (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls]) != 0:
+                self.f1[cls] = (2.0 * self.tp[cls]) / (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls])
+
+    def get_result(self):
+        return self.pre, self.rec, self.f1
+
+
 def load_json(file_loc, mapping=None, reverse=False, name=None):
     '''
     Load json file at a given location.
@@ -172,28 +213,6 @@ def print_flags(args):
 
     for key, value in vars(args).items():
         print(key + ' : ' + str(value))
-
-
-def print_result(result, keep=3):
-    """
-    Print result matrix.
-    """
-
-    if type(result) == dict:
-        # Individual result.
-        for key in result:
-            prec = result[key]['precision']
-            rec = result[key]['recall']
-            f1 = result[key]['f1score']
-            key = key.replace('__label__', '')[:keep]
-            print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(key, prec, key, rec, key, f1))
-    elif type(result) == tuple:
-        # Overall result.
-        print('Testing on {} data:'.format(result[0]))
-        print('+ Overall ACC: {:.3f}'.format(result[1]))
-        assert result[1] == result[2]
-    else:
-        raise TypeError
 
 
 def print_value(name, value):

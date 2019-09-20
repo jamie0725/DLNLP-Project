@@ -4,7 +4,7 @@ lr : 0.1
 lr_update_rate : 100
 dim : 100
 ws : 5
-epoch : 50
+epoch : 70
 min_count : 1
 neg : 5
 word_ngrams : 1
@@ -45,10 +45,10 @@ Done
 Done
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Overall ACC: 0.971
-* LOC PREC: 0.98, LOC REC: 0.99, LOC F1: 0.99
-* HUM PREC: 0.96, HUM REC: 0.95, HUM F1: 0.96
-* DES PREC: 0.97, DES REC: 0.97, DES F1: 0.97
-* NUM PREC: 0.99, NUM REC: 0.99, NUM F1: 0.99
++ Overall ACC: 0.974
 * ABB PREC: 1.00, ABB REC: 0.90, ABB F1: 0.95
-* ENT PREC: 0.94, ENT REC: 0.95, ENT F1: 0.94
+* ENT PREC: 0.94, ENT REC: 0.96, ENT F1: 0.95
+* DES PREC: 0.97, DES REC: 0.97, DES F1: 0.97
+* HUM PREC: 0.98, HUM REC: 0.95, HUM F1: 0.96
+* LOC PREC: 0.98, LOC REC: 0.99, LOC F1: 0.99
+* NUM PREC: 0.99, NUM REC: 0.99, NUM F1: 0.99

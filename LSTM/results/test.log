@@ -1,0 +1,49 @@
+=============== HYPERPARAMETER SETTING ===============
+mode : eval
+lr : 0.001
+epochs : 10
+batch_size : 64
+num_hidden : 256
+max_norm : 5.0
+lstm_layer : 2
+lstm_bidirectional : True
+embed_trainable : False
+=============== DATA PROCESSING ===============
+Statistics of Label Mapping:
+* Class: {0: 'ABBREVIATION', 1: 'ENTITY', 2: 'DESCRIPTION', 3: 'HUMAN', 4: 'LOCATION', 5: 'NUMERIC'}
++ Total: 6
+Statistics of Training Set:
+* Number of data in class ABB: 180
+* Number of data in class ENT: 1800
+* Number of data in class DES: 1800
+* Number of data in class HUM: 1800
+* Number of data in class LOC: 1800
+* Number of data in class NUM: 1800
++ Total: 9180
+Statistics of Validation Set:
+* Number of data in class ABB: 20
+* Number of data in class ENT: 200
+* Number of data in class DES: 200
+* Number of data in class HUM: 200
+* Number of data in class LOC: 200
+* Number of data in class NUM: 200
++ Total: 1020
+Statistics of Test Set:
+* Number of data in class ABB: 9
+* Number of data in class ENT: 94
+* Number of data in class DES: 138
+* Number of data in class HUM: 65
+* Number of data in class LOC: 81
+* Number of data in class NUM: 113
++ Total: 500
+=============== LOAD EMBEDDINGS ===============
+embeddings_shape:(4164, 300)
+vocab_size:4164
+=============== MODEL TESTING ===============
++ Overall ACC: 0.947
+* ABB PREC: 0.94, ABB REC: 0.80, ABB F1: 0.86
+* ENT PREC: 0.90, ENT REC: 0.94, ENT F1: 0.92
+* DES PREC: 0.91, DES REC: 0.95, DES F1: 0.93
+* HUM PREC: 0.98, HUM REC: 0.94, HUM F1: 0.96
+* LOC PREC: 0.96, LOC REC: 0.94, LOC F1: 0.95
+* NUM PREC: 0.98, NUM REC: 0.98, NUM F1: 0.98

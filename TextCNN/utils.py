@@ -1,6 +1,48 @@
 import sys
 import os
+import argparse
 import json
+import re
+import numpy as np
+import torch
+import torch.nn as nn
+from torch.autograd import Variable
+from torch.nn import functional as F
+from gensim.models import KeyedVectors
+from nltk.stem.porter import PorterStemmer
+
+
+class Embeddings(object):
+    """Class for creating an embedding vector with the pretrained Word2Vec embeddings.
+
+    Example usage:
+        Use torch.nn.Embed layer (with embedding size of 300) and fix the pretrained embeddings by
+        `
+        with torch.no_grad():
+            model.embed.weight.data.copy_(torch.from_numpy(vectors))
+            model.embed.weight.requires_grad = False
+        `
+
+    """
+
+    def __init__(self, filepath):
+        self.model = KeyedVectors.load_word2vec_format(os.path.dirname(os.path.realpath(__file__)) + filepath, binary=True)
+
+    def create_embeddings(self, token2ind):
+        vectors = []
+        unknown_vector = np.random.uniform(-0.05, 0.05, 300).astype(np.float32)
+        for token, ind in token2ind.items():
+            if token == '<unk>':
+                vectors.append(list(unknown_vector))
+            elif token == '<pad>':
+                vectors.append(list(np.zeros(300).astype(np.float32)))
+            elif ind == 0:
+                continue
+            else:
+                vectors.append(list(self.model[token]))
+
+        vectors = np.stack(vectors, axis=0)
+        return vectors
 
 
 class Logger(object):
@@ -22,6 +64,95 @@ class Logger(object):
         # you might want to specify some extra behavior here.
         pass
 
+
+class InputParser(object):
+
+    def __init__(self, token2ind):
+        self.token2ind = token2ind
+        self.stemmer = PorterStemmer()
+
+    def word2id(self, word):
+        if word in self.token2ind.keys():
+            return self.token2ind[word]
+        else:
+            return 0
+
+    def sentence2id(self, word_list):
+        sentence = self.stemmer.stem(' '.join(word_list))
+        sentence_id = [self.word2id(word) for word in self.clean_text(sentence).split()]
+        return sentence_id
+
+    def clean_text(self, text):
+
+        # Clean the text
+        text = re.sub(r"[^A-Za-z0-9^,!.\/'+-=]", " ", text)
+        text = re.sub(r"what's", "what is ", text)
+        text = re.sub(r"\'s", " ", text)
+        text = re.sub(r"\'ve", " have ", text)
+        text = re.sub(r"can't", "cannot ", text)
+        text = re.sub(r"n't", " not ", text)
+        text = re.sub(r"i'm", "i am ", text)
+        text = re.sub(r"\'re", " are ", text)
+        text = re.sub(r"\'d", " would ", text)
+        text = re.sub(r"\'ll", " will ", text)
+        text = re.sub(r",", " ", text)
+        text = re.sub(r"\.", " ", text)
+        text = re.sub(r"!", " ! ", text)
+        text = re.sub(r"\/", " ", text)
+        text = re.sub(r"\^", " ^ ", text)
+        text = re.sub(r"\+", " + ", text)
+        text = re.sub(r"\-", " - ", text)
+        text = re.sub(r"\=", " = ", text)
+        text = re.sub(r"'", " ", text)
+        text = re.sub(r"(\d+)(k)", r"\g<1>000", text)
+        text = re.sub(r":", " : ", text)
+        text = re.sub(r" e g ", " eg ", text)
+        text = re.sub(r" b g ", " bg ", text)
+        text = re.sub(r" u s ", " american ", text)
+        text = re.sub(r"\0s", "0", text)
+        text = re.sub(r" 9 11 ", "911", text)
+        text = re.sub(r"e - mail", "email", text)
+        text = re.sub(r"j k", "jk", text)
+        text = re.sub(r"\s{2,}", " ", text)
+        return text
+
+class ClassificationTool(object):
+    """Computes PRE, REC and F1"""
+    def __init__(self,output_length):
+        self.output_length = output_length
+        self.reset()
+
+    def reset(self):
+        n = self.output_length
+        self.tp = np.zeros(n)
+        self.tn = np.zeros(n)
+        self.fp = np.zeros(n)
+        self.fn = np.zeros(n)
+        self.acc = np.zeros(n)
+        self.pre = np.zeros(n)
+        self.rec = np.zeros(n)
+        self.f1 = np.zeros(n)
+
+    def update(self, output, target):
+        for cls in range(self.output_length):
+            pred = output.argmax(dim=1) == cls
+            truth = target == cls
+            n_pred = ~pred
+            n_truth = ~truth 
+            self.tp[cls] += pred.mul(truth).sum().float()
+            self.tn[cls] += n_pred .mul(n_truth).sum().float()
+            self.fp[cls] += pred.mul(n_truth).sum().float()
+            self.fn[cls] += n_pred.mul(truth).sum().float()
+            if self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls] != 0:
+                self.acc[cls] = (self.tp[cls] + self.tn[cls]).sum() / (self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls]).sum()
+            if self.tp[cls] + self.fp[cls] != 0:
+                self.pre[cls] = self.tp[cls] / (self.tp[cls] + self.fp[cls])
+            if self.tp[cls] + self.fn[cls] != 0:
+                self.rec[cls] = self.tp[cls] / (self.tp[cls] + self.fn[cls])
+            if (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls]) != 0:
+                self.f1[cls] = (2.0 * self.tp[cls]) / (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls])
+    def get_result(self):
+        return self.pre,self.rec,self.f1
 
 def load_json(file_loc, mapping=None, reverse=False, name=None):
     '''
@@ -79,28 +210,23 @@ def print_flags(args):
     for key, value in vars(args).items():
         print(key + ' : ' + str(value))
 
-
-def print_result(result, keep=3):
-    """
-    Print result matrix.
-    """
-
-    if type(result) == dict:
-        # Individual result.
-        for key in result:
-            prec = result[key]['precision']
-            rec = result[key]['recall']
-            f1 = result[key]['f1score']
-            key = key.replace('__label__', '')[:keep]
-            print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(key, prec, key, rec, key, f1))
-    elif type(result) == tuple:
-        # Overall result.
-        print('Testing on {} data:'.format(result[0]))
-        print('+ Overall ACC: {:.3f}'.format(result[1]))
-        assert result[1] == result[2]
-    else:
-        raise TypeError
-
-
 def print_value(name, value):
     print(name + f':{value}')
+
+
+def convert_to_tensor(data, label_map, token2ind):
+    parser = InputParser(token2ind)
+    inputs = []
+    outputs = []
+    for i in range(len(label_map)):
+        for line in data[str(i)]:
+            inputs.append(parser.sentence2id(line))
+            outputs.append(str(i))
+    max_length = np.max([len(line) for line in inputs])
+    input_tensor = torch.ones(len(inputs), max_length)
+    output_tensor = torch.zeros(len(inputs))
+    for i, sentence in enumerate(inputs):
+        output_tensor[i] = int(outputs[i])
+        for j, value in enumerate(sentence):
+            input_tensor[i][j] = value
+    return input_tensor, output_tensor
