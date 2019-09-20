@@ -141,20 +141,17 @@ class ClassificationTool(object):
             truth = target == cls
             n_pred = ~pred
             n_truth = ~truth
-            self.tp[cls] += pred.mul(truth).sum().float()
-            self.tn[cls] += n_pred .mul(n_truth).sum().float()
-            self.fp[cls] += pred.mul(n_truth).sum().float()
-            self.fn[cls] += n_pred.mul(truth).sum().float()
-            if self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls] != 0:
-                self.acc[cls] = (self.tp[cls] + self.tn[cls]).sum() / (self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls]).sum()
-            if self.tp[cls] + self.fp[cls] != 0:
-                self.pre[cls] = self.tp[cls] / (self.tp[cls] + self.fp[cls])
-            if self.tp[cls] + self.fn[cls] != 0:
-                self.rec[cls] = self.tp[cls] / (self.tp[cls] + self.fn[cls])
-            if (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls]) != 0:
-                self.f1[cls] = (2.0 * self.tp[cls]) / (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls])
+            self.tp[cls] += pred.mul(truth).sum()
+            self.tn[cls] += n_pred .mul(n_truth).sum()
+            self.fp[cls] += pred.mul(n_truth).sum()
+            self.fn[cls] += n_pred.mul(truth).sum()
 
     def get_result(self):
+        for cls in range(self.output_length):
+            self.acc[cls] = (self.tp[cls] + self.tn[cls]).sum() / (self.tp[cls] + self.tn[cls] + self.fp[cls] + self.fn[cls]).sum()
+            self.pre[cls] = self.tp[cls] / (self.tp[cls] + self.fp[cls])
+            self.rec[cls] = self.tp[cls] / (self.tp[cls] + self.fn[cls])
+            self.f1[cls] = (2.0 * self.tp[cls]) / (2.0 * self.tp[cls] + self.fp[cls] + self.fn[cls])
         return self.pre, self.rec, self.f1
 
 

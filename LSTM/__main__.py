@@ -77,7 +77,7 @@ if __name__ == "__main__":
     qcdataset = QCDataset(token2ind, ind2token)
     dataloader_train = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     qcdataset = QCDataset(token2ind, ind2token, split='val')
-    dataloader_validate = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+    dataloader_validate = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=False, collate_fn=qcdataset.collate_fn)
     embeddings_vector_tensor = torch.from_numpy(embeddings_vector)
     model = LSTMClassifier(output_size=len(label_map),
                            hidden_size=args.num_hidden,
@@ -141,19 +141,19 @@ if __name__ == "__main__":
         model.eval()
         print_statement('MODEL TESTING')
         qcdataset = QCDataset(token2ind, ind2token, split='test')
-        dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+        dataloader_test = DataLoader(qcdataset, batch_size=10, shuffle=True, collate_fn=qcdataset.collate_fn)
         ct = ClassificationTool(len(label_map))
         accs = []
-        for batch_inputs, batch_targets in dataloader_validate:
+        for batch_inputs, batch_targets in dataloader_test:
             batch_inputs = batch_inputs.to(device)
             batch_targets = batch_targets.to(device)
             with torch.no_grad():
                 output = model(batch_inputs)
-            acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
+            acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) 
             accs.append(acc)
             ct.update(output, batch_targets)
-        test_acc = np.mean(accs)
+        test_acc = np.mean(accs)/ len(batch_targets)
         print('+ Overall ACC: {:.3f}'.format(test_acc))
         PREC, REC, F1 = ct.get_result()
         for i, classname in enumerate(label_map.values()):
-            print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))
+            print('* {} PREC: {:.4f}, {} REC: {:.4f}, {} F1: {:.4f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))
