@@ -7,16 +7,16 @@ import fasttext
 import json
 
 # Some global parameters.
-TRAIN_LOG_LOC = './results/train.log'
-TEST_LOG_LOC = './results/test.log'
-LABEL_JSON_LOC = '../dataset/labels.json'
-TRAIN_JSON_LOC = '../dataset/train/train.json'
-VAL_JSON_LOC = '../dataset/val/val.json'
-TEST_JSON_LOC = '../dataset/test/test.json'
-TRAIN_TXT_LOC = 'train.txt'
-VAL_TXT_LOC = 'val.txt'
-TEST_TXT_LOC = 'test.txt'
-MODEL_LOC = './model/model.bin'
+TRAIN_LOG_LOC = 'FastText/results/train.log'
+TEST_LOG_LOC = 'FastText/results/test.log'
+LABEL_JSON_LOC = 'dataset/labels.json'
+TRAIN_JSON_LOC = 'dataset/train/train.json'
+VAL_JSON_LOC = 'dataset/val/val.json'
+TEST_JSON_LOC = 'dataset/test/test.json'
+TRAIN_TXT_LOC = 'FastText/train.txt'
+VAL_TXT_LOC = 'FastText/val.txt'
+TEST_TXT_LOC = 'FastText/test.txt'
+MODEL_LOC = 'FastText/model/model.bin'
 
 
 class Logger(object):
@@ -102,19 +102,29 @@ def print_flags():
             print(key + ' : ' + str(value))
 
 
-def print_result(result, keep=3):
+def print_result(result, mapping, keep=3):
     """
     Print result matrix.
     """
 
     if type(result) == dict:
         # Individual result.
-        for key in result:
-            prec = result[key]['precision']
-            rec = result[key]['recall']
-            f1 = result[key]['f1score']
-            key = key.replace('__label__', '')[:keep]
-            print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(key, prec, key, rec, key, f1))
+        try:
+            for key in mapping.values():
+                key = '__label__' + key
+                prec = result[key]['precision']
+                rec = result[key]['recall']
+                f1 = result[key]['f1score']
+                key = key.replace('__label__', '')[:keep]
+                print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(key, prec, key, rec, key, f1))
+        except:
+            for key in mapping:
+                key = '__label__' + key
+                prec = result[key]['precision']
+                rec = result[key]['recall']
+                f1 = result[key]['f1score']
+                key = key.replace('__label__', '')[:keep]
+                print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(key, prec, key, rec, key, f1))
     elif type(result) == tuple:
         # Overall result.
         print('Testing on {} data:'.format(result[0]))
@@ -151,7 +161,7 @@ if __name__ == "__main__":
                         help='size of word vectors')
     parser.add_argument('--ws', type=int, default=5,
                         help='size of the context window')
-    parser.add_argument('--epoch', type=int, default=5,
+    parser.add_argument('--epoch', type=int, default=70,
                         help='train or eval')
     parser.add_argument('--min_count', type=int, default=1,
                         help='minimal number of word occurences')
@@ -214,13 +224,13 @@ if __name__ == "__main__":
         print_statement('MODEL VALIDATING')
         val_overall_result = model.test(VAL_TXT_LOC)
         val_ind_result = model.test_label(VAL_TXT_LOC)
-        print_result(val_overall_result)
-        print_result(val_ind_result)
+        print_result(val_overall_result, label_map)
+        print_result(val_ind_result, label_map)
     else:
         # Testing on test set.
         model = fasttext.load_model(MODEL_LOC)
         print_statement('MODEL TESTING')
         test_overall_result = model.test(TEST_TXT_LOC)
         test_ind_result = model.test_label(TEST_TXT_LOC)
-        print_result(test_overall_result)
-        print_result(test_ind_result)
+        print_result(test_overall_result, label_map)
+        print_result(test_ind_result, label_map)

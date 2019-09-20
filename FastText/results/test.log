@@ -4,7 +4,7 @@ lr : 0.1
 lr_update_rate : 100
 dim : 100
 ws : 5
-epoch : 50
+epoch : 70
 min_count : 1
 neg : 5
 word_ngrams : 1
@@ -41,10 +41,10 @@ Statistics of Test Set:
 + Total: 500
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.856
-* LOC PREC: 0.88, LOC REC: 0.85, LOC F1: 0.87
-* HUM PREC: 0.87, HUM REC: 0.95, HUM F1: 0.91
-* DES PREC: 0.77, DES REC: 0.99, DES F1: 0.86
-* NUM PREC: 0.97, NUM REC: 0.86, NUM F1: 0.91
++ Overall ACC: 0.860
 * ABB PREC: 1.00, ABB REC: 0.78, ABB F1: 0.88
-* ENT PREC: 0.85, ENT REC: 0.61, ENT F1: 0.71
+* ENT PREC: 0.83, ENT REC: 0.62, ENT F1: 0.71
+* DES PREC: 0.79, DES REC: 0.98, DES F1: 0.87
+* HUM PREC: 0.87, HUM REC: 0.94, HUM F1: 0.90
+* LOC PREC: 0.88, LOC REC: 0.86, LOC F1: 0.87
+* NUM PREC: 0.97, NUM REC: 0.88, NUM F1: 0.92
