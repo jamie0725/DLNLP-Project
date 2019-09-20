@@ -80,15 +80,15 @@ if __name__ == "__main__":
     dataloader_validate = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     embeddings_vector_tensor = torch.from_numpy(embeddings_vector)
     model = LSTMClassifier(output_size=len(label_map),
-                            hidden_size=args.num_hidden,
-                            embedding_length=embedding_length,
-                            embeddings_vector=embeddings_vector_tensor,
-                            lstm_layer=args.lstm_layer,
-                            lstm_dirc=args.lstm_bidirectional,
-                            trainable=args.embed_trainable,
-                            device=device)
+                           hidden_size=args.num_hidden,
+                           embedding_length=embedding_length,
+                           embeddings_vector=embeddings_vector_tensor,
+                           lstm_layer=args.lstm_layer,
+                           lstm_dirc=args.lstm_bidirectional,
+                           trainable=args.embed_trainable,
+                           device=device)
     model.to(device)
-     # Train model.
+    # Train model.
     if args.mode == 'train':
         # Model training.
         print_statement('MODEL TRAINING')
@@ -111,18 +111,20 @@ if __name__ == "__main__":
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=args.max_norm)
                 optimizer.step()
                 if iteration % 10 == 0:
-                    print('iter={:d}/{:d}, loss={:4f}, acc={:.4f}'.format(iteration, max_iterations, loss, accuracy))
-                if iteration % 100 ==0 and iteration>0:
+                    print('Train step: {:d}/{:d}, Train loss: {:3f}, Train accuracy: {:.3f}'.format(iteration, max_iterations, loss, accuracy))
+                if iteration % 100 == 0 and iteration > 0:
+                    print_statement('MODEL VALIDATING')
                     model.eval()
-                    accs=[]
-                    for batch_inputs,batch_targets in dataloader_validate:
+                    accs = []
+                    for batch_inputs, batch_targets in dataloader_validate:
+                        batch_inputs = batch_inputs.to(device)
+                        batch_targets = batch_targets.to(device)
                         with torch.no_grad():
-                            output =  model(batch_inputs)
-                        acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
+                            output = model(batch_inputs)
+                        acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
                         accs.append(acc)
                     validate_acc = np.mean(accs)
-                    print_statement('VALIDATING')
-                    print('validate_accuarcy={:.4f}'.format(validate_acc))
+                    print('Validation accuracy: {:.3f}'.format(validate_acc))
                     # save best model parameters
                     if validate_acc > best_eval:
                         print("New highscore! Saving model...")
@@ -133,25 +135,25 @@ if __name__ == "__main__":
                             "best_eval": best_eval,
                         }
                         torch.save(ckpt, MODEL_LOC)
-                    model.train()
     else:
         ckpt = torch.load(MODEL_LOC)
         model.load_state_dict(ckpt["state_dict"])
+        model.eval()
         print_statement('MODEL TESTING')
         qcdataset = QCDataset(token2ind, ind2token, split='test')
         dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
         ct = ClassificationTool(len(label_map))
-        accs=[]
-        for batch_inputs,batch_targets in dataloader_validate:
+        accs = []
+        for batch_inputs, batch_targets in dataloader_validate:
+            batch_inputs = batch_inputs.to(device)
+            batch_targets = batch_targets.to(device)
             with torch.no_grad():
-                output =  model(batch_inputs)
-            acc = float(torch.sum(output.argmax(dim=1)== batch_targets)) / len(batch_targets)
+                output = model(batch_inputs)
+            acc = float(torch.sum(output.argmax(dim=1) == batch_targets)) / len(batch_targets)
             accs.append(acc)
-            ct.update(output,batch_targets)
+            ct.update(output, batch_targets)
         test_acc = np.mean(accs)
-        print('Overall ACC {:.4f}'.format(test_acc))
-        PREC,REC,F1 = ct.get_result()
-        for i,classname in enumerate(label_map.keys()): 
-            print('* {} PREC: {:.2f}, REC: {:.2f}, F1: {:.2f}'.format(classname, PREC[i], REC[i],F1[i]))
-
-
+        print('+ Overall ACC: {:.3f}'.format(test_acc))
+        PREC, REC, F1 = ct.get_result()
+        for i, classname in enumerate(label_map.values()):
+            print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))
