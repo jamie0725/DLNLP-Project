@@ -12,7 +12,7 @@ We cover the classical NLP problem of question classification, which consists of
 
 * The three models are compared in terms of the overall classification accuracy, and the precision, recall and F1-score values for each category.
 
-**Adding Unsupervised Component for Better Interpretability**
+**!!TODO!!Adding Unsupervised Component for Better Interpretability**
 
 * A layer of binary latent variables is added to our neural models that select what parts of the input expose features for classification.
 
@@ -29,7 +29,7 @@ The dataset we use can be found [here](https://cogcomp.seas.upenn.edu/Data/QA/QC
 3. Download the pre-trained [Word2Vec word embeddings](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit) and unzip into folder _preprocessing_.
 
 ### Running Instructions
-* Preprocess the dataset and extract word embeddings by running `python -m dataset`.
+* [Optional] Preprocess the dataset and extract word embeddings by running `python -m dataset`.
 
 * Test the FastText model by running `python -m FastText --mode=eval`.
 
