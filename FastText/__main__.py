@@ -162,7 +162,7 @@ if __name__ == "__main__":
     parser.add_argument('--ws', type=int, default=5,
                         help='size of the context window')
     parser.add_argument('--epoch', type=int, default=70,
-                        help='train or eval')
+                        help='number of epochs')
     parser.add_argument('--min_count', type=int, default=1,
                         help='minimal number of word occurences')
     parser.add_argument('--neg', type=int, default=5,
