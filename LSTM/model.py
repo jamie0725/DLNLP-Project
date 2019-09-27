@@ -1,22 +1,19 @@
 # _*_ coding: utf-8 _*_
 
-import torch
 import torch.nn as nn
-from torch.autograd import Variable
-from torch.nn import functional as F
 
 
 class LSTMClassifier(nn.Module):
     def __init__(self, output_size, hidden_size, embedding_length, embeddings_vector, lstm_layer, lstm_dirc, trainable, device):
         super(LSTMClassifier, self).__init__()
 
-        self.embed = nn.Embedding.from_pretrained(embeddings_vector, freeze=trainable, padding_idx=1)
+        self.embed = nn.Embedding.from_pretrained(embeddings_vector, freeze=trainable)
         self.lstm = nn.LSTM(embedding_length, hidden_size, num_layers=lstm_layer, bidirectional=lstm_dirc)
         if lstm_dirc:
             multiple = 2
         else:
             multiple = 1
-        self.linear = nn.Linear(multiple*hidden_size, output_size)
+        self.linear = nn.Linear(multiple * hidden_size, output_size)
         self.to(device)
 
     def forward(self, x):

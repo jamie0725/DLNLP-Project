@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import os
 import argparse
-import json
 import pickle
 import torch
-import torch.nn as nn
-from torch.autograd import Variable
-from torch.nn import functional as F
-from LSTM.utils import *
+import numpy as np
+from utils.utils import Logger, print_statement, print_flags, load_json, print_value, convert_to_tensor, ClassificationTool
 from torch.utils.data import DataLoader
-from dataset.utils import *
+from dataset.utils import QCDataset
 from LSTM.model import LSTMClassifier
 
 # Some global parameters.

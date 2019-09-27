@@ -1,8 +1,7 @@
-import os
 import sys
 import argparse
 import torch
-from TextCNN.utils import *
+from utils.utils import Logger, print_statement, print_flags
 from TextCNN.model import train, test
 
 # Some global parameters.

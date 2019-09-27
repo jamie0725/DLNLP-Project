@@ -1,48 +1,10 @@
 import sys
 import os
-import argparse
 import json
 import re
 import numpy as np
 import torch
-import torch.nn as nn
-from torch.autograd import Variable
-from torch.nn import functional as F
-from gensim.models import KeyedVectors
 from nltk.stem.porter import PorterStemmer
-
-
-class Embeddings(object):
-    """Class for creating an embedding vector with the pretrained Word2Vec embeddings.
-
-    Example usage:
-        Use torch.nn.Embed layer (with embedding size of 300) and fix the pretrained embeddings by
-        `
-        with torch.no_grad():
-            model.embed.weight.data.copy_(torch.from_numpy(vectors))
-            model.embed.weight.requires_grad = False
-        `
-
-    """
-
-    def __init__(self, filepath):
-        self.model = KeyedVectors.load_word2vec_format(os.path.dirname(os.path.realpath(__file__)) + filepath, binary=True)
-
-    def create_embeddings(self, token2ind):
-        vectors = []
-        unknown_vector = np.random.uniform(-0.05, 0.05, 300).astype(np.float32)
-        for token, ind in token2ind.items():
-            if token == '<unk>':
-                vectors.append(list(unknown_vector))
-            elif token == '<pad>':
-                vectors.append(list(np.zeros(300).astype(np.float32)))
-            elif ind == 0:
-                continue
-            else:
-                vectors.append(list(self.model[token]))
-
-        vectors = np.stack(vectors, axis=0)
-        return vectors
 
 
 class Logger(object):

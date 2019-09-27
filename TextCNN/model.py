@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 from torch.utils.data import DataLoader
 from torch.nn import functional as F
-from TextCNN.utils import print_statement, print_value, ClassificationTool, load_json
+from utils.utils import print_statement, print_value, ClassificationTool, load_json
 from dataset.utils import QCDataset
 
 
