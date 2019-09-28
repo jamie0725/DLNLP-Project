@@ -54,11 +54,11 @@ if __name__ == "__main__":
     else:
         sys.stdout = Logger(TEST_LOG_LOC)
 
-    print_statement('HYPERPARAMETER SETTING')
-    print_flags()
+    print_statement('HYPERPARAMETER SETTING', verbose=args.verbose)
+    print_flags(args, verbose=args.verbose)
 
     # Load data.
-    print_statement('DATA PROCESSING')
+    print_statement('DATA PROCESSING', verbose=args.verbose)
     label_map = load_json(LABEL_JSON_LOC, reverse=True, name='Label Mapping', verbose=args.verbose)
     train_data = load_json(TRAIN_JSON_LOC, label_map, name='Training Set', verbose=args.verbose)
     val_data = load_json(VAL_JSON_LOC, label_map, name='Validation Set', verbose=args.verbose)
@@ -67,14 +67,14 @@ if __name__ == "__main__":
     # Train model.
     if args.mode == 'train':
         # Convert data to required file format.
-        print_statement('CONVERTING DATA')
+        print_statement('CONVERTING DATA', verbose=args.verbose)
         convert_to_txt(train_data, label_map, TRAIN_TXT_LOC)
         convert_to_txt(val_data, label_map, VAL_TXT_LOC)
         convert_to_txt(test_data, label_map, TEST_TXT_LOC)
-        print_statement('Done', number=0)
+        print_statement('Done', number=0, verbose=args.verbose)
 
         # Model training.
-        print_statement('MODEL TRAINING')
+        print_statement('MODEL TRAINING', verbose=args.verbose)
         model = fasttext.train_supervised(input=TRAIN_TXT_LOC,
                                           lr=args.lr,
                                           dim=args.dim,
@@ -89,10 +89,10 @@ if __name__ == "__main__":
                                           lrUpdateRate=args.lr_update_rate,
                                           verbose=args.verbose)
         model.save_model(MODEL_LOC)
-        print_statement('Done', number=0)
+        print_statement('Done', number=0, verbose=args.verbose)
 
         # Testing on validation set.
-        print_statement('MODEL VALIDATING')
+        print_statement('MODEL VALIDATING', verbose=args.verbose)
         val_overall_result = model.test(VAL_TXT_LOC)
         val_ind_result = model.test_label(VAL_TXT_LOC)
         print_result(val_overall_result, label_map)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     else:
         # Testing on test set.
         model = fasttext.load_model(MODEL_LOC)
-        print_statement('MODEL TESTING')
+        print_statement('MODEL TESTING', verbose=args.verbose)
         test_overall_result = model.test(TEST_TXT_LOC)
         test_ind_result = model.test_label(TEST_TXT_LOC)
         print_result(test_overall_result, label_map)
