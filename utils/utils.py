@@ -117,7 +117,7 @@ class ClassificationTool(object):
         return self.pre, self.rec, self.f1
 
 
-def load_json(file_loc, mapping=None, reverse=False, name=None):
+def load_json(file_loc, mapping=None, reverse=False, name=None, verbose=None):
     '''
     Load json file at a given location.
     '''
@@ -127,7 +127,12 @@ def load_json(file_loc, mapping=None, reverse=False, name=None):
         file.close()
     if reverse:
         data = dict(map(reversed, data.items()))
-    print_logs(data, mapping, name)
+    if verbose is not None:
+        if verbose > 0:
+            print_logs(data, mapping, name)
+    else:
+        print_logs(data, mapping, name)
+
     return data
 
 
@@ -148,34 +153,97 @@ def print_logs(data, mapping, name, keep=3):
         print('+ Total: {}'.format(len(data)))
 
 
-def print_statement(statement, isCenter=False, symbol='=', number=15, newline=False):
+def print_statement(statement, isCenter=False, symbol='=', number=15, newline=False, verbose=None):
     '''
     Print required statement in a given format.
     '''
-
-    if newline:
-        print()
-    if number > 0:
-        prefix = symbol * number + ' '
-        suffix = ' ' + symbol * number
-        statement = prefix + statement + suffix
-    if isCenter:
-        print(statement.center(os.get_terminal_size().columns))
+    if verbose is not None:
+        if verbose > 0:
+            if newline:
+                print()
+            if number > 0:
+                prefix = symbol * number + ' '
+                suffix = ' ' + symbol * number
+                statement = prefix + statement + suffix
+            if isCenter:
+                print(statement.center(os.get_terminal_size().columns))
+            else:
+                print(statement)
+        else:
+            pass
     else:
-        print(statement)
+        if newline:
+            print()
+        if number > 0:
+            prefix = symbol * number + ' '
+            suffix = ' ' + symbol * number
+            statement = prefix + statement + suffix
+        if isCenter:
+            print(statement.center(os.get_terminal_size().columns))
+        else:
+            print(statement)
 
 
-def print_flags(args):
+def print_flags(args, verbose=None):
     """
     Print all entries in args variable.
     """
+    if verbose is not None:
+        if verbose > 0:
+            for key, value in vars(args).items():
+                print(key + ' : ' + str(value))
+    else:
+        for key, value in vars(args).items():
+            print(key + ' : ' + str(value))
 
-    for key, value in vars(args).items():
-        print(key + ' : ' + str(value))
+
+def print_result(result, mapping, keep=3):
+    """
+    Print result matrix.
+    """
+
+    if type(result) == dict:
+        # Individual result.
+        try:
+            for key in mapping.values():
+                key = '__label__' + key
+                prec = result[key]['precision']
+                rec = result[key]['recall']
+                f1 = result[key]['f1score']
+                key = key.replace('__label__', '')[:keep]
+                print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(key, prec, key, rec, key, f1))
+        except:
+            for key in mapping:
+                key = '__label__' + key
+                prec = result[key]['precision']
+                rec = result[key]['recall']
+                f1 = result[key]['f1score']
+                key = key.replace('__label__', '')[:keep]
+                print('* {} PREC: {:.2f}, {} REC: {:.2f}, {} F1: {:.2f}'.format(key, prec, key, rec, key, f1))
+    elif type(result) == tuple:
+        # Overall result.
+        print('Testing on {} data:'.format(result[0]))
+        print('+ Overall ACC: {:.3f}'.format(result[1]))
+        assert result[1] == result[2]
+    else:
+        raise TypeError
 
 
 def print_value(name, value):
     print(name + f': {value}')
+
+
+def convert_to_txt(data, label, file_loc):
+    '''
+    Convert data to fasttext training format.
+    '''
+
+    with open(file_loc, mode='w', encoding='utf-8') as file:
+        for key in data:
+            name = '__label__' + label[int(key)]
+            for query in data[key]:
+                file.write('{}\t{}\n'.format(name, ' '.join(query)))
+        file.close()
 
 
 def convert_to_tensor(data, label_map, token2ind):
