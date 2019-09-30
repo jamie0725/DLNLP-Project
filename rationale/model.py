@@ -125,8 +125,8 @@ def dummy_task(args):
                 selection_loss = args.lambda_1 * torch.sum(pregen_output)
                 # TODO: Implement transition loss.
                 classify_loss = criterion(classifier_output, batch_targets)
-                generator_loss = dist.log_prob(pregen_output).sum() / len(batch_targets)
-                loss = -(selection_loss.detach() - classify_loss.detach()) * generator_loss
+                generator_loss = -dist.log_prob(pregen_output).sum() / len(batch_targets)
+                loss = (selection_loss.detach() + classify_loss.detach()) * generator_loss
                 accuracy = float(torch.sum(classifier_output.argmax(dim=1) == batch_targets)) / len(batch_targets)
                 keep = float(torch.sum(pregen_output)) / pregen_output.numel()
                 loss.backward()

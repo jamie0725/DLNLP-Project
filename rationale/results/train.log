@@ -23,209 +23,205 @@ c_out : 32
 Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TRAINING ===============
-Train step: 10/1440, Train loss: -13.039404, Train accuracy: 0.641, Keep percentage: 0.51
-Train step: 20/1440, Train loss: -7.704562, Train accuracy: 0.734, Keep percentage: 0.51
-Train step: 30/1440, Train loss: -9.955915, Train accuracy: 0.750, Keep percentage: 0.50
-Train step: 40/1440, Train loss: -10.383072, Train accuracy: 0.703, Keep percentage: 0.51
-Train step: 50/1440, Train loss: -12.493858, Train accuracy: 0.828, Keep percentage: 0.52
-Train step: 60/1440, Train loss: -10.092501, Train accuracy: 0.688, Keep percentage: 0.50
-Train step: 70/1440, Train loss: -8.053875, Train accuracy: 0.781, Keep percentage: 0.50
-Train step: 80/1440, Train loss: -9.135527, Train accuracy: 0.672, Keep percentage: 0.50
-Train step: 90/1440, Train loss: -7.192665, Train accuracy: 0.781, Keep percentage: 0.53
-Train step: 100/1440, Train loss: -9.246763, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 10/1440, Train loss: 11.982951, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 20/1440, Train loss: 17.453615, Train accuracy: 0.812, Keep percentage: 0.49
+Train step: 30/1440, Train loss: 14.222066, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 40/1440, Train loss: 12.090513, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 50/1440, Train loss: 11.254244, Train accuracy: 0.828, Keep percentage: 0.52
+Train step: 60/1440, Train loss: 10.955736, Train accuracy: 0.734, Keep percentage: 0.52
+Train step: 70/1440, Train loss: 11.481816, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 80/1440, Train loss: 19.478247, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 90/1440, Train loss: 10.609921, Train accuracy: 0.812, Keep percentage: 0.48
+Train step: 100/1440, Train loss: 12.974497, Train accuracy: 0.703, Keep percentage: 0.49
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.689
-+ Keep percentage: 0.52
++ Validation accuracy: 0.657
++ Keep percentage: 0.49
 New highscore! Saving model...
-Train step: 110/1440, Train loss: -10.768557, Train accuracy: 0.688, Keep percentage: 0.53
-Train step: 120/1440, Train loss: -10.322417, Train accuracy: 0.750, Keep percentage: 0.51
-Train step: 130/1440, Train loss: -7.444466, Train accuracy: 0.703, Keep percentage: 0.49
-Train step: 140/1440, Train loss: -14.152333, Train accuracy: 0.703, Keep percentage: 0.51
-Train step: 150/1440, Train loss: -8.278373, Train accuracy: 0.734, Keep percentage: 0.50
-Train step: 160/1440, Train loss: -17.690914, Train accuracy: 0.672, Keep percentage: 0.52
-Train step: 170/1440, Train loss: -9.545646, Train accuracy: 0.766, Keep percentage: 0.53
-Train step: 180/1440, Train loss: -8.082436, Train accuracy: 0.719, Keep percentage: 0.51
-Train step: 190/1440, Train loss: -11.909571, Train accuracy: 0.688, Keep percentage: 0.55
-Train step: 200/1440, Train loss: -11.275273, Train accuracy: 0.750, Keep percentage: 0.52
+Train step: 110/1440, Train loss: 13.353265, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 120/1440, Train loss: 17.467333, Train accuracy: 0.625, Keep percentage: 0.47
+Train step: 130/1440, Train loss: 18.374729, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 140/1440, Train loss: 11.773326, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 150/1440, Train loss: 21.142864, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 160/1440, Train loss: 23.888395, Train accuracy: 0.797, Keep percentage: 0.51
+Train step: 170/1440, Train loss: 17.271246, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 180/1440, Train loss: 13.613707, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 190/1440, Train loss: 14.027892, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 200/1440, Train loss: 11.506390, Train accuracy: 0.703, Keep percentage: 0.52
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.710
-+ Keep percentage: 0.52
++ Validation accuracy: 0.655
++ Keep percentage: 0.49
+Train step: 210/1440, Train loss: 13.492224, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 220/1440, Train loss: 14.609666, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 230/1440, Train loss: 12.794187, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 240/1440, Train loss: 13.236053, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 250/1440, Train loss: 12.807189, Train accuracy: 0.703, Keep percentage: 0.52
+Train step: 260/1440, Train loss: 11.841352, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 270/1440, Train loss: 16.075344, Train accuracy: 0.625, Keep percentage: 0.48
+Train step: 280/1440, Train loss: 15.086308, Train accuracy: 0.688, Keep percentage: 0.49
+Train step: 290/1440, Train loss: 14.752959, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 300/1440, Train loss: 11.437210, Train accuracy: 0.688, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.668
++ Keep percentage: 0.50
 New highscore! Saving model...
-Train step: 210/1440, Train loss: -6.835773, Train accuracy: 0.797, Keep percentage: 0.53
-Train step: 220/1440, Train loss: -8.895329, Train accuracy: 0.750, Keep percentage: 0.53
-Train step: 230/1440, Train loss: -8.241499, Train accuracy: 0.797, Keep percentage: 0.51
-Train step: 240/1440, Train loss: -10.933793, Train accuracy: 0.719, Keep percentage: 0.53
-Train step: 250/1440, Train loss: -6.461791, Train accuracy: 0.766, Keep percentage: 0.58
-Train step: 260/1440, Train loss: -10.754129, Train accuracy: 0.672, Keep percentage: 0.59
-Train step: 270/1440, Train loss: -4.749960, Train accuracy: 0.844, Keep percentage: 0.57
-Train step: 280/1440, Train loss: -7.659884, Train accuracy: 0.734, Keep percentage: 0.49
-Train step: 290/1440, Train loss: -9.090816, Train accuracy: 0.797, Keep percentage: 0.53
-Train step: 300/1440, Train loss: -11.690312, Train accuracy: 0.625, Keep percentage: 0.55
+Train step: 310/1440, Train loss: 10.748425, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 320/1440, Train loss: 15.229893, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 330/1440, Train loss: 11.964772, Train accuracy: 0.672, Keep percentage: 0.50
+Train step: 340/1440, Train loss: 14.749122, Train accuracy: 0.609, Keep percentage: 0.48
+Train step: 350/1440, Train loss: 16.787811, Train accuracy: 0.703, Keep percentage: 0.52
+Train step: 360/1440, Train loss: 11.651775, Train accuracy: 0.781, Keep percentage: 0.51
+Train step: 370/1440, Train loss: 19.268326, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 380/1440, Train loss: 12.061404, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 390/1440, Train loss: 15.769429, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 400/1440, Train loss: 24.510988, Train accuracy: 0.641, Keep percentage: 0.50
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.723
-+ Keep percentage: 0.54
-New highscore! Saving model...
-Train step: 310/1440, Train loss: -12.381912, Train accuracy: 0.734, Keep percentage: 0.56
-Train step: 320/1440, Train loss: -7.863328, Train accuracy: 0.750, Keep percentage: 0.56
-Train step: 330/1440, Train loss: -8.261263, Train accuracy: 0.750, Keep percentage: 0.58
-Train step: 340/1440, Train loss: -5.996425, Train accuracy: 0.797, Keep percentage: 0.58
-Train step: 350/1440, Train loss: -11.199146, Train accuracy: 0.703, Keep percentage: 0.55
-Train step: 360/1440, Train loss: -7.356002, Train accuracy: 0.766, Keep percentage: 0.59
-Train step: 370/1440, Train loss: -13.801661, Train accuracy: 0.688, Keep percentage: 0.61
-Train step: 380/1440, Train loss: -5.047291, Train accuracy: 0.859, Keep percentage: 0.64
-Train step: 390/1440, Train loss: -7.804063, Train accuracy: 0.734, Keep percentage: 0.67
-Train step: 400/1440, Train loss: -5.431001, Train accuracy: 0.797, Keep percentage: 0.66
++ Validation accuracy: 0.649
++ Keep percentage: 0.50
+Train step: 410/1440, Train loss: 15.867396, Train accuracy: 0.609, Keep percentage: 0.52
+Train step: 420/1440, Train loss: 14.583471, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 430/1440, Train loss: 11.623651, Train accuracy: 0.766, Keep percentage: 0.48
+Train step: 440/1440, Train loss: 17.594038, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 450/1440, Train loss: 29.628733, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 460/1440, Train loss: 20.523764, Train accuracy: 0.609, Keep percentage: 0.51
+Train step: 470/1440, Train loss: 23.699966, Train accuracy: 0.688, Keep percentage: 0.53
+Train step: 480/1440, Train loss: 15.031746, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 490/1440, Train loss: 22.161783, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 500/1440, Train loss: 19.940041, Train accuracy: 0.578, Keep percentage: 0.43
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.747
-+ Keep percentage: 0.67
-New highscore! Saving model...
-Train step: 410/1440, Train loss: -6.044182, Train accuracy: 0.797, Keep percentage: 0.70
-Train step: 420/1440, Train loss: -7.299237, Train accuracy: 0.766, Keep percentage: 0.69
-Train step: 430/1440, Train loss: -8.316276, Train accuracy: 0.734, Keep percentage: 0.64
-Train step: 440/1440, Train loss: -5.908906, Train accuracy: 0.812, Keep percentage: 0.67
-Train step: 450/1440, Train loss: -3.606478, Train accuracy: 0.844, Keep percentage: 0.67
-Train step: 460/1440, Train loss: -6.952167, Train accuracy: 0.797, Keep percentage: 0.66
-Train step: 470/1440, Train loss: -14.153714, Train accuracy: 0.594, Keep percentage: 0.65
-Train step: 480/1440, Train loss: -4.570240, Train accuracy: 0.812, Keep percentage: 0.64
-Train step: 490/1440, Train loss: -6.261658, Train accuracy: 0.766, Keep percentage: 0.67
-Train step: 500/1440, Train loss: -8.633332, Train accuracy: 0.734, Keep percentage: 0.62
++ Validation accuracy: 0.639
++ Keep percentage: 0.43
+Train step: 510/1440, Train loss: 13.629895, Train accuracy: 0.766, Keep percentage: 0.45
+Train step: 520/1440, Train loss: 13.312973, Train accuracy: 0.672, Keep percentage: 0.45
+Train step: 530/1440, Train loss: 19.579355, Train accuracy: 0.703, Keep percentage: 0.47
+Train step: 540/1440, Train loss: 13.975787, Train accuracy: 0.703, Keep percentage: 0.45
+Train step: 550/1440, Train loss: 24.031080, Train accuracy: 0.578, Keep percentage: 0.46
+Train step: 560/1440, Train loss: 12.709828, Train accuracy: 0.734, Keep percentage: 0.43
+Train step: 570/1440, Train loss: 19.547697, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 580/1440, Train loss: 20.142559, Train accuracy: 0.703, Keep percentage: 0.45
+Train step: 590/1440, Train loss: 25.237419, Train accuracy: 0.641, Keep percentage: 0.46
+Train step: 600/1440, Train loss: 16.649498, Train accuracy: 0.656, Keep percentage: 0.43
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.695
-+ Keep percentage: 0.61
-Train step: 510/1440, Train loss: -10.980292, Train accuracy: 0.688, Keep percentage: 0.62
-Train step: 520/1440, Train loss: -9.664183, Train accuracy: 0.719, Keep percentage: 0.59
-Train step: 530/1440, Train loss: -5.954002, Train accuracy: 0.844, Keep percentage: 0.62
-Train step: 540/1440, Train loss: -3.934968, Train accuracy: 0.875, Keep percentage: 0.66
-Train step: 550/1440, Train loss: -6.715591, Train accuracy: 0.781, Keep percentage: 0.66
-Train step: 560/1440, Train loss: -8.468771, Train accuracy: 0.719, Keep percentage: 0.64
-Train step: 570/1440, Train loss: -9.578253, Train accuracy: 0.734, Keep percentage: 0.62
-Train step: 580/1440, Train loss: -7.988174, Train accuracy: 0.766, Keep percentage: 0.66
-Train step: 590/1440, Train loss: -7.915699, Train accuracy: 0.750, Keep percentage: 0.63
-Train step: 600/1440, Train loss: -5.143644, Train accuracy: 0.781, Keep percentage: 0.62
++ Validation accuracy: 0.619
++ Keep percentage: 0.44
+Train step: 610/1440, Train loss: 16.786196, Train accuracy: 0.641, Keep percentage: 0.44
+Train step: 620/1440, Train loss: 15.339346, Train accuracy: 0.594, Keep percentage: 0.40
+Train step: 630/1440, Train loss: 20.178648, Train accuracy: 0.594, Keep percentage: 0.41
+Train step: 640/1440, Train loss: 18.468107, Train accuracy: 0.703, Keep percentage: 0.42
+Train step: 650/1440, Train loss: 20.203966, Train accuracy: 0.609, Keep percentage: 0.39
+Train step: 660/1440, Train loss: 16.523632, Train accuracy: 0.734, Keep percentage: 0.37
+Train step: 670/1440, Train loss: 20.180565, Train accuracy: 0.594, Keep percentage: 0.39
+Train step: 680/1440, Train loss: 23.915295, Train accuracy: 0.516, Keep percentage: 0.39
+Train step: 690/1440, Train loss: 13.478913, Train accuracy: 0.641, Keep percentage: 0.40
+Train step: 700/1440, Train loss: 19.571360, Train accuracy: 0.562, Keep percentage: 0.40
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.721
-+ Keep percentage: 0.62
-Train step: 610/1440, Train loss: -8.821309, Train accuracy: 0.750, Keep percentage: 0.64
-Train step: 620/1440, Train loss: -6.161256, Train accuracy: 0.766, Keep percentage: 0.62
-Train step: 630/1440, Train loss: -8.945277, Train accuracy: 0.750, Keep percentage: 0.62
-Train step: 640/1440, Train loss: -9.445749, Train accuracy: 0.734, Keep percentage: 0.58
-Train step: 650/1440, Train loss: -8.334406, Train accuracy: 0.688, Keep percentage: 0.63
-Train step: 660/1440, Train loss: -8.895561, Train accuracy: 0.734, Keep percentage: 0.63
-Train step: 670/1440, Train loss: -4.975190, Train accuracy: 0.797, Keep percentage: 0.63
-Train step: 680/1440, Train loss: -4.419428, Train accuracy: 0.766, Keep percentage: 0.62
-Train step: 690/1440, Train loss: -3.825506, Train accuracy: 0.875, Keep percentage: 0.63
-Train step: 700/1440, Train loss: -9.013548, Train accuracy: 0.672, Keep percentage: 0.63
++ Validation accuracy: 0.602
++ Keep percentage: 0.39
+Train step: 710/1440, Train loss: 27.678141, Train accuracy: 0.578, Keep percentage: 0.41
+Train step: 720/1440, Train loss: 9.905049, Train accuracy: 0.786, Keep percentage: 0.43
+Train step: 730/1440, Train loss: 11.887504, Train accuracy: 0.672, Keep percentage: 0.43
+Train step: 740/1440, Train loss: 18.870026, Train accuracy: 0.719, Keep percentage: 0.45
+Train step: 750/1440, Train loss: 16.316891, Train accuracy: 0.594, Keep percentage: 0.46
+Train step: 760/1440, Train loss: 14.062420, Train accuracy: 0.641, Keep percentage: 0.46
+Train step: 770/1440, Train loss: 17.606602, Train accuracy: 0.594, Keep percentage: 0.43
+Train step: 780/1440, Train loss: 26.216219, Train accuracy: 0.703, Keep percentage: 0.48
+Train step: 790/1440, Train loss: 16.300224, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 800/1440, Train loss: 15.015554, Train accuracy: 0.688, Keep percentage: 0.48
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.724
-+ Keep percentage: 0.62
-Train step: 710/1440, Train loss: -7.233152, Train accuracy: 0.734, Keep percentage: 0.64
-Train step: 720/1440, Train loss: -9.179385, Train accuracy: 0.786, Keep percentage: 0.60
-Train step: 730/1440, Train loss: -10.509585, Train accuracy: 0.656, Keep percentage: 0.64
-Train step: 740/1440, Train loss: -7.631275, Train accuracy: 0.688, Keep percentage: 0.64
-Train step: 750/1440, Train loss: -4.126706, Train accuracy: 0.812, Keep percentage: 0.64
-Train step: 760/1440, Train loss: -5.865611, Train accuracy: 0.828, Keep percentage: 0.64
-Train step: 770/1440, Train loss: -10.795780, Train accuracy: 0.719, Keep percentage: 0.63
-Train step: 780/1440, Train loss: -2.348222, Train accuracy: 0.875, Keep percentage: 0.65
-Train step: 790/1440, Train loss: -6.835517, Train accuracy: 0.719, Keep percentage: 0.64
-Train step: 800/1440, Train loss: -6.980371, Train accuracy: 0.734, Keep percentage: 0.61
++ Validation accuracy: 0.625
++ Keep percentage: 0.48
+Train step: 810/1440, Train loss: 17.456612, Train accuracy: 0.609, Keep percentage: 0.49
+Train step: 820/1440, Train loss: 24.930679, Train accuracy: 0.656, Keep percentage: 0.47
+Train step: 830/1440, Train loss: 17.936523, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 840/1440, Train loss: 15.011200, Train accuracy: 0.656, Keep percentage: 0.44
+Train step: 850/1440, Train loss: 18.527523, Train accuracy: 0.672, Keep percentage: 0.47
+Train step: 860/1440, Train loss: 29.724453, Train accuracy: 0.547, Keep percentage: 0.49
+Train step: 870/1440, Train loss: 12.563148, Train accuracy: 0.719, Keep percentage: 0.45
+Train step: 880/1440, Train loss: 8.857332, Train accuracy: 0.844, Keep percentage: 0.46
+Train step: 890/1440, Train loss: 24.042170, Train accuracy: 0.641, Keep percentage: 0.50
+Train step: 900/1440, Train loss: 15.053366, Train accuracy: 0.578, Keep percentage: 0.48
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.705
-+ Keep percentage: 0.63
-Train step: 810/1440, Train loss: -7.006994, Train accuracy: 0.719, Keep percentage: 0.62
-Train step: 820/1440, Train loss: -4.921726, Train accuracy: 0.781, Keep percentage: 0.64
-Train step: 830/1440, Train loss: -6.580810, Train accuracy: 0.812, Keep percentage: 0.64
-Train step: 840/1440, Train loss: -6.690819, Train accuracy: 0.812, Keep percentage: 0.65
-Train step: 850/1440, Train loss: -3.596385, Train accuracy: 0.812, Keep percentage: 0.66
-Train step: 860/1440, Train loss: -4.969636, Train accuracy: 0.859, Keep percentage: 0.67
-Train step: 870/1440, Train loss: -5.436858, Train accuracy: 0.812, Keep percentage: 0.64
-Train step: 880/1440, Train loss: -3.005348, Train accuracy: 0.859, Keep percentage: 0.63
-Train step: 890/1440, Train loss: -8.388347, Train accuracy: 0.719, Keep percentage: 0.62
-Train step: 900/1440, Train loss: -5.902110, Train accuracy: 0.734, Keep percentage: 0.58
++ Validation accuracy: 0.622
++ Keep percentage: 0.48
+Train step: 910/1440, Train loss: 24.026731, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 920/1440, Train loss: 16.014963, Train accuracy: 0.688, Keep percentage: 0.49
+Train step: 930/1440, Train loss: 16.852777, Train accuracy: 0.641, Keep percentage: 0.48
+Train step: 940/1440, Train loss: 13.325104, Train accuracy: 0.641, Keep percentage: 0.47
+Train step: 950/1440, Train loss: 14.560723, Train accuracy: 0.672, Keep percentage: 0.45
+Train step: 960/1440, Train loss: 19.381920, Train accuracy: 0.578, Keep percentage: 0.48
+Train step: 970/1440, Train loss: 23.006258, Train accuracy: 0.672, Keep percentage: 0.48
+Train step: 980/1440, Train loss: 14.719784, Train accuracy: 0.625, Keep percentage: 0.47
+Train step: 990/1440, Train loss: 14.898810, Train accuracy: 0.688, Keep percentage: 0.48
+Train step: 1000/1440, Train loss: 14.111795, Train accuracy: 0.719, Keep percentage: 0.44
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.698
-+ Keep percentage: 0.61
-Train step: 910/1440, Train loss: -9.270116, Train accuracy: 0.766, Keep percentage: 0.57
-Train step: 920/1440, Train loss: -7.985747, Train accuracy: 0.797, Keep percentage: 0.62
-Train step: 930/1440, Train loss: -7.937603, Train accuracy: 0.750, Keep percentage: 0.62
-Train step: 940/1440, Train loss: -8.168997, Train accuracy: 0.766, Keep percentage: 0.62
-Train step: 950/1440, Train loss: -9.503808, Train accuracy: 0.719, Keep percentage: 0.58
-Train step: 960/1440, Train loss: -6.482577, Train accuracy: 0.734, Keep percentage: 0.62
-Train step: 970/1440, Train loss: -7.125391, Train accuracy: 0.766, Keep percentage: 0.61
-Train step: 980/1440, Train loss: -7.472372, Train accuracy: 0.812, Keep percentage: 0.61
-Train step: 990/1440, Train loss: -5.964550, Train accuracy: 0.781, Keep percentage: 0.63
-Train step: 1000/1440, Train loss: -4.655698, Train accuracy: 0.875, Keep percentage: 0.62
++ Validation accuracy: 0.628
++ Keep percentage: 0.47
+Train step: 1010/1440, Train loss: 20.890070, Train accuracy: 0.594, Keep percentage: 0.47
+Train step: 1020/1440, Train loss: 20.700668, Train accuracy: 0.688, Keep percentage: 0.47
+Train step: 1030/1440, Train loss: 19.812294, Train accuracy: 0.594, Keep percentage: 0.48
+Train step: 1040/1440, Train loss: 14.169303, Train accuracy: 0.656, Keep percentage: 0.46
+Train step: 1050/1440, Train loss: 14.840071, Train accuracy: 0.672, Keep percentage: 0.44
+Train step: 1060/1440, Train loss: 17.741432, Train accuracy: 0.609, Keep percentage: 0.45
+Train step: 1070/1440, Train loss: 11.996173, Train accuracy: 0.688, Keep percentage: 0.44
+Train step: 1080/1440, Train loss: 16.712980, Train accuracy: 0.500, Keep percentage: 0.45
+Train step: 1090/1440, Train loss: 19.506454, Train accuracy: 0.766, Keep percentage: 0.47
+Train step: 1100/1440, Train loss: 17.140726, Train accuracy: 0.609, Keep percentage: 0.46
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.714
-+ Keep percentage: 0.63
-Train step: 1010/1440, Train loss: -12.926149, Train accuracy: 0.719, Keep percentage: 0.62
-Train step: 1020/1440, Train loss: -6.452967, Train accuracy: 0.781, Keep percentage: 0.64
-Train step: 1030/1440, Train loss: -5.970130, Train accuracy: 0.688, Keep percentage: 0.62
-Train step: 1040/1440, Train loss: -5.648486, Train accuracy: 0.750, Keep percentage: 0.65
-Train step: 1050/1440, Train loss: -2.859456, Train accuracy: 0.859, Keep percentage: 0.64
-Train step: 1060/1440, Train loss: -7.582651, Train accuracy: 0.797, Keep percentage: 0.67
-Train step: 1070/1440, Train loss: -3.978482, Train accuracy: 0.812, Keep percentage: 0.68
-Train step: 1080/1440, Train loss: -8.163206, Train accuracy: 0.719, Keep percentage: 0.66
-Train step: 1090/1440, Train loss: -5.971904, Train accuracy: 0.766, Keep percentage: 0.63
-Train step: 1100/1440, Train loss: -7.222872, Train accuracy: 0.812, Keep percentage: 0.64
++ Validation accuracy: 0.609
++ Keep percentage: 0.45
+Train step: 1110/1440, Train loss: 14.111237, Train accuracy: 0.719, Keep percentage: 0.44
+Train step: 1120/1440, Train loss: 22.797804, Train accuracy: 0.688, Keep percentage: 0.45
+Train step: 1130/1440, Train loss: 19.883625, Train accuracy: 0.656, Keep percentage: 0.45
+Train step: 1140/1440, Train loss: 15.026390, Train accuracy: 0.609, Keep percentage: 0.44
+Train step: 1150/1440, Train loss: 27.659174, Train accuracy: 0.625, Keep percentage: 0.46
+Train step: 1160/1440, Train loss: 20.549007, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 1170/1440, Train loss: 24.956146, Train accuracy: 0.641, Keep percentage: 0.45
+Train step: 1180/1440, Train loss: 18.002579, Train accuracy: 0.609, Keep percentage: 0.45
+Train step: 1190/1440, Train loss: 18.819855, Train accuracy: 0.688, Keep percentage: 0.44
+Train step: 1200/1440, Train loss: 23.291971, Train accuracy: 0.500, Keep percentage: 0.45
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.759
-+ Keep percentage: 0.66
-New highscore! Saving model...
-Train step: 1110/1440, Train loss: -6.566281, Train accuracy: 0.750, Keep percentage: 0.67
-Train step: 1120/1440, Train loss: -4.347499, Train accuracy: 0.812, Keep percentage: 0.69
-Train step: 1130/1440, Train loss: -3.651667, Train accuracy: 0.844, Keep percentage: 0.67
-Train step: 1140/1440, Train loss: -5.961619, Train accuracy: 0.812, Keep percentage: 0.65
-Train step: 1150/1440, Train loss: -8.091543, Train accuracy: 0.719, Keep percentage: 0.64
-Train step: 1160/1440, Train loss: -5.919533, Train accuracy: 0.781, Keep percentage: 0.65
-Train step: 1170/1440, Train loss: -8.535809, Train accuracy: 0.750, Keep percentage: 0.65
-Train step: 1180/1440, Train loss: -7.414958, Train accuracy: 0.844, Keep percentage: 0.66
-Train step: 1190/1440, Train loss: -5.537633, Train accuracy: 0.812, Keep percentage: 0.65
-Train step: 1200/1440, Train loss: -10.221138, Train accuracy: 0.766, Keep percentage: 0.67
++ Validation accuracy: 0.596
++ Keep percentage: 0.45
+Train step: 1210/1440, Train loss: 17.563637, Train accuracy: 0.656, Keep percentage: 0.43
+Train step: 1220/1440, Train loss: 14.684799, Train accuracy: 0.656, Keep percentage: 0.44
+Train step: 1230/1440, Train loss: 19.300707, Train accuracy: 0.656, Keep percentage: 0.46
+Train step: 1240/1440, Train loss: 22.058041, Train accuracy: 0.562, Keep percentage: 0.44
+Train step: 1250/1440, Train loss: 13.356074, Train accuracy: 0.516, Keep percentage: 0.41
+Train step: 1260/1440, Train loss: 18.016678, Train accuracy: 0.578, Keep percentage: 0.45
+Train step: 1270/1440, Train loss: 20.933006, Train accuracy: 0.594, Keep percentage: 0.44
+Train step: 1280/1440, Train loss: 15.151405, Train accuracy: 0.594, Keep percentage: 0.40
+Train step: 1290/1440, Train loss: 19.247564, Train accuracy: 0.609, Keep percentage: 0.40
+Train step: 1300/1440, Train loss: 15.495133, Train accuracy: 0.625, Keep percentage: 0.39
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.722
-+ Keep percentage: 0.64
-Train step: 1210/1440, Train loss: -4.240120, Train accuracy: 0.812, Keep percentage: 0.65
-Train step: 1220/1440, Train loss: -6.826252, Train accuracy: 0.781, Keep percentage: 0.64
-Train step: 1230/1440, Train loss: -6.365876, Train accuracy: 0.828, Keep percentage: 0.62
-Train step: 1240/1440, Train loss: -5.459081, Train accuracy: 0.797, Keep percentage: 0.63
-Train step: 1250/1440, Train loss: -8.423596, Train accuracy: 0.703, Keep percentage: 0.65
-Train step: 1260/1440, Train loss: -6.473734, Train accuracy: 0.797, Keep percentage: 0.67
-Train step: 1270/1440, Train loss: -4.704231, Train accuracy: 0.797, Keep percentage: 0.67
-Train step: 1280/1440, Train loss: -3.418787, Train accuracy: 0.844, Keep percentage: 0.65
-Train step: 1290/1440, Train loss: -4.609073, Train accuracy: 0.812, Keep percentage: 0.65
-Train step: 1300/1440, Train loss: -5.694340, Train accuracy: 0.812, Keep percentage: 0.65
++ Validation accuracy: 0.588
++ Keep percentage: 0.41
+Train step: 1310/1440, Train loss: 14.478724, Train accuracy: 0.609, Keep percentage: 0.41
+Train step: 1320/1440, Train loss: 21.754671, Train accuracy: 0.516, Keep percentage: 0.44
+Train step: 1330/1440, Train loss: 18.577274, Train accuracy: 0.656, Keep percentage: 0.42
+Train step: 1340/1440, Train loss: 29.780413, Train accuracy: 0.609, Keep percentage: 0.44
+Train step: 1350/1440, Train loss: 12.591460, Train accuracy: 0.703, Keep percentage: 0.43
+Train step: 1360/1440, Train loss: 14.246437, Train accuracy: 0.656, Keep percentage: 0.44
+Train step: 1370/1440, Train loss: 15.716848, Train accuracy: 0.656, Keep percentage: 0.43
+Train step: 1380/1440, Train loss: 20.005432, Train accuracy: 0.703, Keep percentage: 0.44
+Train step: 1390/1440, Train loss: 17.057501, Train accuracy: 0.609, Keep percentage: 0.44
+Train step: 1400/1440, Train loss: 15.806204, Train accuracy: 0.578, Keep percentage: 0.41
 =============== MODEL VALIDATING ===============
 Testing on 1020 data:
-+ Validation accuracy: 0.761
-+ Keep percentage: 0.65
-New highscore! Saving model...
-Train step: 1310/1440, Train loss: -7.469473, Train accuracy: 0.688, Keep percentage: 0.66
-Train step: 1320/1440, Train loss: -5.484265, Train accuracy: 0.719, Keep percentage: 0.66
-Train step: 1330/1440, Train loss: -9.664371, Train accuracy: 0.703, Keep percentage: 0.67
-Train step: 1340/1440, Train loss: -3.673566, Train accuracy: 0.797, Keep percentage: 0.68
-Train step: 1350/1440, Train loss: -8.745151, Train accuracy: 0.766, Keep percentage: 0.64
-Train step: 1360/1440, Train loss: -3.757051, Train accuracy: 0.812, Keep percentage: 0.65
-Train step: 1370/1440, Train loss: -8.341961, Train accuracy: 0.734, Keep percentage: 0.65
-Train step: 1380/1440, Train loss: -7.134395, Train accuracy: 0.719, Keep percentage: 0.65
-Train step: 1390/1440, Train loss: -4.996871, Train accuracy: 0.812, Keep percentage: 0.68
-Train step: 1400/1440, Train loss: -5.589327, Train accuracy: 0.797, Keep percentage: 0.67
-=============== MODEL VALIDATING ===============
-Testing on 1020 data:
-+ Validation accuracy: 0.758
-+ Keep percentage: 0.66
-Train step: 1410/1440, Train loss: -4.555994, Train accuracy: 0.797, Keep percentage: 0.65
-Train step: 1420/1440, Train loss: -4.997357, Train accuracy: 0.766, Keep percentage: 0.67
-Train step: 1430/1440, Train loss: -5.107090, Train accuracy: 0.844, Keep percentage: 0.67
-Train step: 1440/1440, Train loss: -11.158978, Train accuracy: 0.679, Keep percentage: 0.65
++ Validation accuracy: 0.582
++ Keep percentage: 0.45
+Train step: 1410/1440, Train loss: 14.353032, Train accuracy: 0.656, Keep percentage: 0.43
+Train step: 1420/1440, Train loss: 16.689707, Train accuracy: 0.688, Keep percentage: 0.44
+Train step: 1430/1440, Train loss: 15.561289, Train accuracy: 0.625, Keep percentage: 0.45
+Train step: 1440/1440, Train loss: 10.216696, Train accuracy: 0.714, Keep percentage: 0.44
