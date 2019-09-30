@@ -108,15 +108,21 @@ def dummy_task(args):
 
     if args.mode == 'train':
         print_statement('MODEL TRAINING')
+        criterion = torch.nn.CrossEntropyLoss()
+        optimizer = torch.optim.Adam(pregen.parameters(), lr=args.lr)
         for batch_inputs, batch_targets in dataloader_train:
             batch_inputs = batch_inputs.to(args.device)
             batch_targets = batch_targets.to(args.device)
             print(batch_inputs.size())
             with torch.no_grad():
                 pregen_output = pregen(batch_inputs)
+                batch_inputs = pregen_output * batch_inputs
+                classifier_output = classifier(batch_inputs)
+                loss = criterion(classifier_output, batch_targets) + criterion(classifier_output, batch_targets).detach() *
+
             print(pregen_output)
             print(pregen_output.size())
-            break
+
     else:
         print_statement('MODEL TESTING')
         raise NotImplementedError
