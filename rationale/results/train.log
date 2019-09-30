@@ -1,0 +1,34 @@
+=============== HYPERPARAMETER SETTING ===============
+classifier : TextCNN
+mode : train
+lr : 0.001
+epochs : 10
+batch_size : 64
+max_norm : 5.0
+embed_trainable : False
+device : cpu
+num_hidden_rationale : 64
+lstm_layer_rationale : 1
+lstm_bidirectional_rationale : False
+lambda_1 : 0.0002
+lambda_2 : 0.0004
+num_hidden : 256
+lstm_layer : 2
+lstm_bidirectional : True
+num_classes : 6
+kernel_sizes : [2, 3, 4]
+p : 0.5
+c_out : 32
+=============== LOAD EMBEDDINGS ===============
+Embed shape: (4164, 300)
+Vocab size: 4164
+=============== MODEL TRAINING ===============
+torch.Size([64, 22])
+tensor([[0., 1., 1.,  ..., 0., 0., 0.],
+        [1., 0., 0.,  ..., 0., 1., 0.],
+        [0., 1., 1.,  ..., 1., 0., 0.],
+        ...,
+        [1., 1., 1.,  ..., 1., 0., 0.],
+        [0., 1., 1.,  ..., 0., 0., 0.],
+        [1., 0., 1.,  ..., 1., 1., 0.]])
+torch.Size([64, 22])
