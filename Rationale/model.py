@@ -1,7 +1,10 @@
+# _*_ coding: utf-8 _*_
+
 import torch
 import torch.nn as nn
 import pickle
 from torch.nn import functional as F
+import torch.distributions as D
 
 from LSTM.model import LSTMClassifier
 from TextCNN.model import TextCNN
@@ -23,12 +26,17 @@ class PreGenerator(nn.Module):
             batch_first=True,
         )
         self.embed = nn.Embedding.from_pretrained(embeddings_vector, freeze=trainable)
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         x = self.embed(x)
         x, _ = self.lstm(x)
         x = F.avg_pool1d(x, kernel_size=x.size(-1)).squeeze()
-        return torch.sigmoid(x)
+        x = self.sigmoid(x)
+        # Sample from Bernoulli distribution.
+        mask = D.Bernoulli(x).sample()
+
+        return mask
 
 
 def dummy_task(args):
@@ -44,7 +52,7 @@ def dummy_task(args):
 
     batch_size = args.batch_size
     embedding_size = embeddings_vector.shape[1]
-    # TODO: Maybe set the LSTM module to have batch_first=True to be consistent with TextCNN and the Rationale module.
+    # TODO: Maybe set the LSTM module to have batch_first=True to be consistent with TextCNN and the rationale module.
     qcdataset = QCDataset(token2ind, ind2token, batch_first=True)
     dataloader_train = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     qcdataset = QCDataset(token2ind, ind2token, split='val', batch_first=True)
@@ -81,7 +89,7 @@ def dummy_task(args):
         )
         ckpt_path = 'TextCNN/model/best_model.pt'
 
-    ckpt = torch.load(ckpt_path)
+    ckpt = torch.load(ckpt_path, map_location=args.device)
     classifier.load_state_dict(ckpt['state_dict'])
     for parameter in classifier.parameters():
         parameter.requires_grad = False
@@ -98,12 +106,17 @@ def dummy_task(args):
     )
     pregen.to(args.device)
 
-    for batch_inputs, batch_targets in dataloader_train:
-        batch_inputs = batch_inputs.to(args.device)
-        batch_targets = batch_targets.to(args.device)
-        print(batch_inputs.size())
-        with torch.no_grad():
-            pregen_output = pregen(batch_inputs)
-        print(pregen_output)
-        print(pregen_output.size())
-        break
+    if args.mode == 'train':
+        print_statement('MODEL TRAINING')
+        for batch_inputs, batch_targets in dataloader_train:
+            batch_inputs = batch_inputs.to(args.device)
+            batch_targets = batch_targets.to(args.device)
+            print(batch_inputs.size())
+            with torch.no_grad():
+                pregen_output = pregen(batch_inputs)
+            print(pregen_output)
+            print(pregen_output.size())
+            break
+    else:
+        print_statement('MODEL TESTING')
+        raise NotImplementedError
