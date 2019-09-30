@@ -12,6 +12,9 @@ from utils.utils import print_statement, print_value
 from dataset.utils import QCDataset
 from torch.utils.data import DataLoader
 
+# Some global parameters.
+MODEL_LOC = 'rationale/model/best_model.pt'
+
 
 class PreGenerator(nn.Module):
 
@@ -33,10 +36,7 @@ class PreGenerator(nn.Module):
         x, _ = self.lstm(x)
         x = F.avg_pool1d(x, kernel_size=x.size(-1)).squeeze()
         x = self.sigmoid(x)
-        # Sample from Bernoulli distribution.
-        mask = D.Bernoulli(x).sample()
-
-        return mask
+        return x
 
 
 def dummy_task(args):
@@ -57,6 +57,8 @@ def dummy_task(args):
     dataloader_train = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     qcdataset = QCDataset(token2ind, ind2token, split='val', batch_first=True)
     dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+    qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
+    dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
 
     # TODO: When saving checkpoints, save the classifer as well to avoid reinstantiation of the classifier classes.
     # For example:
@@ -110,19 +112,57 @@ def dummy_task(args):
         print_statement('MODEL TRAINING')
         criterion = torch.nn.CrossEntropyLoss()
         optimizer = torch.optim.Adam(pregen.parameters(), lr=args.lr)
-        for batch_inputs, batch_targets in dataloader_train:
-            batch_inputs = batch_inputs.to(args.device)
-            batch_targets = batch_targets.to(args.device)
-            print(batch_inputs.size())
-            with torch.no_grad():
+        best_eval = 0
+        iteration = 0
+        max_iterations = args.epochs * len(dataloader_train)
+        for i in range(args.epochs):
+            for batch_inputs, batch_targets in dataloader_train:
+                print(batch_inputs.size(), batch_inputs.type())
+                iteration += 1
+                batch_inputs = batch_inputs.to(args.device)
+                batch_targets = batch_targets.to(args.device)
+                pregen.train()
+                optimizer.zero_grad()
                 pregen_output = pregen(batch_inputs)
+                dist = D.Bernoulli(probs=pregen_output)
+                pregen_output = dist.sample()
+                print(pregen_output.size(), pregen_output.type())
                 batch_inputs = pregen_output * batch_inputs
                 classifier_output = classifier(batch_inputs)
-                loss = criterion(classifier_output, batch_targets) + criterion(classifier_output, batch_targets).detach() *
-
-            print(pregen_output)
-            print(pregen_output.size())
-
+                print(classifier_output.size())
+                loss = criterion(classifier_output, batch_targets) + criterion(classifier_output, batch_targets).detach() * dist.log_prob(pregen_output)
+                accuracy = float(torch.sum(classifier_output.argmax(dim=1) == batch_targets)) / len(batch_targets)
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(pregen.parameters(), max_norm=args.max_norm)
+                optimizer.step()
+                if iteration % 10 == 0:
+                    print('Train step: {:d}/{:d}, Train loss: {:3f}, Train accuracy: {:.3f}'.format(iteration, max_iterations, loss, accuracy))
+                if iteration % 100 == 0 and iteration > 0:
+                    print_statement('MODEL VALIDATING')
+                    pregen.eval()
+                    accs = []
+                    length = []
+                    for batch_inputs, batch_targets in dataloader_validate:
+                        batch_inputs = batch_inputs.to(args.device)
+                        batch_targets = batch_targets.to(args.device)
+                        with torch.no_grad():
+                            output = pregen(batch_inputs)
+                        acc = torch.sum(output.argmax(dim=1) == batch_targets)
+                        length.append(len(batch_targets))
+                        accs.append(acc)
+                    validate_acc = float(np.sum(accs)) / sum(length)
+                    print('Testing on {} data:'.format(sum(length)))
+                    print('+ Validation accuracy: {:.3f}'.format(validate_acc))
+                    # save best model parameters
+                    if validate_acc > best_eval:
+                        print("New highscore! Saving model...")
+                        best_eval = validate_acc
+                        ckpt = {
+                            "state_dict": pregen.state_dict(),
+                            "optimizerizer_state_dict": optimizer.state_dict(),
+                            "best_eval": best_eval
+                        }
+                        torch.save(ckpt, MODEL_LOC)
     else:
         print_statement('MODEL TESTING')
         raise NotImplementedError
