@@ -8,7 +8,7 @@ class LSTMClassifier(nn.Module):
         super(LSTMClassifier, self).__init__()
 
         self.embed = nn.Embedding.from_pretrained(embeddings_vector, freeze=trainable)
-        self.lstm = nn.LSTM(embedding_length, hidden_size, num_layers=lstm_layer, bidirectional=lstm_dirc)
+        self.lstm = nn.LSTM(embedding_length, hidden_size, num_layers=lstm_layer, bidirectional=lstm_dirc, batch_first=True)
         if lstm_dirc:
             multiple = 2
         else:
@@ -19,6 +19,6 @@ class LSTMClassifier(nn.Module):
     def forward(self, x):
         embed_input = self.embed(x)
         lstm_out, _ = self.lstm(embed_input)
-        output = self.linear(lstm_out[-1, :, :].squeeze())
+        output = self.linear(lstm_out[:, -1, :].squeeze())
 
         return output

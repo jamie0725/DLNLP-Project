@@ -70,9 +70,9 @@ if __name__ == "__main__":
     print_value('Vocab size', len(ind2token))
     input_tensor, output_tensor = convert_to_tensor(train_data, label_map, token2ind)
     embedding_length = embeddings_vector.shape[1]
-    qcdataset = QCDataset(token2ind, ind2token)
+    qcdataset = QCDataset(token2ind, ind2token, batch_first=True)
     dataloader_train = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
-    qcdataset = QCDataset(token2ind, ind2token, split='val')
+    qcdataset = QCDataset(token2ind, ind2token, split='val', batch_first=True)
     dataloader_validate = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     embeddings_vector_tensor = torch.from_numpy(embeddings_vector)
     model = LSTMClassifier(output_size=len(label_map),
@@ -135,11 +135,11 @@ if __name__ == "__main__":
                         }
                         torch.save(ckpt, MODEL_LOC)
     else:
-        ckpt = torch.load(MODEL_LOC)
+        ckpt = torch.load(MODEL_LOC, map_location=device)
         model.load_state_dict(ckpt["state_dict"])
         model.eval()
         print_statement('MODEL TESTING')
-        qcdataset = QCDataset(token2ind, ind2token, split='test')
+        qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
         dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
         ct = ClassificationTool(len(label_map))
         accs = []
