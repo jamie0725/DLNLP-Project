@@ -123,20 +123,20 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
             batch_inputs_masked = batch_inputs.clone()
             batch_inputs_masked[torch.eq(pregen_output, 0.)] = 1
             classifier_output = classifier(batch_inputs_masked)
-            selection_loss = args.lambda_1 * pregen_output.sum(dim=-1) + \
-                args.lambda_2 * (pregen_output[:, 1:] - pregen_output[:, :-1]).abs().sum(dim=-1)
+            selection_loss = args.lambda_1 * pregen_output.sum(dim=-1)
+            transition_loss = args.lambda_2 * (pregen_output[:, 1:] - pregen_output[:, :-1]).abs().sum(dim=-1)
             classify_loss = criterion(classifier_output, batch_targets)
-            cost = selection_loss + classify_loss
-            gen_loss = (cost * -dist.log_prob(p_z_x).sum(dim=-1)).mean()
-            with torch.no_grad():
-                enc_loss = (selection_loss + classify_loss).mean()
-            accuracy = float(torch.sum(classifier_output.argmax(dim=1) == batch_targets)) / len(batch_targets)
-            keep = float(torch.sum(pregen_output)) / pregen_output.numel()
+            cost = selection_loss + transition_loss + classify_loss
+            enc_loss = (selection_loss + transition_loss + classify_loss).mean()
+            enc_loss.backward()
+            torch.nn.utils.clip_grad_norm_(classifier.parameters(), max_norm=args.max_norm)
+            enc_optimizer.step()
+            gen_loss = (cost.detach() * -dist.log_prob(p_z_x).sum(dim=-1)).mean()
             gen_loss.backward()
             torch.nn.utils.clip_grad_norm_(pregen.parameters(), max_norm=args.max_norm)
-            torch.nn.utils.clip_grad_norm_(classifier.parameters(), max_norm=args.max_norm)
             gen_optimizer.step()
-            enc_optimizer.step()
+            accuracy = float(torch.sum(classifier_output.argmax(dim=1) == batch_targets)) / len(batch_targets)
+            keep = float(torch.sum(pregen_output)) / pregen_output.numel()
             if iteration % 10 == 0:
                 print('Train step: {:d}/{:d}, GEN Train loss: {:.3f}, ENC Train loss: {:.3f}, '
                       'Train accuracy: {:.3f}, Keep percentage: {:.2f}'.format(iteration, max_iterations, gen_loss, enc_loss, accuracy, keep))

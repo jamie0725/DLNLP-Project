@@ -33,8 +33,8 @@ def main():
     parser.add_argument('--num_hidden_rationale', type=int, default=64, help='number of hidden units for the PreGenerator LSTM for rationale')
     parser.add_argument('--lstm_layer_rationale', type=int, default=1, help='number of layers for the PreGenerator LSTM for rationale')
     parser.add_argument('--lstm_bidirectional_rationale', type=bool, default=False, help='bi-direction for the PreGenerator LSTM for rationale')
-    parser.add_argument('--lambda_1', type=float, default=2e-5, help='regularizer of the length of selected words')
-    parser.add_argument('--lambda_2', type=float, default=4e-5, help='regularizer of the local coherency of words')
+    parser.add_argument('--lambda_1', type=float, default=2e-4, help='regularizer of the length of selected words')
+    parser.add_argument('--lambda_2', type=float, default=4e-4, help='regularizer of the local coherency of words')
     # LSTM specific parameters.
     parser.add_argument('--num_hidden', type=int, default=256, help='number of hidden units in the LSTM classifier')
     parser.add_argument('--lstm_layer', type=int, default=2, help='number of layers of lstm')

@@ -12,8 +12,8 @@ lr_gen : 0.001
 num_hidden_rationale : 64
 lstm_layer_rationale : 1
 lstm_bidirectional_rationale : False
-lambda_1 : 2e-05
-lambda_2 : 4e-05
+lambda_1 : 0.0002
+lambda_2 : 0.0004
 num_hidden : 256
 lstm_layer : 2
 lstm_bidirectional : True
@@ -29,11 +29,11 @@ Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.540
-+ Overall KEEP: 0.274
-* ABB PREC: 0.600, ABB REC: 0.333, ABB F1: 0.429
-* ENT PREC: 0.446, ENT REC: 0.351, ENT F1: 0.393
-* DES PREC: 0.495, DES REC: 0.797, DES F1: 0.611
-* HUM PREC: 0.576, HUM REC: 0.523, HUM F1: 0.548
-* LOC PREC: 0.519, LOC REC: 0.506, LOC F1: 0.512
-* NUM PREC: 0.803, NUM REC: 0.434, NUM F1: 0.563
++ Overall ACC: 0.780
++ Overall KEEP: 0.736
+* ABB PREC: 1.000, ABB REC: 0.556, ABB F1: 0.714
+* ENT PREC: 0.823, ENT REC: 0.543, ENT F1: 0.654
+* DES PREC: 0.725, DES REC: 0.957, DES F1: 0.825
+* HUM PREC: 0.724, HUM REC: 0.846, HUM F1: 0.780
+* LOC PREC: 0.756, LOC REC: 0.765, LOC F1: 0.761
+* NUM PREC: 0.914, NUM REC: 0.752, NUM F1: 0.825

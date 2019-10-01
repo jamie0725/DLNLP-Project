@@ -1,25 +1,25 @@
 * Classifier: TextCNN
 -------------------------------------
 + Original input:
-what are <unk> <unk>
-- Extracted rationale:
-<unk>
-+ Original input:
-what doe <unk> <unk> <unk> <unk>
-- Extracted rationale:
-
-+ Original input:
-what is the oldest univers in the US <unk>
-- Extracted rationale:
-is
-+ Original input:
 what is <unk> <unk>
 - Extracted rationale:
-
+is <unk> <unk>
 + Original input:
-what is <unk> <unk>
+what is the highest dam in the <unk> <unk>
 - Extracted rationale:
-
+the highest dam in the <unk>
++ Original input:
+what type <unk> <unk> is use in australia <unk>
+- Extracted rationale:
+what type <unk> <unk> use in australia <unk>
++ Original input:
+what color is <unk> <unk> <unk> <unk> <unk>
+- Extracted rationale:
+color is <unk> <unk> <unk>
++ Original input:
+what wa the most popular toy in <unk> <unk>
+- Extracted rationale:
+what most toy in <unk> <unk>
 -------------------------------------
-* Accuracy: 0.540
-* Keep percentage: 0.274
+* Accuracy: 0.780
+* Keep percentage: 0.736
