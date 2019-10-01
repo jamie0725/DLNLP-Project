@@ -165,6 +165,7 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
                     elements.append(pregen_output.numel())
                 validate_acc = float(sum(accs)) / sum(length)
                 validate_keep = float(sum(keeps)) / sum(elements)
+                extract_rationale(batch_inputs, batch_inputs_masked, ind2token, validate_acc, validate_keep, args.classifier)
                 print('Testing on {} data:'.format(sum(length)))
                 print('+ Validation accuracy: {:.3f}'.format(validate_acc))
                 print('+ Keep percentage: {:.2f}'.format(validate_keep))
@@ -275,9 +276,30 @@ def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
         ct.update(classifier_output, batch_targets)
     test_acc = float(np.sum(accs)) / sum(length)
     test_keep = float(np.sum(keeps)) / sum(elements)
+    extract_rationale(batch_inputs, batch_inputs_masked, ind2token, test_acc, test_keep, args.classifier)
     print('Testing on {} data:'.format(sum(length)))
     print('+ Overall ACC: {:.3f}'.format(test_acc))
     print('+ Overall KEEP: {:.3f}'.format(test_keep))
     PREC, REC, F1 = ct.get_result()
     for i, classname in enumerate(label_map.values()):
         print('* {} PREC: {:.3f}, {} REC: {:.3f}, {} F1: {:.3f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))
+
+
+def extract_rationale(batch_inputs, batch_rationale, ind2token, acc, keep, classifier):
+    batch_size = batch_inputs.shape[0]
+    picked = np.random.choice(batch_size, size=min(5, batch_size), replace=False)
+    # inputs = batch_inputs[picked, np.arange(batch_inputs.shape[1])].tolist()
+    inputs = batch_inputs[picked, :].tolist()
+    # rationale = batch_rationale[picked, np.arange(batch_inputs.shape[1])].tolist()
+    rationale = batch_rationale[picked, :].tolist()
+    with open('Rationale/results/samples.txt', 'a') as f:
+        f.write('Classifier: {}\n'.format(classifier))
+    for (input_sentence, input_rationale) in zip(inputs, rationale):
+        with open('Rationale/results/samples.txt', 'a') as f:
+            f.write('Original input:\n')
+            f.write(' '.join(list(filter(lambda x: x != '<pad>', map(lambda x: ind2token[x], input_sentence)))) + '\n')
+            f.write('Extracted rationale:\n')
+            f.write(' '.join(list(filter(lambda x: x != '<pad>', map(lambda x: ind2token[x], input_rationale)))) + '\n')
+
+    with open('Rationale/results/samples.txt', 'a') as f:
+        f.write('Accuracy: {}, Keep: {}\n\n'.format(acc, keep))
