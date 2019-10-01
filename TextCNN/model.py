@@ -137,7 +137,7 @@ def test(args, MODEL_LOC, LABEL_JSON_LOC):
                     trainable=args.embed_trainable,
                     p=args.p)
     model.to(args.device)
-    ckpt = torch.load(MODEL_LOC)
+    ckpt = torch.load(MODEL_LOC, map_location=args.device)
     model.load_state_dict(ckpt["state_dict"])
     model.eval()
     print_statement('MODEL TESTING')
