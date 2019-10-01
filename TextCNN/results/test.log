@@ -5,7 +5,7 @@ epochs : 10
 batch_size : 64
 num_classes : 6
 max_norm : 5.0
-embed_trainable : False
+embed_trainable : True
 kernel_sizes : [2, 3, 4]
 device : cuda:0
 p : 0.5
@@ -18,10 +18,10 @@ Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.872
-* ABB PREC: 1.000, ABB REC: 0.667, ABB F1: 0.800
-* ENT PREC: 0.896, ENT REC: 0.638, ENT F1: 0.745
-* DES PREC: 0.830, DES REC: 0.957, DES F1: 0.889
-* HUM PREC: 0.849, HUM REC: 0.954, HUM F1: 0.899
-* LOC PREC: 0.864, LOC REC: 0.938, LOC F1: 0.899
-* NUM PREC: 0.935, NUM REC: 0.885, NUM F1: 0.909
++ Overall ACC: 0.876
+* ABB PREC: 0.833, ABB REC: 0.556, ABB F1: 0.667
+* ENT PREC: 0.925, ENT REC: 0.660, ENT F1: 0.770
+* DES PREC: 0.820, DES REC: 0.993, DES F1: 0.898
+* HUM PREC: 0.882, HUM REC: 0.923, HUM F1: 0.902
+* LOC PREC: 0.843, LOC REC: 0.926, LOC F1: 0.882
+* NUM PREC: 0.961, NUM REC: 0.876, NUM F1: 0.917
