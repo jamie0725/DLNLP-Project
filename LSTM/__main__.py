@@ -37,7 +37,7 @@ if __name__ == "__main__":
     parser.add_argument('--max_norm', type=float, default=5.0, help='max norm of gradient')
     parser.add_argument('--lstm_layer', type=int, default=2, help='number of layers of lstm')
     parser.add_argument('--lstm_bidirectional', type=bool, default=True, help='bi-direction of lstm')
-    parser.add_argument('--embed_trainable', type=bool, default=False, help='finetune pre-trained embeddings')
+    parser.add_argument('--embed_trainable', type=bool, default=True, help='finetune pre-trained embeddings')
 
     args = parser.parse_args()
 

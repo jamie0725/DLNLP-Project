@@ -7,7 +7,7 @@ num_hidden : 256
 max_norm : 5.0
 lstm_layer : 2
 lstm_bidirectional : True
-embed_trainable : False
+embed_trainable : True
 =============== DATA PROCESSING ===============
 Statistics of Label Mapping:
 * Class: {0: 'ABBREVIATION', 1: 'ENTITY', 2: 'DESCRIPTION', 3: 'HUMAN', 4: 'LOCATION', 5: 'NUMERIC'}
@@ -41,10 +41,10 @@ Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.854
-* ABB PREC: 0.500, ABB REC: 0.556, ABB F1: 0.526
-* ENT PREC: 0.866, ENT REC: 0.617, ENT F1: 0.720
-* DES PREC: 0.800, DES REC: 0.957, DES F1: 0.871
-* HUM PREC: 0.833, HUM REC: 0.923, HUM F1: 0.876
-* LOC PREC: 0.869, LOC REC: 0.901, LOC F1: 0.885
-* NUM PREC: 0.971, NUM REC: 0.876, NUM F1: 0.921
++ Overall ACC: 0.862
+* ABB PREC: 0.833, ABB REC: 0.556, ABB F1: 0.667
+* ENT PREC: 0.855, ENT REC: 0.755, ENT F1: 0.802
+* DES PREC: 0.814, DES REC: 0.949, DES F1: 0.876
+* HUM PREC: 0.879, HUM REC: 0.892, HUM F1: 0.885
+* LOC PREC: 0.820, LOC REC: 0.901, LOC F1: 0.859
+* NUM PREC: 0.979, NUM REC: 0.823, NUM F1: 0.894
