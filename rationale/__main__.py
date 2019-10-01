@@ -20,7 +20,7 @@ def main():
     # Load parameters.
     parser = argparse.ArgumentParser()
     parser.add_argument('--classifier', type=str, default='TextCNN', help='classifier to use "LSTM/TextCNN"')
-    parser.add_argument('--pretrained', type=bool, default=False, help='finetune pre-trained classifier')
+    parser.add_argument('--pretrained', type=bool, default=True, help='finetune pre-trained classifier')
     parser.add_argument('--mode', type=str, default='train', help='train or eval')
     parser.add_argument('--epochs', type=int, default=10, help='number of training epochs')
     parser.add_argument('--batch_size', type=int, default=64, help='number of examples to process in a batch')

@@ -1,5 +1,6 @@
 =============== HYPERPARAMETER SETTING ===============
-classifier : TextCNN
+classifier : LSTM
+pretrained : True
 mode : eval
 epochs : 10
 batch_size : 64
@@ -28,11 +29,11 @@ Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.700
-+ Overall KEEP: 0.723
-* ABB PREC: 1.000, ABB REC: 0.556, ABB F1: 0.714
-* ENT PREC: 0.656, ENT REC: 0.447, ENT F1: 0.532
-* DES PREC: 0.670, DES REC: 0.884, DES F1: 0.762
-* HUM PREC: 0.623, HUM REC: 0.738, HUM F1: 0.676
-* LOC PREC: 0.694, LOC REC: 0.728, LOC F1: 0.711
-* NUM PREC: 0.851, NUM REC: 0.655, NUM F1: 0.740
++ Overall ACC: 0.788
++ Overall KEEP: 0.722
+* ABB PREC: 0.833, ABB REC: 0.556, ABB F1: 0.667
+* ENT PREC: 0.725, ENT REC: 0.617, ENT F1: 0.667
+* DES PREC: 0.799, DES REC: 0.891, DES F1: 0.842
+* HUM PREC: 0.852, HUM REC: 0.800, HUM F1: 0.825
+* LOC PREC: 0.705, LOC REC: 0.827, LOC F1: 0.761
+* NUM PREC: 0.856, NUM REC: 0.788, NUM F1: 0.820
