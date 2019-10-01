@@ -138,8 +138,8 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
             gen_optimizer.step()
             enc_optimizer.step()
             if iteration % 10 == 0:
-                print('Train step: {:d}/{:d}, Generator Train loss: {:3f}, Encoder Train loss: {:3f}, Train accuracy: {:.3f}, Keep percentage: {:.2f}'.format(iteration,
-                                                                                                                                                              max_iterations, gen_loss, enc_loss, accuracy, keep))
+                print('Train step: {:d}/{:d}, GEN Train loss: {:.3f}, ENC Train loss: {:.3f}, '
+                      'Train accuracy: {:.3f}, Keep percentage: {:.2f}'.format(iteration, max_iterations, gen_loss, enc_loss, accuracy, keep))
             if iteration % 100 == 0 and iteration > 0:
                 print_statement('MODEL VALIDATING')
                 pregen.eval()
@@ -292,14 +292,17 @@ def extract_rationale(batch_inputs, batch_rationale, ind2token, acc, keep, class
     inputs = batch_inputs[picked, :].tolist()
     # rationale = batch_rationale[picked, np.arange(batch_inputs.shape[1])].tolist()
     rationale = batch_rationale[picked, :].tolist()
-    with open('Rationale/results/samples.txt', 'a') as f:
-        f.write('Classifier: {}\n'.format(classifier))
+    with open('Rationale/results/samples.txt', 'w') as f:
+        f.write('* Classifier: {}\n'.format(classifier))
+        f.write('-------------------------------------\n')
     for (input_sentence, input_rationale) in zip(inputs, rationale):
         with open('Rationale/results/samples.txt', 'a') as f:
-            f.write('Original input:\n')
+            f.write('+ Original input:\n')
             f.write(' '.join(list(filter(lambda x: x != '<pad>', map(lambda x: ind2token[x], input_sentence)))) + '\n')
-            f.write('Extracted rationale:\n')
+            f.write('- Extracted rationale:\n')
             f.write(' '.join(list(filter(lambda x: x != '<pad>', map(lambda x: ind2token[x], input_rationale)))) + '\n')
 
     with open('Rationale/results/samples.txt', 'a') as f:
-        f.write('Accuracy: {}, Keep: {}\n\n'.format(acc, keep))
+        f.write('-------------------------------------\n')
+        f.write('* Accuracy: {:.3f}\n'.format(acc))
+        f.write('* Keep percentage: {:.3f}'.format(keep))

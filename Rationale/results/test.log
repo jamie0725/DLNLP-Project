@@ -1,11 +1,11 @@
 =============== HYPERPARAMETER SETTING ===============
 classifier : TextCNN
-pretrained : True
+pretrained : False
 mode : eval
 epochs : 10
 batch_size : 64
 max_norm : 5.0
-embed_trainable : False
+embed_trainable : True
 device : cuda:0
 lr_enc : 0.001
 lr_gen : 0.001
@@ -29,11 +29,11 @@ Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.718
-+ Overall KEEP: 0.729
-* ABB PREC: 0.750, ABB REC: 0.667, ABB F1: 0.706
-* ENT PREC: 0.702, ENT REC: 0.351, ENT F1: 0.468
-* DES PREC: 0.700, DES REC: 0.913, DES F1: 0.792
-* HUM PREC: 0.675, HUM REC: 0.800, HUM F1: 0.732
-* LOC PREC: 0.663, LOC REC: 0.728, LOC F1: 0.694
-* NUM PREC: 0.838, NUM REC: 0.735, NUM F1: 0.783
++ Overall ACC: 0.540
++ Overall KEEP: 0.274
+* ABB PREC: 0.600, ABB REC: 0.333, ABB F1: 0.429
+* ENT PREC: 0.446, ENT REC: 0.351, ENT F1: 0.393
+* DES PREC: 0.495, DES REC: 0.797, DES F1: 0.611
+* HUM PREC: 0.576, HUM REC: 0.523, HUM F1: 0.548
+* LOC PREC: 0.519, LOC REC: 0.506, LOC F1: 0.512
+* NUM PREC: 0.803, NUM REC: 0.434, NUM F1: 0.563

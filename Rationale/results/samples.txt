@@ -1,46 +1,25 @@
-Classifier: LSTM
-Original input:
-name <unk> food high in <unk> <unk>
-Extracted rationale:
-name food high in
-Original input:
-what peninsula is spain part <unk> <unk>
-Extracted rationale:
-peninsula is part <unk> <unk>
-Original input:
-what is <unk> <unk> <unk>
-Extracted rationale:
+* Classifier: TextCNN
+-------------------------------------
++ Original input:
+what are <unk> <unk>
+- Extracted rationale:
+<unk>
++ Original input:
+what doe <unk> <unk> <unk> <unk>
+- Extracted rationale:
+
++ Original input:
+what is the oldest univers in the US <unk>
+- Extracted rationale:
+is
++ Original input:
 what is <unk> <unk>
-Original input:
-what is the capit <unk> <unk> <unk>
-Extracted rationale:
-is the capit <unk> <unk> <unk>
-Original input:
-how far is it from denver <unk> <unk> <unk>
-Extracted rationale:
-how far is it from denver <unk>
-Accuracy: 0.748, Keep: 0.733032293377121
+- Extracted rationale:
 
-Classifier: TextCNN
-Original input:
-who wa presid in <unk> <unk>
-Extracted rationale:
-who wa in <unk> <unk>
-Original input:
-who wa the <unk> presid <unk> the US <unk>
-Extracted rationale:
-who wa the <unk> <unk> the US <unk>
-Original input:
-who wa the first woman governor in the <unk> <unk>
-Extracted rationale:
-the first woman governor <unk>
-Original input:
-In what spacecraft did <unk> astronaut alan <unk> make hi histor <unk> flight <unk>
-Extracted rationale:
-In what spacecraft astronaut alan <unk> hi histor <unk> <unk>
-Original input:
-what is the statu <unk> <unk> made <unk> <unk>
-Extracted rationale:
-what is the statu <unk> <unk> made <unk> <unk>
-Accuracy: 0.718, Keep: 0.7285487288135594
++ Original input:
+what is <unk> <unk>
+- Extracted rationale:
 
+-------------------------------------
+* Accuracy: 0.540
+* Keep percentage: 0.274
