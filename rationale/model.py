@@ -3,17 +3,15 @@
 import torch
 import torch.nn as nn
 import pickle
-from torch.nn import functional as F
+import numpy as np
 import torch.distributions as D
+from torch.nn import functional as F
 
 from LSTM.model import LSTMClassifier
 from TextCNN.model import TextCNN
-from utils.utils import print_statement, print_value
+from utils.utils import print_statement, print_value, ClassificationTool, load_json
 from dataset.utils import QCDataset
 from torch.utils.data import DataLoader
-
-# Some global parameters.
-MODEL_LOC = 'rationale/model/best_model.pt'
 
 
 class PreGenerator(nn.Module):
@@ -39,7 +37,7 @@ class PreGenerator(nn.Module):
         return x
 
 
-def dummy_task(args):
+def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
     print_statement('LOAD EMBEDDINGS')
     with open('dataset/ind2token', 'rb') as f:
         ind2token = pickle.load(f)
@@ -56,8 +54,6 @@ def dummy_task(args):
     dataloader_train = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
     qcdataset = QCDataset(token2ind, ind2token, split='val', batch_first=True)
     dataloader_validate = DataLoader(qcdataset, batch_size=batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
-    qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
-    dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
 
     if args.classifier == 'LSTM':
         classifier = LSTMClassifier(
@@ -71,6 +67,7 @@ def dummy_task(args):
             device=args.device
         )
         ckpt_path = 'LSTM/model/best_model.pt'
+        ENC_MODEL_LOC = LSTM_MODEL_LOC
 
     elif args.classifier == 'TextCNN':
         classifier = TextCNN(
@@ -85,13 +82,14 @@ def dummy_task(args):
             p=args.p
         )
         ckpt_path = 'TextCNN/model/best_model.pt'
-
-    ckpt = torch.load(ckpt_path, map_location=args.device)
-    classifier.load_state_dict(ckpt['state_dict'])
-    for parameter in classifier.parameters():
-        parameter.requires_grad = False
+        ENC_MODEL_LOC = TCN_MODEL_LOC
+    if args.pretrained:
+        ckpt = torch.load(ckpt_path, map_location=args.device)
+        classifier.load_state_dict(ckpt['state_dict'])
+    # for parameter in classifier.parameters():
+    # parameter.requires_grad = False
     classifier.to(args.device)
-    classifier.eval()
+    # classifier.eval()
 
     pregen = PreGenerator(
         hidden_size=args.num_hidden_rationale,
@@ -103,74 +101,183 @@ def dummy_task(args):
     )
     pregen.to(args.device)
 
-    if args.mode == 'train':
-        print_statement('MODEL TRAINING')
-        criterion = torch.nn.CrossEntropyLoss()
-        optimizer = torch.optim.Adam(pregen.parameters(), lr=args.lr)
-        best_eval = 0
-        iteration = 0
-        max_iterations = args.epochs * len(dataloader_train)
-        for i in range(args.epochs):
-            for batch_inputs, batch_targets in dataloader_train:
-                iteration += 1
-                batch_inputs = batch_inputs.to(args.device)
-                batch_targets = batch_targets.to(args.device)
-                pregen.train()
-                optimizer.zero_grad()
-                prob = pregen(batch_inputs)
-                dist = D.Bernoulli(probs=prob)
-                pregen_output = dist.sample()
-                batch_inputs_masked = pregen_output.long() * batch_inputs
-                classifier_output = classifier(batch_inputs_masked)
-                selection_loss = args.lambda_1 * torch.sum(pregen_output)
-                # TODO: Implement transition loss.
-                classify_loss = criterion(classifier_output, batch_targets)
-                generator_loss = -dist.log_prob(pregen_output).sum() / len(batch_targets)
-                loss = (selection_loss.detach() + classify_loss.detach()) * generator_loss
-                accuracy = float(torch.sum(classifier_output.argmax(dim=1) == batch_targets)) / len(batch_targets)
-                keep = float(torch.sum(pregen_output)) / pregen_output.numel()
-                loss.backward()
-                torch.nn.utils.clip_grad_norm_(pregen.parameters(), max_norm=args.max_norm)
-                optimizer.step()
-                if iteration % 10 == 0:
-                    print('Train step: {:d}/{:d}, Train loss: {:3f}, Train accuracy: {:.3f}, Keep percentage: {:.2f}'.format(iteration, max_iterations, loss, accuracy, keep))
-                if iteration % 100 == 0 and iteration > 0:
-                    print_statement('MODEL VALIDATING')
-                    pregen.eval()
-                    accs = []
-                    keeps = []
-                    length = []
-                    elements = []
-                    for batch_inputs, batch_targets in dataloader_validate:
-                        batch_inputs = batch_inputs.to(args.device)
-                        batch_targets = batch_targets.to(args.device)
-                        with torch.no_grad():
-                            prob = pregen(batch_inputs)
-                            dist = D.Bernoulli(probs=prob)
-                            pregen_output = dist.sample()
-                            batch_inputs_masked = pregen_output.long() * batch_inputs
-                            classifier_output = classifier(batch_inputs_masked)
-                        acc = torch.sum(classifier_output.argmax(dim=1) == batch_targets)
-                        keep = torch.sum(pregen_output)
-                        length.append(len(batch_targets))
-                        accs.append(acc)
-                        keeps.append(keep)
-                        elements.append(pregen_output.numel())
-                    validate_acc = float(sum(accs)) / sum(length)
-                    validate_keep = float(sum(keeps)) / sum(elements)
-                    print('Testing on {} data:'.format(sum(length)))
-                    print('+ Validation accuracy: {:.3f}'.format(validate_acc))
-                    print('+ Keep percentage: {:.2f}'.format(validate_keep))
-                    # save best model parameters
-                    if validate_acc > best_eval:
-                        print("New highscore! Saving model...")
-                        best_eval = validate_acc
-                        ckpt = {
-                            "state_dict": pregen.state_dict(),
-                            "optimizerizer_state_dict": optimizer.state_dict(),
-                            "best_eval": best_eval
-                        }
-                        torch.save(ckpt, MODEL_LOC)
-    else:
-        print_statement('MODEL TESTING')
-        raise NotImplementedError
+    print_statement('MODEL TRAINING')
+    criterion = torch.nn.CrossEntropyLoss(reduction='none')
+    gen_optimizer = torch.optim.Adam(pregen.parameters(), lr=args.lr_gen)
+    enc_optimizer = torch.optim.Adam(classifier.parameters(), lr=args.lr_enc)
+    best_eval = 0
+    iteration = 0
+    max_iterations = args.epochs * len(dataloader_train)
+    for i in range(args.epochs):
+        for batch_inputs, batch_targets in dataloader_train:
+            iteration += 1
+            batch_inputs = batch_inputs.to(args.device)
+            batch_targets = batch_targets.to(args.device)
+            pregen.train()
+            classifier.train()
+            gen_optimizer.zero_grad()
+            enc_optimizer.zero_grad()
+            p_z_x = pregen(batch_inputs)
+            dist = D.Bernoulli(probs=p_z_x)
+            pregen_output = dist.sample()
+            batch_inputs_masked = batch_inputs.clone()
+            batch_inputs_masked[torch.eq(pregen_output, 0.)] = 1
+            classifier_output = classifier(batch_inputs_masked)
+            selection_loss = args.lambda_1 * pregen_output.sum(dim=-1) + \
+                args.lambda_2 * (pregen_output[:, 1:] - pregen_output[:, :-1]).abs().sum(dim=-1)
+            classify_loss = criterion(classifier_output, batch_targets)
+            cost = selection_loss + classify_loss
+            gen_loss = (cost * -dist.log_prob(p_z_x).sum(dim=-1)).mean()
+            with torch.no_grad():
+                enc_loss = (selection_loss + classify_loss).mean()
+            accuracy = float(torch.sum(classifier_output.argmax(dim=1) == batch_targets)) / len(batch_targets)
+            keep = float(torch.sum(pregen_output)) / pregen_output.numel()
+            gen_loss.backward()
+            torch.nn.utils.clip_grad_norm_(pregen.parameters(), max_norm=args.max_norm)
+            torch.nn.utils.clip_grad_norm_(classifier.parameters(), max_norm=args.max_norm)
+            gen_optimizer.step()
+            enc_optimizer.step()
+            if iteration % 10 == 0:
+                print('Train step: {:d}/{:d}, Generator Train loss: {:3f}, Encoder Train loss: {:3f}, Train accuracy: {:.3f}, Keep percentage: {:.2f}'.format(iteration,
+                                                                                                                                                              max_iterations, gen_loss, enc_loss, accuracy, keep))
+            if iteration % 100 == 0 and iteration > 0:
+                print_statement('MODEL VALIDATING')
+                pregen.eval()
+                accs = []
+                keeps = []
+                length = []
+                elements = []
+                for batch_inputs, batch_targets in dataloader_validate:
+                    batch_inputs = batch_inputs.to(args.device)
+                    batch_targets = batch_targets.to(args.device)
+                    with torch.no_grad():
+                        p_z_x = pregen(batch_inputs)
+                        dist = D.Bernoulli(probs=p_z_x)
+                        pregen_output = dist.sample()
+                        batch_inputs_masked = batch_inputs.clone()
+                        batch_inputs_masked[torch.eq(pregen_output, 0.)] = 1
+                        classifier_output = classifier(batch_inputs_masked)
+                    acc = torch.sum(classifier_output.argmax(dim=1) == batch_targets)
+                    keep = torch.sum(pregen_output)
+                    length.append(len(batch_targets))
+                    accs.append(acc)
+                    keeps.append(keep)
+                    elements.append(pregen_output.numel())
+                validate_acc = float(sum(accs)) / sum(length)
+                validate_keep = float(sum(keeps)) / sum(elements)
+                print('Testing on {} data:'.format(sum(length)))
+                print('+ Validation accuracy: {:.3f}'.format(validate_acc))
+                print('+ Keep percentage: {:.2f}'.format(validate_keep))
+                # save best model parameters
+                if validate_acc > best_eval:
+                    print("New highscore! Saving model...")
+                    best_eval = validate_acc
+                    gen_ckpt = {
+                        "state_dict": pregen.state_dict(),
+                        "optimizer_state_dict": gen_optimizer.state_dict(),
+                        "best_eval": best_eval
+                    }
+                    torch.save(gen_ckpt, GEN_MODEL_LOC)
+                    enc_ckpt = {
+                        "state_dict": classifier.state_dict(),
+                        "optimizer_state_dict": enc_optimizer.state_dict(),
+                        "best_eval": validate_keep
+                    }
+                    torch.save(enc_ckpt, ENC_MODEL_LOC)
+
+
+def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
+    print_statement('LOAD EMBEDDINGS')
+    label_map = load_json(LABEL_JSON_LOC, reverse=True, name='Label Mapping')
+    with open('dataset/ind2token', 'rb') as f:
+        ind2token = pickle.load(f)
+    with open('dataset/token2ind', 'rb') as f:
+        token2ind = pickle.load(f)
+    with open('dataset/embeddings_vector', 'rb') as f:
+        embeddings_vector = pickle.load(f)
+    print_value('Embed shape', embeddings_vector.shape)
+    print_value('Vocab size', len(ind2token))
+
+    batch_size = args.batch_size
+    embedding_size = embeddings_vector.shape[1]
+
+    if args.classifier == 'LSTM':
+        classifier = LSTMClassifier(
+            output_size=args.num_classes,
+            hidden_size=args.num_hidden,
+            embedding_length=embedding_size,
+            embeddings_vector=torch.from_numpy(embeddings_vector),
+            lstm_layer=args.lstm_layer,
+            lstm_dirc=args.lstm_bidirectional,
+            trainable=args.embed_trainable,
+            device=args.device
+        )
+        ckpt_path = LSTM_MODEL_LOC
+
+    elif args.classifier == 'TextCNN':
+        classifier = TextCNN(
+            batch_size=batch_size,
+            c_out=args.c_out,
+            output_size=args.num_classes,
+            vocab_size=len(ind2token),
+            embedding_size=embedding_size,
+            embeddings_vector=torch.from_numpy(embeddings_vector),
+            kernel_sizes=args.kernel_sizes,
+            trainable=args.embed_trainable,
+            p=args.p
+        )
+        ckpt_path = TCN_MODEL_LOC
+
+    ckpt = torch.load(ckpt_path, map_location=args.device)
+    classifier.load_state_dict(ckpt['state_dict'])
+    classifier.to(args.device)
+    classifier.eval()
+
+    pregen = PreGenerator(
+        hidden_size=args.num_hidden_rationale,
+        embedding_size=embedding_size,
+        lstm_layer=args.lstm_layer_rationale,
+        lstm_dirc=args.lstm_bidirectional_rationale,
+        embeddings_vector=torch.from_numpy(embeddings_vector),
+        trainable=args.embed_trainable
+    )
+    ckpt = torch.load(GEN_MODEL_LOC, map_location=args.device)
+    pregen.load_state_dict(ckpt['state_dict'])
+    pregen.to(args.device)
+    pregen.eval()
+
+    print_statement('MODEL TESTING')
+
+    qcdataset = QCDataset(token2ind, ind2token, split='test', batch_first=True)
+    dataloader_test = DataLoader(qcdataset, batch_size=args.batch_size, shuffle=True, collate_fn=qcdataset.collate_fn)
+
+    ct = ClassificationTool(len(label_map))
+    accs = []
+    keeps = []
+    length = []
+    elements = []
+    for batch_inputs, batch_targets in dataloader_test:
+        batch_inputs = batch_inputs.to(args.device)
+        batch_targets = batch_targets.to(args.device)
+        with torch.no_grad():
+            p_z_x = pregen(batch_inputs)
+            dist = D.Bernoulli(probs=p_z_x)
+            pregen_output = dist.sample()
+            batch_inputs_masked = batch_inputs.clone()
+            batch_inputs_masked[torch.eq(pregen_output, 0.)] = 1
+            classifier_output = classifier(batch_inputs_masked)
+        acc = torch.sum(classifier_output.argmax(dim=1) == batch_targets)
+        keep = torch.sum(pregen_output)
+        accs.append(acc)
+        keeps.append(keep)
+        elements.append(pregen_output.numel())
+        length.append(len(batch_targets))
+        ct.update(classifier_output, batch_targets)
+    test_acc = float(np.sum(accs)) / sum(length)
+    test_keep = float(np.sum(keeps)) / sum(elements)
+    print('Testing on {} data:'.format(sum(length)))
+    print('+ Overall ACC: {:.3f}'.format(test_acc))
+    print('+ Overall KEEP: {:.3f}'.format(test_keep))
+    PREC, REC, F1 = ct.get_result()
+    for i, classname in enumerate(label_map.values()):
+        print('* {} PREC: {:.3f}, {} REC: {:.3f}, {} F1: {:.3f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))

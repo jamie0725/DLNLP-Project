@@ -108,7 +108,7 @@ def train(args, MODEL_LOC):
                     best_eval = validate_acc
                     ckpt = {
                         "state_dict": model.state_dict(),
-                        "optimizerizer_state_dict": optim.state_dict(),
+                        "optimizer_state_dict": optim.state_dict(),
                         "best_eval": best_eval
                     }
                     torch.save(ckpt, MODEL_LOC)
