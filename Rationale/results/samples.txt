@@ -3,23 +3,23 @@
 + Original input:
 what is <unk> <unk>
 - Extracted rationale:
-is <unk> <unk>
+what is <unk> <unk>
 + Original input:
-what is the highest dam in the <unk> <unk>
+what year wa the <unk> <unk> paint <unk>
 - Extracted rationale:
-the highest dam in the <unk>
+what the <unk> paint <unk>
 + Original input:
-what type <unk> <unk> is use in australia <unk>
+what is <unk> <unk>
 - Extracted rationale:
-what type <unk> <unk> use in australia <unk>
+is <unk>
 + Original input:
-what color is <unk> <unk> <unk> <unk> <unk>
+who is the onli presid <unk> serv 2 <unk> term <unk>
 - Extracted rationale:
-color is <unk> <unk> <unk>
+who onli presid <unk> serv term <unk>
 + Original input:
-what wa the most popular toy in <unk> <unk>
+where is the <unk> river <unk>
 - Extracted rationale:
-what most toy in <unk> <unk>
+where is the <unk> river <unk>
 -------------------------------------
-* Accuracy: 0.780
-* Keep percentage: 0.736
+* Accuracy: 0.752
+* Keep percentage: 0.445

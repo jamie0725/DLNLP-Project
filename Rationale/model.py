@@ -136,7 +136,7 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
             torch.nn.utils.clip_grad_norm_(pregen.parameters(), max_norm=args.max_norm)
             gen_optimizer.step()
             accuracy = float(torch.sum(classifier_output.argmax(dim=1) == batch_targets)) / len(batch_targets)
-            keep = float(torch.sum(pregen_output)) / pregen_output.numel()
+            keep = compute_keep_rate(batch_inputs, pregen_output)
             if iteration % 10 == 0:
                 print('Train step: {:d}/{:d}, GEN Train loss: {:.3f}, ENC Train loss: {:.3f}, '
                       'Train accuracy: {:.3f}, Keep percentage: {:.2f}'.format(iteration, max_iterations, gen_loss, enc_loss, accuracy, keep))
@@ -147,6 +147,8 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
                 keeps = []
                 length = []
                 elements = []
+                org_pads = []
+                pads_kept = []
                 for batch_inputs, batch_targets in dataloader_validate:
                     batch_inputs = batch_inputs.to(args.device)
                     batch_targets = batch_targets.to(args.device)
@@ -159,12 +161,16 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
                         classifier_output = classifier(batch_inputs_masked)
                     acc = torch.sum(classifier_output.argmax(dim=1) == batch_targets)
                     keep = torch.sum(pregen_output)
+                    org_pad = torch.eq(batch_inputs, 1).sum()
+                    num_pads_kept = (torch.eq(batch_inputs, 1) == torch.eq(pregen_output, 1.)).sum()
                     length.append(len(batch_targets))
                     accs.append(acc)
                     keeps.append(keep)
+                    org_pads.append(org_pad)
+                    pads_kept.append(num_pads_kept)
                     elements.append(pregen_output.numel())
                 validate_acc = float(sum(accs)) / sum(length)
-                validate_keep = float(sum(keeps)) / sum(elements)
+                validate_keep = float(sum(keeps) - sum(pads_kept)) / float(sum(elements) - sum(org_pads))
                 extract_rationale(batch_inputs, batch_inputs_masked, ind2token, validate_acc, validate_keep, args.classifier)
                 print('Testing on {} data:'.format(sum(length)))
                 print('+ Validation accuracy: {:.3f}'.format(validate_acc))
@@ -257,6 +263,9 @@ def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
     keeps = []
     length = []
     elements = []
+    org_pads = []
+    pads_kept = []
+
     for batch_inputs, batch_targets in dataloader_test:
         batch_inputs = batch_inputs.to(args.device)
         batch_targets = batch_targets.to(args.device)
@@ -269,13 +278,17 @@ def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
             classifier_output = classifier(batch_inputs_masked)
         acc = torch.sum(classifier_output.argmax(dim=1) == batch_targets)
         keep = torch.sum(pregen_output)
+        org_pad = torch.eq(batch_inputs, 1).sum()
+        num_pads_kept = (torch.eq(batch_inputs, 1) == torch.eq(pregen_output, 1.)).sum()
         accs.append(acc)
         keeps.append(keep)
+        org_pads.append(org_pad)
+        pads_kept.append(num_pads_kept)
         elements.append(pregen_output.numel())
         length.append(len(batch_targets))
         ct.update(classifier_output, batch_targets)
     test_acc = float(np.sum(accs)) / sum(length)
-    test_keep = float(np.sum(keeps)) / sum(elements)
+    test_keep = float(np.sum(keeps) - np.sum(pads_kept)) / float(sum(elements) - np.sum(org_pads))
     extract_rationale(batch_inputs, batch_inputs_masked, ind2token, test_acc, test_keep, args.classifier)
     print('Testing on {} data:'.format(sum(length)))
     print('+ Overall ACC: {:.3f}'.format(test_acc))
@@ -306,3 +319,9 @@ def extract_rationale(batch_inputs, batch_rationale, ind2token, acc, keep, class
         f.write('-------------------------------------\n')
         f.write('* Accuracy: {:.3f}\n'.format(acc))
         f.write('* Keep percentage: {:.3f}'.format(keep))
+
+
+def compute_keep_rate(batch_inputs, pregen_output):
+    num_pads_kept = (torch.eq(batch_inputs, 1) == torch.eq(pregen_output, 1.)).sum()
+    num_org_pads = torch.eq(batch_inputs, 1).sum()
+    return float(torch.sum(pregen_output) - num_pads_kept) / float(pregen_output.numel() - num_org_pads)

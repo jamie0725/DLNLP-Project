@@ -2,7 +2,7 @@
 classifier : TextCNN
 pretrained : False
 mode : eval
-epochs : 10
+epochs : 50
 batch_size : 64
 max_norm : 5.0
 embed_trainable : True
@@ -12,8 +12,8 @@ lr_gen : 0.001
 num_hidden_rationale : 64
 lstm_layer_rationale : 1
 lstm_bidirectional_rationale : False
-lambda_1 : 0.0002
-lambda_2 : 0.0004
+lambda_1 : 0.002
+lambda_2 : 0.004
 num_hidden : 256
 lstm_layer : 2
 lstm_bidirectional : True
@@ -29,11 +29,11 @@ Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.780
-+ Overall KEEP: 0.736
-* ABB PREC: 1.000, ABB REC: 0.556, ABB F1: 0.714
-* ENT PREC: 0.823, ENT REC: 0.543, ENT F1: 0.654
-* DES PREC: 0.725, DES REC: 0.957, DES F1: 0.825
-* HUM PREC: 0.724, HUM REC: 0.846, HUM F1: 0.780
-* LOC PREC: 0.756, LOC REC: 0.765, LOC F1: 0.761
-* NUM PREC: 0.914, NUM REC: 0.752, NUM F1: 0.825
++ Overall ACC: 0.752
++ Overall KEEP: 0.445
+* ABB PREC: 1.000, ABB REC: 0.667, ABB F1: 0.800
+* ENT PREC: 0.708, ENT REC: 0.543, ENT F1: 0.614
+* DES PREC: 0.722, DES REC: 0.942, DES F1: 0.818
+* HUM PREC: 0.686, HUM REC: 0.738, HUM F1: 0.711
+* LOC PREC: 0.709, LOC REC: 0.753, LOC F1: 0.731
+* NUM PREC: 0.930, NUM REC: 0.708, NUM F1: 0.804
