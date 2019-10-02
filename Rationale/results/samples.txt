@@ -3,23 +3,23 @@
 + Original input:
 what is <unk> <unk>
 - Extracted rationale:
-what is <unk> <unk>
+what
 + Original input:
-what year wa the <unk> <unk> paint <unk>
+what doe the word <unk> mean <unk>
 - Extracted rationale:
-what the <unk> paint <unk>
+doe the word mean
 + Original input:
-what is <unk> <unk>
+where is the <unk> river <unk>
+- Extracted rationale:
+river
++ Original input:
+what is rel <unk> <unk>
 - Extracted rationale:
 is <unk>
 + Original input:
-who is the onli presid <unk> serv 2 <unk> term <unk>
+what <unk> is <unk> in <unk>
 - Extracted rationale:
-who onli presid <unk> serv term <unk>
-+ Original input:
-where is the <unk> river <unk>
-- Extracted rationale:
-where is the <unk> river <unk>
+what <unk> in
 -------------------------------------
-* Accuracy: 0.752
-* Keep percentage: 0.445
+* Accuracy: 0.666
+* Keep percentage: 0.500

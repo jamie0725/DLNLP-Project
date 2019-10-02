@@ -7,13 +7,13 @@ batch_size : 64
 max_norm : 5.0
 embed_trainable : True
 device : cuda:0
-lr_enc : 0.001
-lr_gen : 0.001
+lr_enc : 0.01
+lr_gen : 0.01
 num_hidden_rationale : 64
 lstm_layer_rationale : 1
-lstm_bidirectional_rationale : False
-lambda_1 : 0.002
-lambda_2 : 0.004
+lstm_bidirectional_rationale : True
+lambda_1 : 0.005
+lambda_2 : 0.005
 num_hidden : 256
 lstm_layer : 2
 lstm_bidirectional : True
@@ -29,11 +29,11 @@ Embed shape: (4164, 300)
 Vocab size: 4164
 =============== MODEL TESTING ===============
 Testing on 500 data:
-+ Overall ACC: 0.752
-+ Overall KEEP: 0.445
-* ABB PREC: 1.000, ABB REC: 0.667, ABB F1: 0.800
-* ENT PREC: 0.708, ENT REC: 0.543, ENT F1: 0.614
-* DES PREC: 0.722, DES REC: 0.942, DES F1: 0.818
-* HUM PREC: 0.686, HUM REC: 0.738, HUM F1: 0.711
-* LOC PREC: 0.709, LOC REC: 0.753, LOC F1: 0.731
-* NUM PREC: 0.930, NUM REC: 0.708, NUM F1: 0.804
++ Overall ACC: 0.666
++ Overall KEEP: 0.500
+* ABB PREC: 0.600, ABB REC: 0.333, ABB F1: 0.429
+* ENT PREC: 0.586, ENT REC: 0.436, ENT F1: 0.500
+* DES PREC: 0.633, DES REC: 0.949, DES F1: 0.759
+* HUM PREC: 0.687, HUM REC: 0.708, HUM F1: 0.697
+* LOC PREC: 0.690, LOC REC: 0.605, LOC F1: 0.645
+* NUM PREC: 0.787, NUM REC: 0.558, NUM F1: 0.653

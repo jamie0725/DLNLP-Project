@@ -19,6 +19,11 @@ class PreGenerator(nn.Module):
     def __init__(self, hidden_size, embedding_size, lstm_layer, lstm_dirc, embeddings_vector, trainable):
         super(PreGenerator, self).__init__()
 
+        if lstm_dirc:
+            self.num_direction = 2
+        else:
+            self.num_direction = 1
+
         self.lstm = nn.LSTM(
             input_size=embedding_size,
             hidden_size=hidden_size,
@@ -27,12 +32,17 @@ class PreGenerator(nn.Module):
             batch_first=True,
         )
         self.embed = nn.Embedding.from_pretrained(embeddings_vector, freeze=trainable)
+        self.linear_weight = nn.Parameter(torch.zeros(size=(1, hidden_size * self.num_direction), dtype=torch.float, requires_grad=True))
+        # nn.init.xavier_uniform_(self.linear_weight)
+        self.linear_bias = nn.Parameter(torch.zeros(size=(1, ), dtype=torch.float, requires_grad=True))
+        # self.linear = nn.Linear(hidden_size * self.num_direction, 1)
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         x = self.embed(x)
         x, _ = self.lstm(x)
-        x = F.avg_pool1d(x, kernel_size=x.size(-1)).squeeze()
+        # x = F.avg_pool1d(x, kernel_size=x.size(-1)).squeeze(2)
+        x = F.linear(x, self.linear_weight, self.linear_bias).squeeze(2)
         x = self.sigmoid(x)
         return x
 
@@ -101,6 +111,10 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
     )
     pregen.to(args.device)
 
+    # for name, parameter in pregen.named_parameters():
+    #     print(name)
+    #     print(parameter)
+
     print_statement('MODEL TRAINING')
     criterion = torch.nn.CrossEntropyLoss(reduction='none')
     gen_optimizer = torch.optim.Adam(pregen.parameters(), lr=args.lr_gen)
@@ -162,7 +176,7 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
                     acc = torch.sum(classifier_output.argmax(dim=1) == batch_targets)
                     keep = torch.sum(pregen_output)
                     org_pad = torch.eq(batch_inputs, 1).sum()
-                    num_pads_kept = (torch.eq(batch_inputs, 1) == torch.eq(pregen_output, 1.)).sum()
+                    num_pads_kept = (torch.eq(batch_inputs, 1) * torch.eq(pregen_output, 1.)).sum()
                     length.append(len(batch_targets))
                     accs.append(acc)
                     keeps.append(keep)
@@ -279,7 +293,7 @@ def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
         acc = torch.sum(classifier_output.argmax(dim=1) == batch_targets)
         keep = torch.sum(pregen_output)
         org_pad = torch.eq(batch_inputs, 1).sum()
-        num_pads_kept = (torch.eq(batch_inputs, 1) == torch.eq(pregen_output, 1.)).sum()
+        num_pads_kept = (torch.eq(batch_inputs, 1) * torch.eq(pregen_output, 1.)).sum()
         accs.append(acc)
         keeps.append(keep)
         org_pads.append(org_pad)
@@ -322,6 +336,6 @@ def extract_rationale(batch_inputs, batch_rationale, ind2token, acc, keep, class
 
 
 def compute_keep_rate(batch_inputs, pregen_output):
-    num_pads_kept = (torch.eq(batch_inputs, 1) == torch.eq(pregen_output, 1.)).sum()
-    num_org_pads = torch.eq(batch_inputs, 1).sum()
-    return float(torch.sum(pregen_output) - num_pads_kept) / float(pregen_output.numel() - num_org_pads)
+    num_pads_kept = (torch.eq(batch_inputs, 1) * torch.eq(pregen_output, 1.)).sum().item()
+    num_org_pads = torch.eq(batch_inputs, 1).sum().item()
+    return float(torch.sum(pregen_output).item() - num_pads_kept) / float(pregen_output.numel() - num_org_pads)
