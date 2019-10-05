@@ -1,0 +1,1054 @@
+=============== HYPERPARAMETER SETTING ===============
+classifier : TextCNN
+pretrained : False
+mode : train
+epochs : 50
+batch_size : 64
+max_norm : 5.0
+embed_trainable : True
+device : cuda:0
+lr_enc : 0.001
+lr_gen : 0.001
+num_hidden_rationale : 64
+lstm_layer_rationale : 2
+lstm_bidirectional_rationale : True
+lambda_1 : 0.01
+lambda_2 : 0.001
+agg_mode : fc
+num_hidden : 256
+lstm_layer : 2
+lstm_bidirectional : True
+num_classes : 6
+kernel_sizes : [2, 3, 4]
+p : 0.5
+c_out : 32
+=============== LOAD EMBEDDINGS ===============
+Embed shape: (4164, 300)
+Vocab size: 4164
+=============== MODEL TRAINING ===============
+Train step: 10/7200, GEN Train loss: 31.212, ENC Train loss: 1.876, Train accuracy: 0.234, Keep percentage: 0.51
+Train step: 20/7200, GEN Train loss: 22.008, ENC Train loss: 1.764, Train accuracy: 0.297, Keep percentage: 0.52
+Train step: 30/7200, GEN Train loss: 26.700, ENC Train loss: 1.834, Train accuracy: 0.219, Keep percentage: 0.50
+Train step: 40/7200, GEN Train loss: 21.755, ENC Train loss: 1.652, Train accuracy: 0.484, Keep percentage: 0.48
+Train step: 50/7200, GEN Train loss: 23.549, ENC Train loss: 1.699, Train accuracy: 0.344, Keep percentage: 0.50
+Train step: 60/7200, GEN Train loss: 23.903, ENC Train loss: 1.642, Train accuracy: 0.453, Keep percentage: 0.49
+Train step: 70/7200, GEN Train loss: 22.502, ENC Train loss: 1.709, Train accuracy: 0.328, Keep percentage: 0.48
+Train step: 80/7200, GEN Train loss: 26.572, ENC Train loss: 1.597, Train accuracy: 0.469, Keep percentage: 0.52
+Train step: 90/7200, GEN Train loss: 23.397, ENC Train loss: 1.468, Train accuracy: 0.453, Keep percentage: 0.50
+Train step: 100/7200, GEN Train loss: 18.092, ENC Train loss: 1.374, Train accuracy: 0.562, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.473
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 110/7200, GEN Train loss: 19.322, ENC Train loss: 1.467, Train accuracy: 0.438, Keep percentage: 0.50
+Train step: 120/7200, GEN Train loss: 23.593, ENC Train loss: 1.480, Train accuracy: 0.469, Keep percentage: 0.49
+Train step: 130/7200, GEN Train loss: 19.722, ENC Train loss: 1.498, Train accuracy: 0.453, Keep percentage: 0.50
+Train step: 140/7200, GEN Train loss: 33.337, ENC Train loss: 1.503, Train accuracy: 0.422, Keep percentage: 0.53
+Train step: 150/7200, GEN Train loss: 21.569, ENC Train loss: 1.482, Train accuracy: 0.500, Keep percentage: 0.49
+Train step: 160/7200, GEN Train loss: 22.663, ENC Train loss: 1.362, Train accuracy: 0.484, Keep percentage: 0.50
+Train step: 170/7200, GEN Train loss: 25.129, ENC Train loss: 1.450, Train accuracy: 0.438, Keep percentage: 0.50
+Train step: 180/7200, GEN Train loss: 19.022, ENC Train loss: 1.307, Train accuracy: 0.547, Keep percentage: 0.52
+Train step: 190/7200, GEN Train loss: 17.875, ENC Train loss: 1.228, Train accuracy: 0.641, Keep percentage: 0.49
+Train step: 200/7200, GEN Train loss: 19.552, ENC Train loss: 1.282, Train accuracy: 0.500, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.528
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 210/7200, GEN Train loss: 22.484, ENC Train loss: 1.410, Train accuracy: 0.500, Keep percentage: 0.50
+Train step: 220/7200, GEN Train loss: 15.582, ENC Train loss: 1.183, Train accuracy: 0.578, Keep percentage: 0.51
+Train step: 230/7200, GEN Train loss: 18.803, ENC Train loss: 1.233, Train accuracy: 0.609, Keep percentage: 0.47
+Train step: 240/7200, GEN Train loss: 24.599, ENC Train loss: 1.420, Train accuracy: 0.516, Keep percentage: 0.50
+Train step: 250/7200, GEN Train loss: 24.290, ENC Train loss: 1.348, Train accuracy: 0.562, Keep percentage: 0.52
+Train step: 260/7200, GEN Train loss: 30.111, ENC Train loss: 1.174, Train accuracy: 0.656, Keep percentage: 0.52
+Train step: 270/7200, GEN Train loss: 13.686, ENC Train loss: 1.161, Train accuracy: 0.594, Keep percentage: 0.51
+Train step: 280/7200, GEN Train loss: 19.443, ENC Train loss: 1.169, Train accuracy: 0.609, Keep percentage: 0.50
+Train step: 290/7200, GEN Train loss: 22.716, ENC Train loss: 1.561, Train accuracy: 0.500, Keep percentage: 0.50
+Train step: 300/7200, GEN Train loss: 17.214, ENC Train loss: 1.183, Train accuracy: 0.562, Keep percentage: 0.47
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.569
++ Keep percentage: 0.49
+New highscore! Saving model...
+Train step: 310/7200, GEN Train loss: 17.524, ENC Train loss: 1.264, Train accuracy: 0.578, Keep percentage: 0.50
+Train step: 320/7200, GEN Train loss: 16.496, ENC Train loss: 1.322, Train accuracy: 0.562, Keep percentage: 0.50
+Train step: 330/7200, GEN Train loss: 14.867, ENC Train loss: 1.072, Train accuracy: 0.672, Keep percentage: 0.47
+Train step: 340/7200, GEN Train loss: 13.402, ENC Train loss: 1.074, Train accuracy: 0.625, Keep percentage: 0.53
+Train step: 350/7200, GEN Train loss: 16.157, ENC Train loss: 1.295, Train accuracy: 0.625, Keep percentage: 0.47
+Train step: 360/7200, GEN Train loss: 14.129, ENC Train loss: 1.199, Train accuracy: 0.547, Keep percentage: 0.48
+Train step: 370/7200, GEN Train loss: 19.410, ENC Train loss: 1.273, Train accuracy: 0.484, Keep percentage: 0.47
+Train step: 380/7200, GEN Train loss: 15.185, ENC Train loss: 1.153, Train accuracy: 0.609, Keep percentage: 0.49
+Train step: 390/7200, GEN Train loss: 33.198, ENC Train loss: 1.294, Train accuracy: 0.578, Keep percentage: 0.49
+Train step: 400/7200, GEN Train loss: 18.442, ENC Train loss: 1.209, Train accuracy: 0.625, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.578
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 410/7200, GEN Train loss: 20.006, ENC Train loss: 1.312, Train accuracy: 0.547, Keep percentage: 0.53
+Train step: 420/7200, GEN Train loss: 21.555, ENC Train loss: 1.111, Train accuracy: 0.672, Keep percentage: 0.50
+Train step: 430/7200, GEN Train loss: 16.899, ENC Train loss: 1.354, Train accuracy: 0.531, Keep percentage: 0.50
+Train step: 440/7200, GEN Train loss: 14.646, ENC Train loss: 1.057, Train accuracy: 0.688, Keep percentage: 0.48
+Train step: 450/7200, GEN Train loss: 15.684, ENC Train loss: 1.077, Train accuracy: 0.656, Keep percentage: 0.50
+Train step: 460/7200, GEN Train loss: 13.729, ENC Train loss: 1.042, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 470/7200, GEN Train loss: 15.143, ENC Train loss: 1.150, Train accuracy: 0.609, Keep percentage: 0.50
+Train step: 480/7200, GEN Train loss: 19.708, ENC Train loss: 1.354, Train accuracy: 0.531, Keep percentage: 0.48
+Train step: 490/7200, GEN Train loss: 13.478, ENC Train loss: 1.080, Train accuracy: 0.688, Keep percentage: 0.49
+Train step: 500/7200, GEN Train loss: 28.009, ENC Train loss: 1.188, Train accuracy: 0.656, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.579
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 510/7200, GEN Train loss: 23.848, ENC Train loss: 1.147, Train accuracy: 0.578, Keep percentage: 0.49
+Train step: 520/7200, GEN Train loss: 23.692, ENC Train loss: 1.424, Train accuracy: 0.562, Keep percentage: 0.49
+Train step: 530/7200, GEN Train loss: 14.875, ENC Train loss: 1.129, Train accuracy: 0.625, Keep percentage: 0.50
+Train step: 540/7200, GEN Train loss: 16.406, ENC Train loss: 1.183, Train accuracy: 0.641, Keep percentage: 0.53
+Train step: 550/7200, GEN Train loss: 22.135, ENC Train loss: 1.277, Train accuracy: 0.578, Keep percentage: 0.50
+Train step: 560/7200, GEN Train loss: 12.906, ENC Train loss: 1.095, Train accuracy: 0.625, Keep percentage: 0.52
+Train step: 570/7200, GEN Train loss: 16.733, ENC Train loss: 1.271, Train accuracy: 0.531, Keep percentage: 0.47
+Train step: 580/7200, GEN Train loss: 14.795, ENC Train loss: 1.016, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 590/7200, GEN Train loss: 14.328, ENC Train loss: 1.034, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 600/7200, GEN Train loss: 27.308, ENC Train loss: 1.313, Train accuracy: 0.625, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.601
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 610/7200, GEN Train loss: 18.600, ENC Train loss: 1.220, Train accuracy: 0.547, Keep percentage: 0.49
+Train step: 620/7200, GEN Train loss: 24.383, ENC Train loss: 1.213, Train accuracy: 0.609, Keep percentage: 0.49
+Train step: 630/7200, GEN Train loss: 20.588, ENC Train loss: 1.238, Train accuracy: 0.500, Keep percentage: 0.50
+Train step: 640/7200, GEN Train loss: 33.513, ENC Train loss: 1.307, Train accuracy: 0.578, Keep percentage: 0.49
+Train step: 650/7200, GEN Train loss: 17.559, ENC Train loss: 1.267, Train accuracy: 0.594, Keep percentage: 0.52
+Train step: 660/7200, GEN Train loss: 16.074, ENC Train loss: 1.054, Train accuracy: 0.625, Keep percentage: 0.50
+Train step: 670/7200, GEN Train loss: 20.243, ENC Train loss: 0.913, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 680/7200, GEN Train loss: 15.518, ENC Train loss: 1.066, Train accuracy: 0.594, Keep percentage: 0.50
+Train step: 690/7200, GEN Train loss: 12.964, ENC Train loss: 0.984, Train accuracy: 0.672, Keep percentage: 0.51
+Train step: 700/7200, GEN Train loss: 15.914, ENC Train loss: 0.998, Train accuracy: 0.734, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.627
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 710/7200, GEN Train loss: 14.639, ENC Train loss: 1.056, Train accuracy: 0.625, Keep percentage: 0.53
+Train step: 720/7200, GEN Train loss: 12.984, ENC Train loss: 1.041, Train accuracy: 0.643, Keep percentage: 0.49
+Train step: 730/7200, GEN Train loss: 18.643, ENC Train loss: 1.034, Train accuracy: 0.688, Keep percentage: 0.49
+Train step: 740/7200, GEN Train loss: 14.297, ENC Train loss: 1.086, Train accuracy: 0.625, Keep percentage: 0.54
+Train step: 750/7200, GEN Train loss: 19.697, ENC Train loss: 1.093, Train accuracy: 0.609, Keep percentage: 0.53
+Train step: 760/7200, GEN Train loss: 14.418, ENC Train loss: 0.904, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 770/7200, GEN Train loss: 31.273, ENC Train loss: 1.219, Train accuracy: 0.656, Keep percentage: 0.52
+Train step: 780/7200, GEN Train loss: 14.944, ENC Train loss: 1.198, Train accuracy: 0.625, Keep percentage: 0.52
+Train step: 790/7200, GEN Train loss: 22.621, ENC Train loss: 1.255, Train accuracy: 0.609, Keep percentage: 0.50
+Train step: 800/7200, GEN Train loss: 13.694, ENC Train loss: 1.098, Train accuracy: 0.547, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.608
++ Keep percentage: 0.50
+Train step: 810/7200, GEN Train loss: 17.083, ENC Train loss: 1.072, Train accuracy: 0.656, Keep percentage: 0.53
+Train step: 820/7200, GEN Train loss: 11.468, ENC Train loss: 0.919, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 830/7200, GEN Train loss: 14.289, ENC Train loss: 1.085, Train accuracy: 0.641, Keep percentage: 0.49
+Train step: 840/7200, GEN Train loss: 19.855, ENC Train loss: 1.102, Train accuracy: 0.688, Keep percentage: 0.52
+Train step: 850/7200, GEN Train loss: 19.536, ENC Train loss: 1.127, Train accuracy: 0.672, Keep percentage: 0.46
+Train step: 860/7200, GEN Train loss: 24.483, ENC Train loss: 1.218, Train accuracy: 0.562, Keep percentage: 0.49
+Train step: 870/7200, GEN Train loss: 26.986, ENC Train loss: 1.217, Train accuracy: 0.625, Keep percentage: 0.50
+Train step: 880/7200, GEN Train loss: 11.614, ENC Train loss: 0.931, Train accuracy: 0.703, Keep percentage: 0.53
+Train step: 890/7200, GEN Train loss: 13.985, ENC Train loss: 1.062, Train accuracy: 0.641, Keep percentage: 0.54
+Train step: 900/7200, GEN Train loss: 17.323, ENC Train loss: 1.190, Train accuracy: 0.703, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.603
++ Keep percentage: 0.50
+Train step: 910/7200, GEN Train loss: 20.903, ENC Train loss: 1.005, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 920/7200, GEN Train loss: 21.960, ENC Train loss: 1.092, Train accuracy: 0.656, Keep percentage: 0.50
+Train step: 930/7200, GEN Train loss: 27.946, ENC Train loss: 1.186, Train accuracy: 0.578, Keep percentage: 0.51
+Train step: 940/7200, GEN Train loss: 20.631, ENC Train loss: 1.145, Train accuracy: 0.609, Keep percentage: 0.51
+Train step: 950/7200, GEN Train loss: 19.097, ENC Train loss: 1.450, Train accuracy: 0.484, Keep percentage: 0.48
+Train step: 960/7200, GEN Train loss: 11.827, ENC Train loss: 1.066, Train accuracy: 0.672, Keep percentage: 0.48
+Train step: 970/7200, GEN Train loss: 17.926, ENC Train loss: 1.078, Train accuracy: 0.609, Keep percentage: 0.51
+Train step: 980/7200, GEN Train loss: 18.337, ENC Train loss: 1.260, Train accuracy: 0.609, Keep percentage: 0.53
+Train step: 990/7200, GEN Train loss: 14.263, ENC Train loss: 0.935, Train accuracy: 0.688, Keep percentage: 0.52
+Train step: 1000/7200, GEN Train loss: 12.785, ENC Train loss: 0.922, Train accuracy: 0.672, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.623
++ Keep percentage: 0.49
+Train step: 1010/7200, GEN Train loss: 10.907, ENC Train loss: 0.926, Train accuracy: 0.625, Keep percentage: 0.50
+Train step: 1020/7200, GEN Train loss: 16.375, ENC Train loss: 1.125, Train accuracy: 0.625, Keep percentage: 0.46
+Train step: 1030/7200, GEN Train loss: 15.858, ENC Train loss: 1.144, Train accuracy: 0.641, Keep percentage: 0.51
+Train step: 1040/7200, GEN Train loss: 16.334, ENC Train loss: 1.122, Train accuracy: 0.641, Keep percentage: 0.49
+Train step: 1050/7200, GEN Train loss: 12.068, ENC Train loss: 0.916, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 1060/7200, GEN Train loss: 18.682, ENC Train loss: 1.078, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 1070/7200, GEN Train loss: 21.140, ENC Train loss: 1.052, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 1080/7200, GEN Train loss: 12.557, ENC Train loss: 1.006, Train accuracy: 0.656, Keep percentage: 0.55
+Train step: 1090/7200, GEN Train loss: 11.969, ENC Train loss: 0.822, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 1100/7200, GEN Train loss: 13.701, ENC Train loss: 1.040, Train accuracy: 0.594, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.625
++ Keep percentage: 0.50
+Train step: 1110/7200, GEN Train loss: 13.881, ENC Train loss: 1.001, Train accuracy: 0.719, Keep percentage: 0.52
+Train step: 1120/7200, GEN Train loss: 26.606, ENC Train loss: 1.200, Train accuracy: 0.562, Keep percentage: 0.49
+Train step: 1130/7200, GEN Train loss: 19.961, ENC Train loss: 0.993, Train accuracy: 0.641, Keep percentage: 0.50
+Train step: 1140/7200, GEN Train loss: 15.537, ENC Train loss: 1.121, Train accuracy: 0.641, Keep percentage: 0.50
+Train step: 1150/7200, GEN Train loss: 14.599, ENC Train loss: 1.109, Train accuracy: 0.609, Keep percentage: 0.49
+Train step: 1160/7200, GEN Train loss: 21.235, ENC Train loss: 1.056, Train accuracy: 0.625, Keep percentage: 0.49
+Train step: 1170/7200, GEN Train loss: 13.085, ENC Train loss: 0.994, Train accuracy: 0.672, Keep percentage: 0.47
+Train step: 1180/7200, GEN Train loss: 19.071, ENC Train loss: 1.146, Train accuracy: 0.641, Keep percentage: 0.50
+Train step: 1190/7200, GEN Train loss: 14.068, ENC Train loss: 1.015, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 1200/7200, GEN Train loss: 13.194, ENC Train loss: 1.058, Train accuracy: 0.594, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.641
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 1210/7200, GEN Train loss: 19.468, ENC Train loss: 1.123, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 1220/7200, GEN Train loss: 16.332, ENC Train loss: 1.071, Train accuracy: 0.625, Keep percentage: 0.51
+Train step: 1230/7200, GEN Train loss: 10.511, ENC Train loss: 0.758, Train accuracy: 0.797, Keep percentage: 0.51
+Train step: 1240/7200, GEN Train loss: 17.285, ENC Train loss: 0.959, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 1250/7200, GEN Train loss: 16.357, ENC Train loss: 0.908, Train accuracy: 0.719, Keep percentage: 0.53
+Train step: 1260/7200, GEN Train loss: 13.285, ENC Train loss: 0.913, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 1270/7200, GEN Train loss: 19.285, ENC Train loss: 1.113, Train accuracy: 0.656, Keep percentage: 0.50
+Train step: 1280/7200, GEN Train loss: 22.925, ENC Train loss: 1.140, Train accuracy: 0.641, Keep percentage: 0.50
+Train step: 1290/7200, GEN Train loss: 13.476, ENC Train loss: 1.023, Train accuracy: 0.688, Keep percentage: 0.47
+Train step: 1300/7200, GEN Train loss: 19.566, ENC Train loss: 1.129, Train accuracy: 0.609, Keep percentage: 0.47
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.646
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 1310/7200, GEN Train loss: 30.040, ENC Train loss: 1.171, Train accuracy: 0.578, Keep percentage: 0.49
+Train step: 1320/7200, GEN Train loss: 11.419, ENC Train loss: 0.915, Train accuracy: 0.688, Keep percentage: 0.52
+Train step: 1330/7200, GEN Train loss: 12.484, ENC Train loss: 1.001, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 1340/7200, GEN Train loss: 23.689, ENC Train loss: 1.139, Train accuracy: 0.625, Keep percentage: 0.48
+Train step: 1350/7200, GEN Train loss: 12.750, ENC Train loss: 0.920, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 1360/7200, GEN Train loss: 18.672, ENC Train loss: 1.122, Train accuracy: 0.641, Keep percentage: 0.49
+Train step: 1370/7200, GEN Train loss: 13.855, ENC Train loss: 0.909, Train accuracy: 0.750, Keep percentage: 0.53
+Train step: 1380/7200, GEN Train loss: 15.489, ENC Train loss: 1.016, Train accuracy: 0.625, Keep percentage: 0.52
+Train step: 1390/7200, GEN Train loss: 12.524, ENC Train loss: 0.903, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 1400/7200, GEN Train loss: 14.564, ENC Train loss: 0.955, Train accuracy: 0.656, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.658
++ Keep percentage: 0.51
+New highscore! Saving model...
+Train step: 1410/7200, GEN Train loss: 16.305, ENC Train loss: 1.120, Train accuracy: 0.578, Keep percentage: 0.50
+Train step: 1420/7200, GEN Train loss: 17.609, ENC Train loss: 1.016, Train accuracy: 0.672, Keep percentage: 0.54
+Train step: 1430/7200, GEN Train loss: 13.457, ENC Train loss: 1.079, Train accuracy: 0.594, Keep percentage: 0.50
+Train step: 1440/7200, GEN Train loss: 12.131, ENC Train loss: 0.921, Train accuracy: 0.750, Keep percentage: 0.45
+Train step: 1450/7200, GEN Train loss: 12.396, ENC Train loss: 0.941, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 1460/7200, GEN Train loss: 14.815, ENC Train loss: 0.972, Train accuracy: 0.688, Keep percentage: 0.48
+Train step: 1470/7200, GEN Train loss: 16.056, ENC Train loss: 0.965, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 1480/7200, GEN Train loss: 18.244, ENC Train loss: 1.012, Train accuracy: 0.656, Keep percentage: 0.52
+Train step: 1490/7200, GEN Train loss: 23.741, ENC Train loss: 1.070, Train accuracy: 0.656, Keep percentage: 0.50
+Train step: 1500/7200, GEN Train loss: 13.970, ENC Train loss: 0.960, Train accuracy: 0.641, Keep percentage: 0.53
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.650
++ Keep percentage: 0.49
+Train step: 1510/7200, GEN Train loss: 18.006, ENC Train loss: 0.896, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 1520/7200, GEN Train loss: 19.814, ENC Train loss: 1.299, Train accuracy: 0.578, Keep percentage: 0.45
+Train step: 1530/7200, GEN Train loss: 13.455, ENC Train loss: 1.078, Train accuracy: 0.578, Keep percentage: 0.52
+Train step: 1540/7200, GEN Train loss: 15.447, ENC Train loss: 0.969, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 1550/7200, GEN Train loss: 11.796, ENC Train loss: 0.810, Train accuracy: 0.797, Keep percentage: 0.48
+Train step: 1560/7200, GEN Train loss: 9.915, ENC Train loss: 0.841, Train accuracy: 0.781, Keep percentage: 0.53
+Train step: 1570/7200, GEN Train loss: 18.835, ENC Train loss: 1.045, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 1580/7200, GEN Train loss: 13.577, ENC Train loss: 0.933, Train accuracy: 0.656, Keep percentage: 0.52
+Train step: 1590/7200, GEN Train loss: 14.176, ENC Train loss: 0.974, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 1600/7200, GEN Train loss: 11.702, ENC Train loss: 0.844, Train accuracy: 0.719, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.637
++ Keep percentage: 0.50
+Train step: 1610/7200, GEN Train loss: 17.407, ENC Train loss: 1.004, Train accuracy: 0.625, Keep percentage: 0.50
+Train step: 1620/7200, GEN Train loss: 14.061, ENC Train loss: 1.068, Train accuracy: 0.641, Keep percentage: 0.49
+Train step: 1630/7200, GEN Train loss: 15.691, ENC Train loss: 1.191, Train accuracy: 0.609, Keep percentage: 0.47
+Train step: 1640/7200, GEN Train loss: 15.183, ENC Train loss: 0.996, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 1650/7200, GEN Train loss: 23.089, ENC Train loss: 1.041, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 1660/7200, GEN Train loss: 15.432, ENC Train loss: 0.968, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 1670/7200, GEN Train loss: 11.710, ENC Train loss: 0.889, Train accuracy: 0.672, Keep percentage: 0.53
+Train step: 1680/7200, GEN Train loss: 12.645, ENC Train loss: 0.912, Train accuracy: 0.719, Keep percentage: 0.52
+Train step: 1690/7200, GEN Train loss: 12.061, ENC Train loss: 0.870, Train accuracy: 0.656, Keep percentage: 0.50
+Train step: 1700/7200, GEN Train loss: 15.498, ENC Train loss: 0.894, Train accuracy: 0.688, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.659
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 1710/7200, GEN Train loss: 12.754, ENC Train loss: 0.920, Train accuracy: 0.688, Keep percentage: 0.53
+Train step: 1720/7200, GEN Train loss: 12.635, ENC Train loss: 1.013, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 1730/7200, GEN Train loss: 12.457, ENC Train loss: 0.817, Train accuracy: 0.766, Keep percentage: 0.46
+Train step: 1740/7200, GEN Train loss: 15.034, ENC Train loss: 0.986, Train accuracy: 0.641, Keep percentage: 0.51
+Train step: 1750/7200, GEN Train loss: 13.565, ENC Train loss: 0.978, Train accuracy: 0.688, Keep percentage: 0.53
+Train step: 1760/7200, GEN Train loss: 14.293, ENC Train loss: 0.859, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 1770/7200, GEN Train loss: 14.048, ENC Train loss: 1.126, Train accuracy: 0.609, Keep percentage: 0.49
+Train step: 1780/7200, GEN Train loss: 16.993, ENC Train loss: 0.943, Train accuracy: 0.781, Keep percentage: 0.47
+Train step: 1790/7200, GEN Train loss: 13.994, ENC Train loss: 0.961, Train accuracy: 0.656, Keep percentage: 0.55
+Train step: 1800/7200, GEN Train loss: 10.996, ENC Train loss: 0.933, Train accuracy: 0.656, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.670
++ Keep percentage: 0.51
+New highscore! Saving model...
+Train step: 1810/7200, GEN Train loss: 18.042, ENC Train loss: 1.183, Train accuracy: 0.625, Keep percentage: 0.50
+Train step: 1820/7200, GEN Train loss: 10.983, ENC Train loss: 0.990, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 1830/7200, GEN Train loss: 15.419, ENC Train loss: 1.011, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 1840/7200, GEN Train loss: 27.230, ENC Train loss: 1.062, Train accuracy: 0.734, Keep percentage: 0.52
+Train step: 1850/7200, GEN Train loss: 18.975, ENC Train loss: 1.053, Train accuracy: 0.609, Keep percentage: 0.49
+Train step: 1860/7200, GEN Train loss: 25.450, ENC Train loss: 1.080, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 1870/7200, GEN Train loss: 20.150, ENC Train loss: 0.908, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 1880/7200, GEN Train loss: 16.788, ENC Train loss: 0.932, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 1890/7200, GEN Train loss: 11.991, ENC Train loss: 0.961, Train accuracy: 0.609, Keep percentage: 0.50
+Train step: 1900/7200, GEN Train loss: 14.868, ENC Train loss: 0.975, Train accuracy: 0.703, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.652
++ Keep percentage: 0.50
+Train step: 1910/7200, GEN Train loss: 20.601, ENC Train loss: 1.238, Train accuracy: 0.578, Keep percentage: 0.52
+Train step: 1920/7200, GEN Train loss: 19.108, ENC Train loss: 0.985, Train accuracy: 0.703, Keep percentage: 0.48
+Train step: 1930/7200, GEN Train loss: 17.371, ENC Train loss: 0.964, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 1940/7200, GEN Train loss: 14.403, ENC Train loss: 0.944, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 1950/7200, GEN Train loss: 17.472, ENC Train loss: 1.050, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 1960/7200, GEN Train loss: 12.797, ENC Train loss: 0.972, Train accuracy: 0.656, Keep percentage: 0.50
+Train step: 1970/7200, GEN Train loss: 13.349, ENC Train loss: 1.014, Train accuracy: 0.672, Keep percentage: 0.53
+Train step: 1980/7200, GEN Train loss: 22.582, ENC Train loss: 1.051, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 1990/7200, GEN Train loss: 19.544, ENC Train loss: 1.084, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 2000/7200, GEN Train loss: 21.103, ENC Train loss: 1.050, Train accuracy: 0.656, Keep percentage: 0.47
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.650
++ Keep percentage: 0.50
+Train step: 2010/7200, GEN Train loss: 13.185, ENC Train loss: 0.865, Train accuracy: 0.781, Keep percentage: 0.48
+Train step: 2020/7200, GEN Train loss: 13.514, ENC Train loss: 1.083, Train accuracy: 0.562, Keep percentage: 0.49
+Train step: 2030/7200, GEN Train loss: 10.970, ENC Train loss: 0.879, Train accuracy: 0.750, Keep percentage: 0.46
+Train step: 2040/7200, GEN Train loss: 11.074, ENC Train loss: 0.841, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 2050/7200, GEN Train loss: 18.911, ENC Train loss: 0.974, Train accuracy: 0.656, Keep percentage: 0.46
+Train step: 2060/7200, GEN Train loss: 12.389, ENC Train loss: 0.941, Train accuracy: 0.766, Keep percentage: 0.53
+Train step: 2070/7200, GEN Train loss: 11.949, ENC Train loss: 0.907, Train accuracy: 0.672, Keep percentage: 0.48
+Train step: 2080/7200, GEN Train loss: 13.184, ENC Train loss: 0.827, Train accuracy: 0.719, Keep percentage: 0.53
+Train step: 2090/7200, GEN Train loss: 17.766, ENC Train loss: 1.068, Train accuracy: 0.625, Keep percentage: 0.51
+Train step: 2100/7200, GEN Train loss: 14.473, ENC Train loss: 0.994, Train accuracy: 0.688, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.667
++ Keep percentage: 0.51
+Train step: 2110/7200, GEN Train loss: 8.768, ENC Train loss: 0.744, Train accuracy: 0.797, Keep percentage: 0.52
+Train step: 2120/7200, GEN Train loss: 13.159, ENC Train loss: 0.999, Train accuracy: 0.656, Keep percentage: 0.47
+Train step: 2130/7200, GEN Train loss: 13.897, ENC Train loss: 0.955, Train accuracy: 0.703, Keep percentage: 0.48
+Train step: 2140/7200, GEN Train loss: 10.955, ENC Train loss: 0.878, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 2150/7200, GEN Train loss: 15.109, ENC Train loss: 1.147, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 2160/7200, GEN Train loss: 5.983, ENC Train loss: 0.539, Train accuracy: 0.893, Keep percentage: 0.53
+Train step: 2170/7200, GEN Train loss: 13.856, ENC Train loss: 0.999, Train accuracy: 0.625, Keep percentage: 0.51
+Train step: 2180/7200, GEN Train loss: 13.998, ENC Train loss: 0.962, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 2190/7200, GEN Train loss: 11.642, ENC Train loss: 0.884, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 2200/7200, GEN Train loss: 12.660, ENC Train loss: 0.830, Train accuracy: 0.688, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.649
++ Keep percentage: 0.50
+Train step: 2210/7200, GEN Train loss: 12.580, ENC Train loss: 0.955, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 2220/7200, GEN Train loss: 12.928, ENC Train loss: 0.933, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 2230/7200, GEN Train loss: 11.276, ENC Train loss: 0.739, Train accuracy: 0.797, Keep percentage: 0.52
+Train step: 2240/7200, GEN Train loss: 14.147, ENC Train loss: 1.020, Train accuracy: 0.703, Keep percentage: 0.53
+Train step: 2250/7200, GEN Train loss: 13.533, ENC Train loss: 0.930, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 2260/7200, GEN Train loss: 16.401, ENC Train loss: 0.946, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 2270/7200, GEN Train loss: 18.538, ENC Train loss: 1.070, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 2280/7200, GEN Train loss: 15.343, ENC Train loss: 0.885, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 2290/7200, GEN Train loss: 13.182, ENC Train loss: 1.001, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 2300/7200, GEN Train loss: 12.758, ENC Train loss: 0.876, Train accuracy: 0.719, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.666
++ Keep percentage: 0.50
+Train step: 2310/7200, GEN Train loss: 13.173, ENC Train loss: 0.905, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 2320/7200, GEN Train loss: 12.518, ENC Train loss: 0.951, Train accuracy: 0.688, Keep percentage: 0.52
+Train step: 2330/7200, GEN Train loss: 18.448, ENC Train loss: 1.065, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 2340/7200, GEN Train loss: 18.391, ENC Train loss: 0.915, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 2350/7200, GEN Train loss: 20.094, ENC Train loss: 0.906, Train accuracy: 0.781, Keep percentage: 0.53
+Train step: 2360/7200, GEN Train loss: 17.826, ENC Train loss: 0.887, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 2370/7200, GEN Train loss: 16.079, ENC Train loss: 0.928, Train accuracy: 0.688, Keep percentage: 0.48
+Train step: 2380/7200, GEN Train loss: 13.777, ENC Train loss: 0.946, Train accuracy: 0.688, Keep percentage: 0.51
+Train step: 2390/7200, GEN Train loss: 13.130, ENC Train loss: 0.861, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 2400/7200, GEN Train loss: 11.034, ENC Train loss: 0.796, Train accuracy: 0.750, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.687
++ Keep percentage: 0.51
+New highscore! Saving model...
+Train step: 2410/7200, GEN Train loss: 13.280, ENC Train loss: 0.871, Train accuracy: 0.719, Keep percentage: 0.47
+Train step: 2420/7200, GEN Train loss: 13.247, ENC Train loss: 0.956, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 2430/7200, GEN Train loss: 18.061, ENC Train loss: 1.002, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 2440/7200, GEN Train loss: 9.563, ENC Train loss: 0.690, Train accuracy: 0.844, Keep percentage: 0.48
+Train step: 2450/7200, GEN Train loss: 11.298, ENC Train loss: 0.959, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 2460/7200, GEN Train loss: 18.195, ENC Train loss: 1.010, Train accuracy: 0.625, Keep percentage: 0.50
+Train step: 2470/7200, GEN Train loss: 11.978, ENC Train loss: 0.823, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 2480/7200, GEN Train loss: 15.027, ENC Train loss: 0.985, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 2490/7200, GEN Train loss: 17.851, ENC Train loss: 0.888, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 2500/7200, GEN Train loss: 15.801, ENC Train loss: 0.950, Train accuracy: 0.750, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.670
++ Keep percentage: 0.50
+Train step: 2510/7200, GEN Train loss: 26.264, ENC Train loss: 1.184, Train accuracy: 0.562, Keep percentage: 0.51
+Train step: 2520/7200, GEN Train loss: 12.197, ENC Train loss: 0.880, Train accuracy: 0.672, Keep percentage: 0.52
+Train step: 2530/7200, GEN Train loss: 13.567, ENC Train loss: 0.890, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 2540/7200, GEN Train loss: 10.497, ENC Train loss: 0.797, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 2550/7200, GEN Train loss: 11.453, ENC Train loss: 0.918, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 2560/7200, GEN Train loss: 15.498, ENC Train loss: 1.065, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 2570/7200, GEN Train loss: 14.203, ENC Train loss: 0.891, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 2580/7200, GEN Train loss: 16.609, ENC Train loss: 0.826, Train accuracy: 0.734, Keep percentage: 0.52
+Train step: 2590/7200, GEN Train loss: 13.136, ENC Train loss: 0.861, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 2600/7200, GEN Train loss: 11.100, ENC Train loss: 0.801, Train accuracy: 0.766, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.672
++ Keep percentage: 0.51
+Train step: 2610/7200, GEN Train loss: 14.131, ENC Train loss: 1.073, Train accuracy: 0.609, Keep percentage: 0.46
+Train step: 2620/7200, GEN Train loss: 10.504, ENC Train loss: 0.758, Train accuracy: 0.828, Keep percentage: 0.52
+Train step: 2630/7200, GEN Train loss: 17.955, ENC Train loss: 1.079, Train accuracy: 0.625, Keep percentage: 0.48
+Train step: 2640/7200, GEN Train loss: 10.324, ENC Train loss: 0.828, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 2650/7200, GEN Train loss: 11.479, ENC Train loss: 0.828, Train accuracy: 0.750, Keep percentage: 0.53
+Train step: 2660/7200, GEN Train loss: 10.380, ENC Train loss: 0.713, Train accuracy: 0.781, Keep percentage: 0.51
+Train step: 2670/7200, GEN Train loss: 10.790, ENC Train loss: 0.778, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 2680/7200, GEN Train loss: 21.180, ENC Train loss: 0.955, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 2690/7200, GEN Train loss: 14.455, ENC Train loss: 0.869, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 2700/7200, GEN Train loss: 21.714, ENC Train loss: 1.080, Train accuracy: 0.656, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.669
++ Keep percentage: 0.50
+Train step: 2710/7200, GEN Train loss: 12.099, ENC Train loss: 0.793, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 2720/7200, GEN Train loss: 15.201, ENC Train loss: 0.914, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 2730/7200, GEN Train loss: 11.712, ENC Train loss: 0.889, Train accuracy: 0.703, Keep percentage: 0.52
+Train step: 2740/7200, GEN Train loss: 11.277, ENC Train loss: 0.740, Train accuracy: 0.828, Keep percentage: 0.51
+Train step: 2750/7200, GEN Train loss: 13.361, ENC Train loss: 0.918, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 2760/7200, GEN Train loss: 12.401, ENC Train loss: 0.745, Train accuracy: 0.797, Keep percentage: 0.49
+Train step: 2770/7200, GEN Train loss: 18.331, ENC Train loss: 0.912, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 2780/7200, GEN Train loss: 17.633, ENC Train loss: 1.060, Train accuracy: 0.672, Keep percentage: 0.48
+Train step: 2790/7200, GEN Train loss: 16.055, ENC Train loss: 0.927, Train accuracy: 0.734, Keep percentage: 0.47
+Train step: 2800/7200, GEN Train loss: 15.542, ENC Train loss: 1.121, Train accuracy: 0.672, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.668
++ Keep percentage: 0.50
+Train step: 2810/7200, GEN Train loss: 17.049, ENC Train loss: 0.848, Train accuracy: 0.719, Keep percentage: 0.52
+Train step: 2820/7200, GEN Train loss: 12.151, ENC Train loss: 0.877, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 2830/7200, GEN Train loss: 17.723, ENC Train loss: 0.799, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 2840/7200, GEN Train loss: 18.037, ENC Train loss: 0.929, Train accuracy: 0.734, Keep percentage: 0.47
+Train step: 2850/7200, GEN Train loss: 16.716, ENC Train loss: 1.005, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 2860/7200, GEN Train loss: 9.595, ENC Train loss: 0.814, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 2870/7200, GEN Train loss: 16.321, ENC Train loss: 0.906, Train accuracy: 0.688, Keep percentage: 0.48
+Train step: 2880/7200, GEN Train loss: 11.651, ENC Train loss: 0.934, Train accuracy: 0.643, Keep percentage: 0.45
+Train step: 2890/7200, GEN Train loss: 18.969, ENC Train loss: 0.977, Train accuracy: 0.703, Keep percentage: 0.47
+Train step: 2900/7200, GEN Train loss: 16.132, ENC Train loss: 0.831, Train accuracy: 0.766, Keep percentage: 0.46
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.690
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 2910/7200, GEN Train loss: 16.337, ENC Train loss: 0.786, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 2920/7200, GEN Train loss: 13.052, ENC Train loss: 0.819, Train accuracy: 0.734, Keep percentage: 0.52
+Train step: 2930/7200, GEN Train loss: 18.210, ENC Train loss: 1.142, Train accuracy: 0.641, Keep percentage: 0.52
+Train step: 2940/7200, GEN Train loss: 10.616, ENC Train loss: 0.851, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 2950/7200, GEN Train loss: 15.259, ENC Train loss: 0.957, Train accuracy: 0.656, Keep percentage: 0.52
+Train step: 2960/7200, GEN Train loss: 12.686, ENC Train loss: 0.832, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 2970/7200, GEN Train loss: 11.845, ENC Train loss: 0.949, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 2980/7200, GEN Train loss: 11.863, ENC Train loss: 0.901, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 2990/7200, GEN Train loss: 12.399, ENC Train loss: 0.994, Train accuracy: 0.656, Keep percentage: 0.54
+Train step: 3000/7200, GEN Train loss: 17.271, ENC Train loss: 1.038, Train accuracy: 0.609, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.697
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 3010/7200, GEN Train loss: 11.399, ENC Train loss: 0.866, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 3020/7200, GEN Train loss: 10.678, ENC Train loss: 0.811, Train accuracy: 0.766, Keep percentage: 0.47
+Train step: 3030/7200, GEN Train loss: 16.800, ENC Train loss: 0.866, Train accuracy: 0.797, Keep percentage: 0.53
+Train step: 3040/7200, GEN Train loss: 19.246, ENC Train loss: 0.992, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 3050/7200, GEN Train loss: 11.865, ENC Train loss: 0.901, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 3060/7200, GEN Train loss: 11.730, ENC Train loss: 0.891, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 3070/7200, GEN Train loss: 16.142, ENC Train loss: 1.013, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 3080/7200, GEN Train loss: 22.502, ENC Train loss: 1.047, Train accuracy: 0.641, Keep percentage: 0.47
+Train step: 3090/7200, GEN Train loss: 12.482, ENC Train loss: 0.720, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 3100/7200, GEN Train loss: 9.096, ENC Train loss: 0.729, Train accuracy: 0.812, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.673
++ Keep percentage: 0.50
+Train step: 3110/7200, GEN Train loss: 27.277, ENC Train loss: 1.064, Train accuracy: 0.703, Keep percentage: 0.55
+Train step: 3120/7200, GEN Train loss: 9.763, ENC Train loss: 0.782, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 3130/7200, GEN Train loss: 8.219, ENC Train loss: 0.697, Train accuracy: 0.859, Keep percentage: 0.52
+Train step: 3140/7200, GEN Train loss: 12.298, ENC Train loss: 0.934, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 3150/7200, GEN Train loss: 15.319, ENC Train loss: 1.163, Train accuracy: 0.594, Keep percentage: 0.48
+Train step: 3160/7200, GEN Train loss: 14.153, ENC Train loss: 0.888, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 3170/7200, GEN Train loss: 20.071, ENC Train loss: 1.034, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 3180/7200, GEN Train loss: 14.270, ENC Train loss: 0.936, Train accuracy: 0.672, Keep percentage: 0.47
+Train step: 3190/7200, GEN Train loss: 15.149, ENC Train loss: 1.041, Train accuracy: 0.547, Keep percentage: 0.45
+Train step: 3200/7200, GEN Train loss: 14.195, ENC Train loss: 0.931, Train accuracy: 0.750, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.686
++ Keep percentage: 0.50
+Train step: 3210/7200, GEN Train loss: 12.720, ENC Train loss: 0.834, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 3220/7200, GEN Train loss: 13.003, ENC Train loss: 0.893, Train accuracy: 0.703, Keep percentage: 0.46
+Train step: 3230/7200, GEN Train loss: 14.410, ENC Train loss: 0.945, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 3240/7200, GEN Train loss: 12.851, ENC Train loss: 0.843, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 3250/7200, GEN Train loss: 10.047, ENC Train loss: 0.725, Train accuracy: 0.750, Keep percentage: 0.54
+Train step: 3260/7200, GEN Train loss: 10.569, ENC Train loss: 0.897, Train accuracy: 0.703, Keep percentage: 0.48
+Train step: 3270/7200, GEN Train loss: 12.129, ENC Train loss: 0.875, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 3280/7200, GEN Train loss: 14.252, ENC Train loss: 0.894, Train accuracy: 0.734, Keep percentage: 0.53
+Train step: 3290/7200, GEN Train loss: 11.126, ENC Train loss: 0.764, Train accuracy: 0.750, Keep percentage: 0.47
+Train step: 3300/7200, GEN Train loss: 9.950, ENC Train loss: 0.756, Train accuracy: 0.766, Keep percentage: 0.52
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.673
++ Keep percentage: 0.50
+Train step: 3310/7200, GEN Train loss: 10.781, ENC Train loss: 0.778, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 3320/7200, GEN Train loss: 13.942, ENC Train loss: 0.805, Train accuracy: 0.781, Keep percentage: 0.47
+Train step: 3330/7200, GEN Train loss: 12.759, ENC Train loss: 0.969, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 3340/7200, GEN Train loss: 12.053, ENC Train loss: 0.828, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 3350/7200, GEN Train loss: 20.935, ENC Train loss: 0.944, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 3360/7200, GEN Train loss: 11.329, ENC Train loss: 0.778, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 3370/7200, GEN Train loss: 14.137, ENC Train loss: 0.927, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 3380/7200, GEN Train loss: 15.977, ENC Train loss: 0.922, Train accuracy: 0.656, Keep percentage: 0.48
+Train step: 3390/7200, GEN Train loss: 13.170, ENC Train loss: 0.760, Train accuracy: 0.750, Keep percentage: 0.48
+Train step: 3400/7200, GEN Train loss: 15.427, ENC Train loss: 1.060, Train accuracy: 0.641, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.687
++ Keep percentage: 0.49
+Train step: 3410/7200, GEN Train loss: 13.063, ENC Train loss: 0.857, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 3420/7200, GEN Train loss: 11.859, ENC Train loss: 0.950, Train accuracy: 0.734, Keep percentage: 0.53
+Train step: 3430/7200, GEN Train loss: 15.483, ENC Train loss: 0.971, Train accuracy: 0.656, Keep percentage: 0.50
+Train step: 3440/7200, GEN Train loss: 11.671, ENC Train loss: 0.886, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 3450/7200, GEN Train loss: 12.088, ENC Train loss: 0.830, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 3460/7200, GEN Train loss: 13.853, ENC Train loss: 0.908, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 3470/7200, GEN Train loss: 9.606, ENC Train loss: 0.770, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 3480/7200, GEN Train loss: 7.701, ENC Train loss: 0.617, Train accuracy: 0.750, Keep percentage: 0.54
+Train step: 3490/7200, GEN Train loss: 20.000, ENC Train loss: 0.902, Train accuracy: 0.656, Keep percentage: 0.52
+Train step: 3500/7200, GEN Train loss: 12.642, ENC Train loss: 0.869, Train accuracy: 0.703, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.695
++ Keep percentage: 0.49
+Train step: 3510/7200, GEN Train loss: 12.750, ENC Train loss: 1.022, Train accuracy: 0.672, Keep percentage: 0.51
+Train step: 3520/7200, GEN Train loss: 16.601, ENC Train loss: 0.826, Train accuracy: 0.750, Keep percentage: 0.54
+Train step: 3530/7200, GEN Train loss: 12.418, ENC Train loss: 0.853, Train accuracy: 0.750, Keep percentage: 0.48
+Train step: 3540/7200, GEN Train loss: 12.547, ENC Train loss: 0.905, Train accuracy: 0.641, Keep percentage: 0.49
+Train step: 3550/7200, GEN Train loss: 13.050, ENC Train loss: 0.991, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 3560/7200, GEN Train loss: 10.133, ENC Train loss: 0.769, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 3570/7200, GEN Train loss: 8.418, ENC Train loss: 0.714, Train accuracy: 0.797, Keep percentage: 0.51
+Train step: 3580/7200, GEN Train loss: 12.583, ENC Train loss: 0.825, Train accuracy: 0.797, Keep percentage: 0.49
+Train step: 3590/7200, GEN Train loss: 21.281, ENC Train loss: 1.181, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 3600/7200, GEN Train loss: 15.881, ENC Train loss: 0.881, Train accuracy: 0.786, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.714
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 3610/7200, GEN Train loss: 12.431, ENC Train loss: 0.944, Train accuracy: 0.672, Keep percentage: 0.50
+Train step: 3620/7200, GEN Train loss: 10.553, ENC Train loss: 0.692, Train accuracy: 0.828, Keep percentage: 0.51
+Train step: 3630/7200, GEN Train loss: 9.771, ENC Train loss: 0.705, Train accuracy: 0.812, Keep percentage: 0.48
+Train step: 3640/7200, GEN Train loss: 9.979, ENC Train loss: 0.720, Train accuracy: 0.797, Keep percentage: 0.52
+Train step: 3650/7200, GEN Train loss: 15.279, ENC Train loss: 0.882, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 3660/7200, GEN Train loss: 10.637, ENC Train loss: 0.808, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 3670/7200, GEN Train loss: 12.102, ENC Train loss: 0.831, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 3680/7200, GEN Train loss: 9.168, ENC Train loss: 0.827, Train accuracy: 0.672, Keep percentage: 0.50
+Train step: 3690/7200, GEN Train loss: 13.876, ENC Train loss: 0.870, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 3700/7200, GEN Train loss: 11.941, ENC Train loss: 0.749, Train accuracy: 0.797, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.685
++ Keep percentage: 0.51
+Train step: 3710/7200, GEN Train loss: 17.632, ENC Train loss: 0.877, Train accuracy: 0.703, Keep percentage: 0.48
+Train step: 3720/7200, GEN Train loss: 16.942, ENC Train loss: 0.843, Train accuracy: 0.766, Keep percentage: 0.57
+Train step: 3730/7200, GEN Train loss: 10.117, ENC Train loss: 0.768, Train accuracy: 0.781, Keep percentage: 0.55
+Train step: 3740/7200, GEN Train loss: 16.363, ENC Train loss: 0.944, Train accuracy: 0.688, Keep percentage: 0.45
+Train step: 3750/7200, GEN Train loss: 17.990, ENC Train loss: 0.998, Train accuracy: 0.734, Keep percentage: 0.44
+Train step: 3760/7200, GEN Train loss: 7.804, ENC Train loss: 0.662, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 3770/7200, GEN Train loss: 12.364, ENC Train loss: 0.811, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 3780/7200, GEN Train loss: 9.700, ENC Train loss: 0.823, Train accuracy: 0.766, Keep percentage: 0.48
+Train step: 3790/7200, GEN Train loss: 10.599, ENC Train loss: 0.849, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 3800/7200, GEN Train loss: 11.367, ENC Train loss: 0.745, Train accuracy: 0.812, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.680
++ Keep percentage: 0.50
+Train step: 3810/7200, GEN Train loss: 15.905, ENC Train loss: 0.791, Train accuracy: 0.812, Keep percentage: 0.50
+Train step: 3820/7200, GEN Train loss: 13.192, ENC Train loss: 0.906, Train accuracy: 0.734, Keep percentage: 0.48
+Train step: 3830/7200, GEN Train loss: 13.211, ENC Train loss: 0.908, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 3840/7200, GEN Train loss: 14.848, ENC Train loss: 0.974, Train accuracy: 0.719, Keep percentage: 0.52
+Train step: 3850/7200, GEN Train loss: 18.757, ENC Train loss: 0.846, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 3860/7200, GEN Train loss: 19.254, ENC Train loss: 0.868, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 3870/7200, GEN Train loss: 14.294, ENC Train loss: 0.982, Train accuracy: 0.641, Keep percentage: 0.48
+Train step: 3880/7200, GEN Train loss: 13.245, ENC Train loss: 0.955, Train accuracy: 0.703, Keep percentage: 0.53
+Train step: 3890/7200, GEN Train loss: 12.935, ENC Train loss: 0.889, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 3900/7200, GEN Train loss: 14.685, ENC Train loss: 0.921, Train accuracy: 0.703, Keep percentage: 0.47
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.671
++ Keep percentage: 0.50
+Train step: 3910/7200, GEN Train loss: 15.470, ENC Train loss: 0.858, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 3920/7200, GEN Train loss: 14.867, ENC Train loss: 1.129, Train accuracy: 0.625, Keep percentage: 0.53
+Train step: 3930/7200, GEN Train loss: 11.223, ENC Train loss: 0.771, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 3940/7200, GEN Train loss: 12.988, ENC Train loss: 0.852, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 3950/7200, GEN Train loss: 16.392, ENC Train loss: 0.815, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 3960/7200, GEN Train loss: 8.067, ENC Train loss: 0.727, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 3970/7200, GEN Train loss: 14.049, ENC Train loss: 0.844, Train accuracy: 0.719, Keep percentage: 0.52
+Train step: 3980/7200, GEN Train loss: 19.271, ENC Train loss: 0.959, Train accuracy: 0.781, Keep percentage: 0.51
+Train step: 3990/7200, GEN Train loss: 14.644, ENC Train loss: 1.006, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 4000/7200, GEN Train loss: 22.843, ENC Train loss: 1.030, Train accuracy: 0.734, Keep percentage: 0.53
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.692
++ Keep percentage: 0.49
+Train step: 4010/7200, GEN Train loss: 8.288, ENC Train loss: 0.703, Train accuracy: 0.781, Keep percentage: 0.51
+Train step: 4020/7200, GEN Train loss: 11.306, ENC Train loss: 0.741, Train accuracy: 0.797, Keep percentage: 0.51
+Train step: 4030/7200, GEN Train loss: 11.421, ENC Train loss: 0.785, Train accuracy: 0.750, Keep percentage: 0.47
+Train step: 4040/7200, GEN Train loss: 9.343, ENC Train loss: 0.749, Train accuracy: 0.797, Keep percentage: 0.48
+Train step: 4050/7200, GEN Train loss: 12.351, ENC Train loss: 0.685, Train accuracy: 0.844, Keep percentage: 0.47
+Train step: 4060/7200, GEN Train loss: 12.701, ENC Train loss: 0.873, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 4070/7200, GEN Train loss: 9.447, ENC Train loss: 0.717, Train accuracy: 0.797, Keep percentage: 0.55
+Train step: 4080/7200, GEN Train loss: 14.748, ENC Train loss: 0.887, Train accuracy: 0.719, Keep percentage: 0.47
+Train step: 4090/7200, GEN Train loss: 10.293, ENC Train loss: 0.782, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 4100/7200, GEN Train loss: 10.986, ENC Train loss: 0.755, Train accuracy: 0.750, Keep percentage: 0.54
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.689
++ Keep percentage: 0.51
+Train step: 4110/7200, GEN Train loss: 10.440, ENC Train loss: 0.886, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 4120/7200, GEN Train loss: 9.325, ENC Train loss: 0.747, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 4130/7200, GEN Train loss: 12.197, ENC Train loss: 0.880, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 4140/7200, GEN Train loss: 13.129, ENC Train loss: 0.902, Train accuracy: 0.688, Keep percentage: 0.47
+Train step: 4150/7200, GEN Train loss: 12.528, ENC Train loss: 1.004, Train accuracy: 0.656, Keep percentage: 0.51
+Train step: 4160/7200, GEN Train loss: 12.126, ENC Train loss: 0.921, Train accuracy: 0.672, Keep percentage: 0.52
+Train step: 4170/7200, GEN Train loss: 13.337, ENC Train loss: 0.837, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 4180/7200, GEN Train loss: 13.955, ENC Train loss: 0.915, Train accuracy: 0.688, Keep percentage: 0.46
+Train step: 4190/7200, GEN Train loss: 17.694, ENC Train loss: 0.912, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 4200/7200, GEN Train loss: 15.150, ENC Train loss: 0.874, Train accuracy: 0.688, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.695
++ Keep percentage: 0.49
+Train step: 4210/7200, GEN Train loss: 9.474, ENC Train loss: 0.719, Train accuracy: 0.797, Keep percentage: 0.48
+Train step: 4220/7200, GEN Train loss: 9.134, ENC Train loss: 0.659, Train accuracy: 0.812, Keep percentage: 0.55
+Train step: 4230/7200, GEN Train loss: 18.971, ENC Train loss: 0.855, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 4240/7200, GEN Train loss: 9.270, ENC Train loss: 0.704, Train accuracy: 0.812, Keep percentage: 0.47
+Train step: 4250/7200, GEN Train loss: 12.419, ENC Train loss: 0.995, Train accuracy: 0.609, Keep percentage: 0.50
+Train step: 4260/7200, GEN Train loss: 10.083, ENC Train loss: 0.766, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 4270/7200, GEN Train loss: 14.588, ENC Train loss: 0.809, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 4280/7200, GEN Train loss: 11.248, ENC Train loss: 0.811, Train accuracy: 0.766, Keep percentage: 0.54
+Train step: 4290/7200, GEN Train loss: 13.012, ENC Train loss: 0.894, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 4300/7200, GEN Train loss: 14.119, ENC Train loss: 1.132, Train accuracy: 0.672, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.690
++ Keep percentage: 0.49
+Train step: 4310/7200, GEN Train loss: 14.146, ENC Train loss: 0.785, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 4320/7200, GEN Train loss: 8.259, ENC Train loss: 0.745, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 4330/7200, GEN Train loss: 12.156, ENC Train loss: 0.835, Train accuracy: 0.766, Keep percentage: 0.53
+Train step: 4340/7200, GEN Train loss: 8.622, ENC Train loss: 0.732, Train accuracy: 0.797, Keep percentage: 0.52
+Train step: 4350/7200, GEN Train loss: 12.793, ENC Train loss: 0.923, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 4360/7200, GEN Train loss: 10.568, ENC Train loss: 0.762, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 4370/7200, GEN Train loss: 14.345, ENC Train loss: 0.941, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 4380/7200, GEN Train loss: 9.593, ENC Train loss: 0.728, Train accuracy: 0.781, Keep percentage: 0.52
+Train step: 4390/7200, GEN Train loss: 12.730, ENC Train loss: 0.875, Train accuracy: 0.734, Keep percentage: 0.53
+Train step: 4400/7200, GEN Train loss: 11.917, ENC Train loss: 0.781, Train accuracy: 0.734, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.694
++ Keep percentage: 0.51
+Train step: 4410/7200, GEN Train loss: 11.842, ENC Train loss: 0.854, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 4420/7200, GEN Train loss: 9.659, ENC Train loss: 0.697, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 4430/7200, GEN Train loss: 12.274, ENC Train loss: 0.885, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 4440/7200, GEN Train loss: 14.796, ENC Train loss: 0.970, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 4450/7200, GEN Train loss: 14.005, ENC Train loss: 1.122, Train accuracy: 0.625, Keep percentage: 0.45
+Train step: 4460/7200, GEN Train loss: 13.377, ENC Train loss: 1.016, Train accuracy: 0.703, Keep percentage: 0.46
+Train step: 4470/7200, GEN Train loss: 14.485, ENC Train loss: 0.804, Train accuracy: 0.812, Keep percentage: 0.49
+Train step: 4480/7200, GEN Train loss: 10.835, ENC Train loss: 0.782, Train accuracy: 0.766, Keep percentage: 0.53
+Train step: 4490/7200, GEN Train loss: 8.535, ENC Train loss: 0.684, Train accuracy: 0.812, Keep percentage: 0.54
+Train step: 4500/7200, GEN Train loss: 13.828, ENC Train loss: 0.867, Train accuracy: 0.719, Keep percentage: 0.53
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.715
++ Keep percentage: 0.50
+New highscore! Saving model...
+Train step: 4510/7200, GEN Train loss: 14.098, ENC Train loss: 0.701, Train accuracy: 0.812, Keep percentage: 0.52
+Train step: 4520/7200, GEN Train loss: 15.347, ENC Train loss: 0.763, Train accuracy: 0.734, Keep percentage: 0.54
+Train step: 4530/7200, GEN Train loss: 16.583, ENC Train loss: 0.854, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 4540/7200, GEN Train loss: 14.940, ENC Train loss: 0.770, Train accuracy: 0.812, Keep percentage: 0.51
+Train step: 4550/7200, GEN Train loss: 12.585, ENC Train loss: 0.825, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 4560/7200, GEN Train loss: 11.279, ENC Train loss: 0.957, Train accuracy: 0.672, Keep percentage: 0.50
+Train step: 4570/7200, GEN Train loss: 14.813, ENC Train loss: 1.018, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 4580/7200, GEN Train loss: 10.914, ENC Train loss: 0.829, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 4590/7200, GEN Train loss: 15.262, ENC Train loss: 1.048, Train accuracy: 0.672, Keep percentage: 0.48
+Train step: 4600/7200, GEN Train loss: 13.418, ENC Train loss: 0.807, Train accuracy: 0.750, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.708
++ Keep percentage: 0.50
+Train step: 4610/7200, GEN Train loss: 13.939, ENC Train loss: 0.838, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 4620/7200, GEN Train loss: 13.129, ENC Train loss: 0.902, Train accuracy: 0.688, Keep percentage: 0.51
+Train step: 4630/7200, GEN Train loss: 9.391, ENC Train loss: 0.713, Train accuracy: 0.781, Keep percentage: 0.51
+Train step: 4640/7200, GEN Train loss: 11.865, ENC Train loss: 0.713, Train accuracy: 0.812, Keep percentage: 0.52
+Train step: 4650/7200, GEN Train loss: 11.084, ENC Train loss: 0.666, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 4660/7200, GEN Train loss: 9.986, ENC Train loss: 0.655, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 4670/7200, GEN Train loss: 9.039, ENC Train loss: 0.567, Train accuracy: 0.859, Keep percentage: 0.51
+Train step: 4680/7200, GEN Train loss: 15.205, ENC Train loss: 1.045, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 4690/7200, GEN Train loss: 11.350, ENC Train loss: 0.819, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 4700/7200, GEN Train loss: 11.207, ENC Train loss: 0.808, Train accuracy: 0.750, Keep percentage: 0.47
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.700
++ Keep percentage: 0.50
+Train step: 4710/7200, GEN Train loss: 14.586, ENC Train loss: 0.842, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 4720/7200, GEN Train loss: 21.389, ENC Train loss: 0.964, Train accuracy: 0.719, Keep percentage: 0.46
+Train step: 4730/7200, GEN Train loss: 11.244, ENC Train loss: 0.772, Train accuracy: 0.781, Keep percentage: 0.51
+Train step: 4740/7200, GEN Train loss: 11.099, ENC Train loss: 0.843, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 4750/7200, GEN Train loss: 15.181, ENC Train loss: 0.952, Train accuracy: 0.734, Keep percentage: 0.52
+Train step: 4760/7200, GEN Train loss: 14.139, ENC Train loss: 0.887, Train accuracy: 0.719, Keep percentage: 0.53
+Train step: 4770/7200, GEN Train loss: 8.657, ENC Train loss: 0.781, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 4780/7200, GEN Train loss: 11.756, ENC Train loss: 0.808, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 4790/7200, GEN Train loss: 15.633, ENC Train loss: 0.805, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 4800/7200, GEN Train loss: 21.312, ENC Train loss: 0.961, Train accuracy: 0.625, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.696
++ Keep percentage: 0.50
+Train step: 4810/7200, GEN Train loss: 10.696, ENC Train loss: 0.735, Train accuracy: 0.781, Keep percentage: 0.53
+Train step: 4820/7200, GEN Train loss: 12.444, ENC Train loss: 0.945, Train accuracy: 0.672, Keep percentage: 0.50
+Train step: 4830/7200, GEN Train loss: 13.582, ENC Train loss: 0.933, Train accuracy: 0.656, Keep percentage: 0.46
+Train step: 4840/7200, GEN Train loss: 14.763, ENC Train loss: 0.819, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 4850/7200, GEN Train loss: 17.309, ENC Train loss: 0.960, Train accuracy: 0.766, Keep percentage: 0.47
+Train step: 4860/7200, GEN Train loss: 11.497, ENC Train loss: 0.829, Train accuracy: 0.703, Keep percentage: 0.48
+Train step: 4870/7200, GEN Train loss: 22.352, ENC Train loss: 1.008, Train accuracy: 0.625, Keep percentage: 0.48
+Train step: 4880/7200, GEN Train loss: 12.596, ENC Train loss: 0.909, Train accuracy: 0.719, Keep percentage: 0.54
+Train step: 4890/7200, GEN Train loss: 10.578, ENC Train loss: 0.848, Train accuracy: 0.672, Keep percentage: 0.48
+Train step: 4900/7200, GEN Train loss: 10.578, ENC Train loss: 0.727, Train accuracy: 0.797, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.688
++ Keep percentage: 0.50
+Train step: 4910/7200, GEN Train loss: 11.421, ENC Train loss: 0.687, Train accuracy: 0.828, Keep percentage: 0.49
+Train step: 4920/7200, GEN Train loss: 10.120, ENC Train loss: 0.768, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 4930/7200, GEN Train loss: 10.845, ENC Train loss: 0.823, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 4940/7200, GEN Train loss: 11.308, ENC Train loss: 0.906, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 4950/7200, GEN Train loss: 9.508, ENC Train loss: 0.549, Train accuracy: 0.844, Keep percentage: 0.47
+Train step: 4960/7200, GEN Train loss: 19.579, ENC Train loss: 0.831, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 4970/7200, GEN Train loss: 13.525, ENC Train loss: 0.781, Train accuracy: 0.703, Keep percentage: 0.52
+Train step: 4980/7200, GEN Train loss: 12.707, ENC Train loss: 0.764, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 4990/7200, GEN Train loss: 15.594, ENC Train loss: 0.776, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 5000/7200, GEN Train loss: 20.474, ENC Train loss: 0.798, Train accuracy: 0.750, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.693
++ Keep percentage: 0.50
+Train step: 5010/7200, GEN Train loss: 9.714, ENC Train loss: 0.738, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 5020/7200, GEN Train loss: 9.289, ENC Train loss: 0.744, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 5030/7200, GEN Train loss: 15.790, ENC Train loss: 0.876, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 5040/7200, GEN Train loss: 9.338, ENC Train loss: 0.709, Train accuracy: 0.786, Keep percentage: 0.54
+Train step: 5050/7200, GEN Train loss: 15.760, ENC Train loss: 0.875, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 5060/7200, GEN Train loss: 9.800, ENC Train loss: 0.707, Train accuracy: 0.844, Keep percentage: 0.50
+Train step: 5070/7200, GEN Train loss: 9.970, ENC Train loss: 0.799, Train accuracy: 0.766, Keep percentage: 0.53
+Train step: 5080/7200, GEN Train loss: 7.905, ENC Train loss: 0.570, Train accuracy: 0.844, Keep percentage: 0.54
+Train step: 5090/7200, GEN Train loss: 11.204, ENC Train loss: 0.808, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 5100/7200, GEN Train loss: 14.827, ENC Train loss: 0.823, Train accuracy: 0.797, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.715
++ Keep percentage: 0.49
+Train step: 5110/7200, GEN Train loss: 14.191, ENC Train loss: 0.706, Train accuracy: 0.812, Keep percentage: 0.51
+Train step: 5120/7200, GEN Train loss: 21.037, ENC Train loss: 0.948, Train accuracy: 0.688, Keep percentage: 0.52
+Train step: 5130/7200, GEN Train loss: 11.709, ENC Train loss: 0.804, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 5140/7200, GEN Train loss: 13.219, ENC Train loss: 0.829, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 5150/7200, GEN Train loss: 17.165, ENC Train loss: 0.854, Train accuracy: 0.812, Keep percentage: 0.50
+Train step: 5160/7200, GEN Train loss: 8.152, ENC Train loss: 0.735, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 5170/7200, GEN Train loss: 11.461, ENC Train loss: 0.787, Train accuracy: 0.688, Keep percentage: 0.53
+Train step: 5180/7200, GEN Train loss: 10.738, ENC Train loss: 0.815, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 5190/7200, GEN Train loss: 10.385, ENC Train loss: 0.713, Train accuracy: 0.812, Keep percentage: 0.51
+Train step: 5200/7200, GEN Train loss: 12.595, ENC Train loss: 0.909, Train accuracy: 0.625, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.729
++ Keep percentage: 0.51
+New highscore! Saving model...
+Train step: 5210/7200, GEN Train loss: 11.884, ENC Train loss: 0.745, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 5220/7200, GEN Train loss: 13.189, ENC Train loss: 0.906, Train accuracy: 0.719, Keep percentage: 0.52
+Train step: 5230/7200, GEN Train loss: 15.155, ENC Train loss: 0.729, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 5240/7200, GEN Train loss: 8.832, ENC Train loss: 0.671, Train accuracy: 0.828, Keep percentage: 0.49
+Train step: 5250/7200, GEN Train loss: 10.534, ENC Train loss: 0.800, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 5260/7200, GEN Train loss: 16.926, ENC Train loss: 0.977, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 5270/7200, GEN Train loss: 8.127, ENC Train loss: 0.690, Train accuracy: 0.766, Keep percentage: 0.54
+Train step: 5280/7200, GEN Train loss: 10.619, ENC Train loss: 0.806, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 5290/7200, GEN Train loss: 11.151, ENC Train loss: 0.731, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 5300/7200, GEN Train loss: 12.854, ENC Train loss: 0.843, Train accuracy: 0.688, Keep percentage: 0.46
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.710
++ Keep percentage: 0.50
+Train step: 5310/7200, GEN Train loss: 11.776, ENC Train loss: 0.680, Train accuracy: 0.828, Keep percentage: 0.50
+Train step: 5320/7200, GEN Train loss: 10.349, ENC Train loss: 0.711, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 5330/7200, GEN Train loss: 23.569, ENC Train loss: 0.919, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 5340/7200, GEN Train loss: 10.969, ENC Train loss: 0.754, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 5350/7200, GEN Train loss: 15.267, ENC Train loss: 0.881, Train accuracy: 0.719, Keep percentage: 0.53
+Train step: 5360/7200, GEN Train loss: 11.150, ENC Train loss: 0.766, Train accuracy: 0.766, Keep percentage: 0.53
+Train step: 5370/7200, GEN Train loss: 11.433, ENC Train loss: 0.868, Train accuracy: 0.703, Keep percentage: 0.54
+Train step: 5380/7200, GEN Train loss: 12.820, ENC Train loss: 0.925, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 5390/7200, GEN Train loss: 16.492, ENC Train loss: 0.744, Train accuracy: 0.797, Keep percentage: 0.49
+Train step: 5400/7200, GEN Train loss: 11.077, ENC Train loss: 0.666, Train accuracy: 0.797, Keep percentage: 0.53
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.709
++ Keep percentage: 0.50
+Train step: 5410/7200, GEN Train loss: 20.253, ENC Train loss: 0.859, Train accuracy: 0.766, Keep percentage: 0.54
+Train step: 5420/7200, GEN Train loss: 9.479, ENC Train loss: 0.855, Train accuracy: 0.719, Keep percentage: 0.46
+Train step: 5430/7200, GEN Train loss: 13.928, ENC Train loss: 0.693, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 5440/7200, GEN Train loss: 8.960, ENC Train loss: 0.588, Train accuracy: 0.828, Keep percentage: 0.50
+Train step: 5450/7200, GEN Train loss: 9.519, ENC Train loss: 0.549, Train accuracy: 0.891, Keep percentage: 0.53
+Train step: 5460/7200, GEN Train loss: 13.112, ENC Train loss: 0.822, Train accuracy: 0.734, Keep percentage: 0.49
+Train step: 5470/7200, GEN Train loss: 21.611, ENC Train loss: 0.974, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 5480/7200, GEN Train loss: 8.552, ENC Train loss: 0.726, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 5490/7200, GEN Train loss: 10.008, ENC Train loss: 0.688, Train accuracy: 0.750, Keep percentage: 0.51
+Train step: 5500/7200, GEN Train loss: 12.772, ENC Train loss: 0.877, Train accuracy: 0.719, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.705
++ Keep percentage: 0.50
+Train step: 5510/7200, GEN Train loss: 12.005, ENC Train loss: 0.787, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 5520/7200, GEN Train loss: 12.196, ENC Train loss: 0.926, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 5530/7200, GEN Train loss: 11.999, ENC Train loss: 0.721, Train accuracy: 0.844, Keep percentage: 0.50
+Train step: 5540/7200, GEN Train loss: 21.584, ENC Train loss: 0.916, Train accuracy: 0.688, Keep percentage: 0.47
+Train step: 5550/7200, GEN Train loss: 10.907, ENC Train loss: 0.787, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 5560/7200, GEN Train loss: 13.158, ENC Train loss: 0.863, Train accuracy: 0.719, Keep percentage: 0.48
+Train step: 5570/7200, GEN Train loss: 9.136, ENC Train loss: 0.599, Train accuracy: 0.844, Keep percentage: 0.53
+Train step: 5580/7200, GEN Train loss: 12.111, ENC Train loss: 0.832, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 5590/7200, GEN Train loss: 16.900, ENC Train loss: 0.975, Train accuracy: 0.656, Keep percentage: 0.47
+Train step: 5600/7200, GEN Train loss: 11.239, ENC Train loss: 0.772, Train accuracy: 0.719, Keep percentage: 0.53
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.695
++ Keep percentage: 0.50
+Train step: 5610/7200, GEN Train loss: 13.468, ENC Train loss: 0.670, Train accuracy: 0.812, Keep percentage: 0.50
+Train step: 5620/7200, GEN Train loss: 9.988, ENC Train loss: 0.686, Train accuracy: 0.812, Keep percentage: 0.51
+Train step: 5630/7200, GEN Train loss: 15.395, ENC Train loss: 0.854, Train accuracy: 0.750, Keep percentage: 0.53
+Train step: 5640/7200, GEN Train loss: 15.725, ENC Train loss: 0.986, Train accuracy: 0.641, Keep percentage: 0.49
+Train step: 5650/7200, GEN Train loss: 9.101, ENC Train loss: 0.625, Train accuracy: 0.734, Keep percentage: 0.53
+Train step: 5660/7200, GEN Train loss: 12.797, ENC Train loss: 0.710, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 5670/7200, GEN Train loss: 18.617, ENC Train loss: 0.726, Train accuracy: 0.797, Keep percentage: 0.53
+Train step: 5680/7200, GEN Train loss: 11.449, ENC Train loss: 0.826, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 5690/7200, GEN Train loss: 12.139, ENC Train loss: 0.796, Train accuracy: 0.688, Keep percentage: 0.49
+Train step: 5700/7200, GEN Train loss: 19.037, ENC Train loss: 0.947, Train accuracy: 0.734, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.699
++ Keep percentage: 0.50
+Train step: 5710/7200, GEN Train loss: 11.266, ENC Train loss: 0.774, Train accuracy: 0.781, Keep percentage: 0.47
+Train step: 5720/7200, GEN Train loss: 13.491, ENC Train loss: 0.927, Train accuracy: 0.703, Keep percentage: 0.52
+Train step: 5730/7200, GEN Train loss: 11.970, ENC Train loss: 0.863, Train accuracy: 0.688, Keep percentage: 0.52
+Train step: 5740/7200, GEN Train loss: 13.246, ENC Train loss: 0.910, Train accuracy: 0.750, Keep percentage: 0.48
+Train step: 5750/7200, GEN Train loss: 9.264, ENC Train loss: 0.703, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 5760/7200, GEN Train loss: 16.140, ENC Train loss: 0.776, Train accuracy: 0.750, Keep percentage: 0.55
+Train step: 5770/7200, GEN Train loss: 10.006, ENC Train loss: 0.760, Train accuracy: 0.734, Keep percentage: 0.48
+Train step: 5780/7200, GEN Train loss: 15.803, ENC Train loss: 0.912, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 5790/7200, GEN Train loss: 9.693, ENC Train loss: 0.666, Train accuracy: 0.844, Keep percentage: 0.51
+Train step: 5800/7200, GEN Train loss: 15.928, ENC Train loss: 0.884, Train accuracy: 0.734, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.714
++ Keep percentage: 0.50
+Train step: 5810/7200, GEN Train loss: 17.019, ENC Train loss: 0.944, Train accuracy: 0.688, Keep percentage: 0.49
+Train step: 5820/7200, GEN Train loss: 10.648, ENC Train loss: 0.732, Train accuracy: 0.688, Keep percentage: 0.53
+Train step: 5830/7200, GEN Train loss: 14.419, ENC Train loss: 0.832, Train accuracy: 0.766, Keep percentage: 0.53
+Train step: 5840/7200, GEN Train loss: 11.221, ENC Train loss: 0.809, Train accuracy: 0.766, Keep percentage: 0.48
+Train step: 5850/7200, GEN Train loss: 19.627, ENC Train loss: 1.011, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 5860/7200, GEN Train loss: 11.649, ENC Train loss: 0.672, Train accuracy: 0.844, Keep percentage: 0.51
+Train step: 5870/7200, GEN Train loss: 13.964, ENC Train loss: 0.695, Train accuracy: 0.859, Keep percentage: 0.50
+Train step: 5880/7200, GEN Train loss: 13.914, ENC Train loss: 0.873, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 5890/7200, GEN Train loss: 12.089, ENC Train loss: 0.969, Train accuracy: 0.609, Keep percentage: 0.44
+Train step: 5900/7200, GEN Train loss: 16.475, ENC Train loss: 0.743, Train accuracy: 0.828, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.711
++ Keep percentage: 0.50
+Train step: 5910/7200, GEN Train loss: 13.767, ENC Train loss: 0.764, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 5920/7200, GEN Train loss: 16.101, ENC Train loss: 0.968, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 5930/7200, GEN Train loss: 12.296, ENC Train loss: 0.806, Train accuracy: 0.797, Keep percentage: 0.49
+Train step: 5940/7200, GEN Train loss: 11.068, ENC Train loss: 0.760, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 5950/7200, GEN Train loss: 15.333, ENC Train loss: 0.885, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 5960/7200, GEN Train loss: 10.803, ENC Train loss: 0.779, Train accuracy: 0.797, Keep percentage: 0.51
+Train step: 5970/7200, GEN Train loss: 15.077, ENC Train loss: 0.837, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 5980/7200, GEN Train loss: 10.170, ENC Train loss: 0.734, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 5990/7200, GEN Train loss: 21.200, ENC Train loss: 1.055, Train accuracy: 0.688, Keep percentage: 0.46
+Train step: 6000/7200, GEN Train loss: 11.093, ENC Train loss: 0.842, Train accuracy: 0.719, Keep percentage: 0.50
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.717
++ Keep percentage: 0.49
+Train step: 6010/7200, GEN Train loss: 15.731, ENC Train loss: 0.873, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 6020/7200, GEN Train loss: 8.828, ENC Train loss: 0.637, Train accuracy: 0.844, Keep percentage: 0.53
+Train step: 6030/7200, GEN Train loss: 10.044, ENC Train loss: 0.690, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 6040/7200, GEN Train loss: 15.366, ENC Train loss: 1.008, Train accuracy: 0.703, Keep percentage: 0.47
+Train step: 6050/7200, GEN Train loss: 15.059, ENC Train loss: 0.836, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 6060/7200, GEN Train loss: 9.527, ENC Train loss: 0.654, Train accuracy: 0.781, Keep percentage: 0.53
+Train step: 6070/7200, GEN Train loss: 11.208, ENC Train loss: 0.808, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 6080/7200, GEN Train loss: 12.543, ENC Train loss: 0.905, Train accuracy: 0.797, Keep percentage: 0.52
+Train step: 6090/7200, GEN Train loss: 12.458, ENC Train loss: 0.781, Train accuracy: 0.781, Keep percentage: 0.52
+Train step: 6100/7200, GEN Train loss: 16.059, ENC Train loss: 0.799, Train accuracy: 0.656, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.715
++ Keep percentage: 0.51
+Train step: 6110/7200, GEN Train loss: 9.085, ENC Train loss: 0.655, Train accuracy: 0.812, Keep percentage: 0.52
+Train step: 6120/7200, GEN Train loss: 15.335, ENC Train loss: 0.885, Train accuracy: 0.719, Keep percentage: 0.51
+Train step: 6130/7200, GEN Train loss: 15.026, ENC Train loss: 0.748, Train accuracy: 0.797, Keep percentage: 0.52
+Train step: 6140/7200, GEN Train loss: 11.497, ENC Train loss: 0.754, Train accuracy: 0.797, Keep percentage: 0.48
+Train step: 6150/7200, GEN Train loss: 10.641, ENC Train loss: 0.903, Train accuracy: 0.703, Keep percentage: 0.49
+Train step: 6160/7200, GEN Train loss: 19.117, ENC Train loss: 0.862, Train accuracy: 0.797, Keep percentage: 0.47
+Train step: 6170/7200, GEN Train loss: 13.655, ENC Train loss: 0.895, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 6180/7200, GEN Train loss: 8.984, ENC Train loss: 0.589, Train accuracy: 0.828, Keep percentage: 0.47
+Train step: 6190/7200, GEN Train loss: 12.739, ENC Train loss: 0.707, Train accuracy: 0.797, Keep percentage: 0.52
+Train step: 6200/7200, GEN Train loss: 15.041, ENC Train loss: 0.943, Train accuracy: 0.750, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.675
++ Keep percentage: 0.48
+Train step: 6210/7200, GEN Train loss: 12.931, ENC Train loss: 0.811, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 6220/7200, GEN Train loss: 26.725, ENC Train loss: 1.042, Train accuracy: 0.656, Keep percentage: 0.49
+Train step: 6230/7200, GEN Train loss: 10.399, ENC Train loss: 0.750, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 6240/7200, GEN Train loss: 11.853, ENC Train loss: 0.950, Train accuracy: 0.641, Keep percentage: 0.50
+Train step: 6250/7200, GEN Train loss: 10.737, ENC Train loss: 0.704, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 6260/7200, GEN Train loss: 12.059, ENC Train loss: 0.967, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 6270/7200, GEN Train loss: 16.655, ENC Train loss: 0.961, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 6280/7200, GEN Train loss: 17.151, ENC Train loss: 0.952, Train accuracy: 0.672, Keep percentage: 0.49
+Train step: 6290/7200, GEN Train loss: 16.730, ENC Train loss: 1.049, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 6300/7200, GEN Train loss: 10.049, ENC Train loss: 0.690, Train accuracy: 0.812, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.717
++ Keep percentage: 0.51
+Train step: 6310/7200, GEN Train loss: 11.833, ENC Train loss: 0.898, Train accuracy: 0.672, Keep percentage: 0.47
+Train step: 6320/7200, GEN Train loss: 10.990, ENC Train loss: 0.755, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 6330/7200, GEN Train loss: 13.166, ENC Train loss: 0.655, Train accuracy: 0.844, Keep percentage: 0.52
+Train step: 6340/7200, GEN Train loss: 14.549, ENC Train loss: 0.875, Train accuracy: 0.672, Keep percentage: 0.47
+Train step: 6350/7200, GEN Train loss: 14.895, ENC Train loss: 0.826, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 6360/7200, GEN Train loss: 18.122, ENC Train loss: 0.902, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 6370/7200, GEN Train loss: 13.878, ENC Train loss: 0.801, Train accuracy: 0.797, Keep percentage: 0.48
+Train step: 6380/7200, GEN Train loss: 10.298, ENC Train loss: 0.707, Train accuracy: 0.781, Keep percentage: 0.48
+Train step: 6390/7200, GEN Train loss: 24.625, ENC Train loss: 0.960, Train accuracy: 0.703, Keep percentage: 0.48
+Train step: 6400/7200, GEN Train loss: 11.967, ENC Train loss: 0.785, Train accuracy: 0.734, Keep percentage: 0.47
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.716
++ Keep percentage: 0.50
+Train step: 6410/7200, GEN Train loss: 11.169, ENC Train loss: 0.767, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 6420/7200, GEN Train loss: 12.185, ENC Train loss: 0.764, Train accuracy: 0.719, Keep percentage: 0.50
+Train step: 6430/7200, GEN Train loss: 5.858, ENC Train loss: 0.563, Train accuracy: 0.828, Keep percentage: 0.52
+Train step: 6440/7200, GEN Train loss: 12.358, ENC Train loss: 0.775, Train accuracy: 0.750, Keep percentage: 0.47
+Train step: 6450/7200, GEN Train loss: 14.054, ENC Train loss: 0.882, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 6460/7200, GEN Train loss: 16.289, ENC Train loss: 0.904, Train accuracy: 0.734, Keep percentage: 0.51
+Train step: 6470/7200, GEN Train loss: 13.787, ENC Train loss: 0.796, Train accuracy: 0.734, Keep percentage: 0.46
+Train step: 6480/7200, GEN Train loss: 15.722, ENC Train loss: 0.872, Train accuracy: 0.679, Keep percentage: 0.53
+Train step: 6490/7200, GEN Train loss: 10.969, ENC Train loss: 0.688, Train accuracy: 0.844, Keep percentage: 0.51
+Train step: 6500/7200, GEN Train loss: 14.705, ENC Train loss: 1.010, Train accuracy: 0.719, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.705
++ Keep percentage: 0.50
+Train step: 6510/7200, GEN Train loss: 13.061, ENC Train loss: 0.673, Train accuracy: 0.828, Keep percentage: 0.53
+Train step: 6520/7200, GEN Train loss: 11.815, ENC Train loss: 0.812, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 6530/7200, GEN Train loss: 19.035, ENC Train loss: 0.981, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 6540/7200, GEN Train loss: 12.986, ENC Train loss: 0.721, Train accuracy: 0.812, Keep percentage: 0.51
+Train step: 6550/7200, GEN Train loss: 9.560, ENC Train loss: 0.726, Train accuracy: 0.750, Keep percentage: 0.48
+Train step: 6560/7200, GEN Train loss: 9.865, ENC Train loss: 0.678, Train accuracy: 0.812, Keep percentage: 0.49
+Train step: 6570/7200, GEN Train loss: 10.232, ENC Train loss: 0.738, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 6580/7200, GEN Train loss: 15.846, ENC Train loss: 0.788, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 6590/7200, GEN Train loss: 14.907, ENC Train loss: 0.742, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 6600/7200, GEN Train loss: 12.645, ENC Train loss: 0.702, Train accuracy: 0.797, Keep percentage: 0.49
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.722
++ Keep percentage: 0.51
+Train step: 6610/7200, GEN Train loss: 9.506, ENC Train loss: 0.653, Train accuracy: 0.781, Keep percentage: 0.53
+Train step: 6620/7200, GEN Train loss: 9.413, ENC Train loss: 0.715, Train accuracy: 0.734, Keep percentage: 0.53
+Train step: 6630/7200, GEN Train loss: 6.392, ENC Train loss: 0.485, Train accuracy: 0.859, Keep percentage: 0.53
+Train step: 6640/7200, GEN Train loss: 14.616, ENC Train loss: 0.727, Train accuracy: 0.797, Keep percentage: 0.50
+Train step: 6650/7200, GEN Train loss: 13.259, ENC Train loss: 0.911, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 6660/7200, GEN Train loss: 14.820, ENC Train loss: 0.822, Train accuracy: 0.797, Keep percentage: 0.53
+Train step: 6670/7200, GEN Train loss: 12.014, ENC Train loss: 0.825, Train accuracy: 0.781, Keep percentage: 0.53
+Train step: 6680/7200, GEN Train loss: 10.548, ENC Train loss: 0.761, Train accuracy: 0.766, Keep percentage: 0.52
+Train step: 6690/7200, GEN Train loss: 8.557, ENC Train loss: 0.686, Train accuracy: 0.766, Keep percentage: 0.51
+Train step: 6700/7200, GEN Train loss: 9.729, ENC Train loss: 0.702, Train accuracy: 0.750, Keep percentage: 0.48
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.729
++ Keep percentage: 0.51
+Train step: 6710/7200, GEN Train loss: 13.499, ENC Train loss: 0.927, Train accuracy: 0.734, Keep percentage: 0.50
+Train step: 6720/7200, GEN Train loss: 15.468, ENC Train loss: 0.797, Train accuracy: 0.688, Keep percentage: 0.53
+Train step: 6730/7200, GEN Train loss: 15.827, ENC Train loss: 0.787, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 6740/7200, GEN Train loss: 11.447, ENC Train loss: 0.688, Train accuracy: 0.812, Keep percentage: 0.52
+Train step: 6750/7200, GEN Train loss: 10.594, ENC Train loss: 0.728, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 6760/7200, GEN Train loss: 9.830, ENC Train loss: 0.746, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 6770/7200, GEN Train loss: 12.222, ENC Train loss: 0.767, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 6780/7200, GEN Train loss: 11.468, ENC Train loss: 0.719, Train accuracy: 0.812, Keep percentage: 0.52
+Train step: 6790/7200, GEN Train loss: 13.142, ENC Train loss: 0.824, Train accuracy: 0.750, Keep percentage: 0.50
+Train step: 6800/7200, GEN Train loss: 9.823, ENC Train loss: 0.746, Train accuracy: 0.781, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.720
++ Keep percentage: 0.50
+Train step: 6810/7200, GEN Train loss: 13.073, ENC Train loss: 0.754, Train accuracy: 0.812, Keep percentage: 0.50
+Train step: 6820/7200, GEN Train loss: 12.185, ENC Train loss: 0.925, Train accuracy: 0.719, Keep percentage: 0.49
+Train step: 6830/7200, GEN Train loss: 15.254, ENC Train loss: 0.786, Train accuracy: 0.797, Keep percentage: 0.53
+Train step: 6840/7200, GEN Train loss: 12.018, ENC Train loss: 0.867, Train accuracy: 0.766, Keep percentage: 0.48
+Train step: 6850/7200, GEN Train loss: 12.419, ENC Train loss: 0.943, Train accuracy: 0.750, Keep percentage: 0.53
+Train step: 6860/7200, GEN Train loss: 11.347, ENC Train loss: 0.780, Train accuracy: 0.750, Keep percentage: 0.47
+Train step: 6870/7200, GEN Train loss: 16.248, ENC Train loss: 0.733, Train accuracy: 0.828, Keep percentage: 0.56
+Train step: 6880/7200, GEN Train loss: 19.979, ENC Train loss: 0.994, Train accuracy: 0.672, Keep percentage: 0.50
+Train step: 6890/7200, GEN Train loss: 19.280, ENC Train loss: 1.070, Train accuracy: 0.734, Keep percentage: 0.47
+Train step: 6900/7200, GEN Train loss: 12.702, ENC Train loss: 0.705, Train accuracy: 0.797, Keep percentage: 0.45
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.729
++ Keep percentage: 0.50
+Train step: 6910/7200, GEN Train loss: 9.809, ENC Train loss: 0.674, Train accuracy: 0.781, Keep percentage: 0.51
+Train step: 6920/7200, GEN Train loss: 12.588, ENC Train loss: 0.825, Train accuracy: 0.766, Keep percentage: 0.50
+Train step: 6930/7200, GEN Train loss: 21.076, ENC Train loss: 1.014, Train accuracy: 0.688, Keep percentage: 0.45
+Train step: 6940/7200, GEN Train loss: 10.821, ENC Train loss: 0.822, Train accuracy: 0.688, Keep percentage: 0.50
+Train step: 6950/7200, GEN Train loss: 10.840, ENC Train loss: 0.652, Train accuracy: 0.828, Keep percentage: 0.52
+Train step: 6960/7200, GEN Train loss: 9.627, ENC Train loss: 0.772, Train accuracy: 0.688, Keep percentage: 0.48
+Train step: 6970/7200, GEN Train loss: 16.883, ENC Train loss: 0.870, Train accuracy: 0.734, Keep percentage: 0.46
+Train step: 6980/7200, GEN Train loss: 12.508, ENC Train loss: 0.859, Train accuracy: 0.750, Keep percentage: 0.49
+Train step: 6990/7200, GEN Train loss: 10.074, ENC Train loss: 0.765, Train accuracy: 0.719, Keep percentage: 0.47
+Train step: 7000/7200, GEN Train loss: 10.810, ENC Train loss: 0.743, Train accuracy: 0.750, Keep percentage: 0.54
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.705
++ Keep percentage: 0.50
+Train step: 7010/7200, GEN Train loss: 13.687, ENC Train loss: 0.859, Train accuracy: 0.734, Keep percentage: 0.52
+Train step: 7020/7200, GEN Train loss: 10.072, ENC Train loss: 0.727, Train accuracy: 0.781, Keep percentage: 0.50
+Train step: 7030/7200, GEN Train loss: 15.608, ENC Train loss: 0.979, Train accuracy: 0.672, Keep percentage: 0.46
+Train step: 7040/7200, GEN Train loss: 11.918, ENC Train loss: 0.661, Train accuracy: 0.828, Keep percentage: 0.49
+Train step: 7050/7200, GEN Train loss: 13.405, ENC Train loss: 0.967, Train accuracy: 0.672, Keep percentage: 0.52
+Train step: 7060/7200, GEN Train loss: 13.544, ENC Train loss: 0.930, Train accuracy: 0.719, Keep percentage: 0.52
+Train step: 7070/7200, GEN Train loss: 12.046, ENC Train loss: 0.790, Train accuracy: 0.750, Keep percentage: 0.52
+Train step: 7080/7200, GEN Train loss: 13.522, ENC Train loss: 0.780, Train accuracy: 0.781, Keep percentage: 0.49
+Train step: 7090/7200, GEN Train loss: 15.911, ENC Train loss: 0.918, Train accuracy: 0.719, Keep percentage: 0.47
+Train step: 7100/7200, GEN Train loss: 16.821, ENC Train loss: 0.933, Train accuracy: 0.656, Keep percentage: 0.54
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.719
++ Keep percentage: 0.51
+Train step: 7110/7200, GEN Train loss: 13.190, ENC Train loss: 0.906, Train accuracy: 0.703, Keep percentage: 0.51
+Train step: 7120/7200, GEN Train loss: 8.528, ENC Train loss: 0.586, Train accuracy: 0.859, Keep percentage: 0.52
+Train step: 7130/7200, GEN Train loss: 11.296, ENC Train loss: 0.709, Train accuracy: 0.812, Keep percentage: 0.50
+Train step: 7140/7200, GEN Train loss: 8.650, ENC Train loss: 0.657, Train accuracy: 0.797, Keep percentage: 0.49
+Train step: 7150/7200, GEN Train loss: 12.981, ENC Train loss: 0.936, Train accuracy: 0.703, Keep percentage: 0.50
+Train step: 7160/7200, GEN Train loss: 7.076, ENC Train loss: 0.537, Train accuracy: 0.844, Keep percentage: 0.52
+Train step: 7170/7200, GEN Train loss: 11.447, ENC Train loss: 0.661, Train accuracy: 0.828, Keep percentage: 0.54
+Train step: 7180/7200, GEN Train loss: 7.024, ENC Train loss: 0.596, Train accuracy: 0.828, Keep percentage: 0.54
+Train step: 7190/7200, GEN Train loss: 11.208, ENC Train loss: 0.770, Train accuracy: 0.766, Keep percentage: 0.49
+Train step: 7200/7200, GEN Train loss: 12.617, ENC Train loss: 0.569, Train accuracy: 0.821, Keep percentage: 0.51
+=============== MODEL VALIDATING ===============
+Testing on 1020 data:
++ Validation accuracy: 0.720
++ Keep percentage: 0.51

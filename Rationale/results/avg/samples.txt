@@ -1,0 +1,25 @@
+* Classifier: TextCNN
+-------------------------------------
++ Original input:
+what is the earth <unk> <unk> <unk>
+- Extracted rationale:
+what earth <unk>
++ Original input:
+when did hawaii becom <unk> state <unk>
+- Extracted rationale:
+when becom
++ Original input:
+how old do you have <unk> be in order <unk> rent <unk> car in <unk> <unk>
+- Extracted rationale:
+how do you <unk> <unk> car in <unk>
++ Original input:
+what are <unk> <unk>
+- Extracted rationale:
+what
++ Original input:
+what is the capit <unk> <unk> <unk>
+- Extracted rationale:
+<unk>
+-------------------------------------
+* Accuracy: 0.578
+* Keep percentage: 0.279

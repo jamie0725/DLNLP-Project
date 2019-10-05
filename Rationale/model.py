@@ -16,7 +16,7 @@ from torch.utils.data import DataLoader
 
 class PreGenerator(nn.Module):
 
-    def __init__(self, hidden_size, embedding_size, lstm_layer, lstm_dirc, embeddings_vector, trainable):
+    def __init__(self, hidden_size, embedding_size, lstm_layer, lstm_dirc, embeddings_vector, trainable, agg_mode):
         super(PreGenerator, self).__init__()
 
         if lstm_dirc:
@@ -31,18 +31,20 @@ class PreGenerator(nn.Module):
             bidirectional=lstm_dirc,
             batch_first=True,
         )
+        self.agg_mode = agg_mode
         self.embed = nn.Embedding.from_pretrained(embeddings_vector, freeze=trainable)
-        self.linear_weight = nn.Parameter(torch.zeros(size=(1, hidden_size * self.num_direction), dtype=torch.float, requires_grad=True))
-        # nn.init.xavier_uniform_(self.linear_weight)
-        self.linear_bias = nn.Parameter(torch.zeros(size=(1, ), dtype=torch.float, requires_grad=True))
-        # self.linear = nn.Linear(hidden_size * self.num_direction, 1)
+        if self.agg_mode == 'fc':
+            self.linear_weight = nn.Parameter(torch.zeros(size=(1, hidden_size * self.num_direction), dtype=torch.float, requires_grad=True))
+            self.linear_bias = nn.Parameter(torch.zeros(size=(1, ), dtype=torch.float, requires_grad=True))
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         x = self.embed(x)
         x, _ = self.lstm(x)
-        # x = F.avg_pool1d(x, kernel_size=x.size(-1)).squeeze(2)
-        x = F.linear(x, self.linear_weight, self.linear_bias).squeeze(2)
+        if self.agg_mode == 'fc':
+            x = F.linear(x, self.linear_weight, self.linear_bias).squeeze(2)
+        elif self.agg_mode == 'avg':
+            x = F.avg_pool1d(x, kernel_size=x.size(-1)).squeeze(2)
         x = self.sigmoid(x)
         return x
 
@@ -107,7 +109,8 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
         lstm_layer=args.lstm_layer_rationale,
         lstm_dirc=args.lstm_bidirectional_rationale,
         embeddings_vector=torch.from_numpy(embeddings_vector),
-        trainable=args.embed_trainable
+        trainable=args.embed_trainable,
+        agg_mode=args.agg_mode
     )
     pregen.to(args.device)
 
@@ -260,7 +263,8 @@ def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
         lstm_layer=args.lstm_layer_rationale,
         lstm_dirc=args.lstm_bidirectional_rationale,
         embeddings_vector=torch.from_numpy(embeddings_vector),
-        trainable=args.embed_trainable
+        trainable=args.embed_trainable,
+        agg_mode=args.agg_mode
     )
     ckpt = torch.load(GEN_MODEL_LOC, map_location=args.device)
     pregen.load_state_dict(ckpt['state_dict'])

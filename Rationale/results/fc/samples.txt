@@ -1,0 +1,25 @@
+* Classifier: TextCNN
+-------------------------------------
++ Original input:
+where is the <unk> river <unk>
+- Extracted rationale:
+<unk> river <unk>
++ Original input:
+who wrote <unk> the <unk> <unk> <unk> <unk>
+- Extracted rationale:
+the <unk> <unk> <unk>
++ Original input:
+what is the popul <unk> <unk> <unk>
+- Extracted rationale:
+what is <unk>
++ Original input:
+what year did canada join the unit nation <unk>
+- Extracted rationale:
+what did canada unit <unk>
++ Original input:
+what is acid rain <unk>
+- Extracted rationale:
+what acid
+-------------------------------------
+* Accuracy: 0.686
+* Keep percentage: 0.511

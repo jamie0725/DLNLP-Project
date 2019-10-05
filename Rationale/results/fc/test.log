@@ -1,0 +1,40 @@
+=============== HYPERPARAMETER SETTING ===============
+classifier : TextCNN
+pretrained : False
+mode : eval
+epochs : 50
+batch_size : 64
+max_norm : 5.0
+embed_trainable : True
+device : cuda:0
+lr_enc : 0.001
+lr_gen : 0.001
+num_hidden_rationale : 64
+lstm_layer_rationale : 2
+lstm_bidirectional_rationale : True
+lambda_1 : 0.01
+lambda_2 : 0.001
+agg_mode : fc
+num_hidden : 256
+lstm_layer : 2
+lstm_bidirectional : True
+num_classes : 6
+kernel_sizes : [2, 3, 4]
+p : 0.5
+c_out : 32
+=============== LOAD EMBEDDINGS ===============
+Statistics of Label Mapping:
+* Class: {0: 'ABBREVIATION', 1: 'ENTITY', 2: 'DESCRIPTION', 3: 'HUMAN', 4: 'LOCATION', 5: 'NUMERIC'}
++ Total: 6
+Embed shape: (4164, 300)
+Vocab size: 4164
+=============== MODEL TESTING ===============
+Testing on 500 data:
++ Overall ACC: 0.686
++ Overall KEEP: 0.511
+* ABB PREC: 1.000, ABB REC: 0.333, ABB F1: 0.500
+* ENT PREC: 0.683, ENT REC: 0.436, ENT F1: 0.532
+* DES PREC: 0.638, DES REC: 0.957, DES F1: 0.765
+* HUM PREC: 0.733, HUM REC: 0.677, HUM F1: 0.704
+* LOC PREC: 0.559, LOC REC: 0.642, LOC F1: 0.598
+* NUM PREC: 0.922, NUM REC: 0.628, NUM F1: 0.747
