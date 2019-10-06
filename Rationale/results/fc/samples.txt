@@ -1,25 +1,30 @@
 * Classifier: TextCNN
 -------------------------------------
+Class: ENTITY
 + Original input:
-where is the <unk> river <unk>
+what is maryland <unk> state bird <unk>
 - Extracted rationale:
-<unk> river <unk>
+what is state
+Class: HUMAN
 + Original input:
-who wrote <unk> the <unk> <unk> <unk> <unk>
+who discov <unk> <unk>
 - Extracted rationale:
-the <unk> <unk> <unk>
+who <unk> <unk>
+Class: DESCRIPTION
 + Original input:
-what is the popul <unk> <unk> <unk>
+what is <unk> <unk>
 - Extracted rationale:
-what is <unk>
+is <unk>
+Class: ENTITY
 + Original input:
-what year did canada join the unit nation <unk>
+what do you call <unk> word that is spell the same <unk> <unk> <unk> <unk>
 - Extracted rationale:
-what did canada unit <unk>
+what do you call <unk> that spell the <unk> <unk>
+Class: HUMAN
 + Original input:
-what is acid rain <unk>
+who wa the first african american <unk> win the nobel prize in <unk> <unk>
 - Extracted rationale:
-what acid
+who african american <unk> the nobel <unk>
 -------------------------------------
-* Accuracy: 0.686
-* Keep percentage: 0.511
+* Accuracy: 0.706
+* Keep percentage: 0.503

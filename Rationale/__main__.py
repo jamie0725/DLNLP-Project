@@ -53,7 +53,7 @@ def main():
         sys.stdout = Logger(TRAIN_LOG_LOC)
         print_statement('HYPERPARAMETER SETTING')
         print_flags(args)
-        train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC)
+        train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC)
 
     else:
         sys.stdout = Logger(TEST_LOG_LOC)

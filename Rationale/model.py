@@ -49,8 +49,9 @@ class PreGenerator(nn.Module):
         return x
 
 
-def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
+def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
     print_statement('LOAD EMBEDDINGS')
+    label_map = load_json(LABEL_JSON_LOC, reverse=True, name='Label Mapping')
     with open('dataset/ind2token', 'rb') as f:
         ind2token = pickle.load(f)
     with open('dataset/token2ind', 'rb') as f:
@@ -188,7 +189,7 @@ def train(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC):
                     elements.append(pregen_output.numel())
                 validate_acc = float(sum(accs)) / sum(length)
                 validate_keep = float(sum(keeps) - sum(pads_kept)) / float(sum(elements) - sum(org_pads))
-                extract_rationale(batch_inputs, batch_inputs_masked, ind2token, validate_acc, validate_keep, args.classifier)
+                extract_rationale(batch_inputs, batch_inputs_masked, ind2token, validate_acc, validate_keep, args.classifier, batch_targets, label_map)
                 print('Testing on {} data:'.format(sum(length)))
                 print('+ Validation accuracy: {:.3f}'.format(validate_acc))
                 print('+ Keep percentage: {:.2f}'.format(validate_keep))
@@ -307,7 +308,7 @@ def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
         ct.update(classifier_output, batch_targets)
     test_acc = float(np.sum(accs)) / sum(length)
     test_keep = float(np.sum(keeps) - np.sum(pads_kept)) / float(sum(elements) - np.sum(org_pads))
-    extract_rationale(batch_inputs, batch_inputs_masked, ind2token, test_acc, test_keep, args.classifier)
+    extract_rationale(batch_inputs, batch_inputs_masked, ind2token, test_acc, test_keep, args.classifier, batch_targets, label_map)
     print('Testing on {} data:'.format(sum(length)))
     print('+ Overall ACC: {:.3f}'.format(test_acc))
     print('+ Overall KEEP: {:.3f}'.format(test_keep))
@@ -316,18 +317,20 @@ def test(args, GEN_MODEL_LOC, LSTM_MODEL_LOC, TCN_MODEL_LOC, LABEL_JSON_LOC):
         print('* {} PREC: {:.3f}, {} REC: {:.3f}, {} F1: {:.3f}'.format(classname[:3], PREC[i], classname[:3], REC[i], classname[:3], F1[i]))
 
 
-def extract_rationale(batch_inputs, batch_rationale, ind2token, acc, keep, classifier):
+def extract_rationale(batch_inputs, batch_rationale, ind2token, acc, keep, classifier, batch_targets, label_map):
     batch_size = batch_inputs.shape[0]
     picked = np.random.choice(batch_size, size=min(5, batch_size), replace=False)
     # inputs = batch_inputs[picked, np.arange(batch_inputs.shape[1])].tolist()
     inputs = batch_inputs[picked, :].tolist()
     # rationale = batch_rationale[picked, np.arange(batch_inputs.shape[1])].tolist()
     rationale = batch_rationale[picked, :].tolist()
+    targets = batch_targets[picked].tolist()
     with open('Rationale/results/samples.txt', 'w') as f:
         f.write('* Classifier: {}\n'.format(classifier))
         f.write('-------------------------------------\n')
-    for (input_sentence, input_rationale) in zip(inputs, rationale):
+    for (input_sentence, input_rationale, target) in zip(inputs, rationale, targets):
         with open('Rationale/results/samples.txt', 'a') as f:
+            f.write('Class: {}\n'.format(label_map[target]))
             f.write('+ Original input:\n')
             f.write(' '.join(list(filter(lambda x: x != '<pad>', map(lambda x: ind2token[x], input_sentence)))) + '\n')
             f.write('- Extracted rationale:\n')

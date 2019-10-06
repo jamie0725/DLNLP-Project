@@ -1,25 +1,30 @@
 * Classifier: TextCNN
 -------------------------------------
+Class: DESCRIPTION
 + Original input:
-what is the earth <unk> <unk> <unk>
-- Extracted rationale:
-what earth <unk>
-+ Original input:
-when did hawaii becom <unk> state <unk>
-- Extracted rationale:
-when becom
-+ Original input:
-how old do you have <unk> be in order <unk> rent <unk> car in <unk> <unk>
-- Extracted rationale:
-how do you <unk> <unk> car in <unk>
-+ Original input:
-what are <unk> <unk>
+what is an <unk> <unk> <unk>
 - Extracted rationale:
 what
+Class: DESCRIPTION
 + Original input:
-what is the capit <unk> <unk> <unk>
+what is teflon <unk>
 - Extracted rationale:
-<unk>
+teflon
+Class: HUMAN
++ Original input:
+which comedian <unk> <unk> line is <unk> can we talk <unk> <unk>
+- Extracted rationale:
+which talk <unk>
+Class: LOCATION
++ Original input:
+which <unk> ha the most water <unk> <unk>
+- Extracted rationale:
+which <unk>
+Class: NUMERIC
++ Original input:
+how mani pound in <unk> ton <unk>
+- Extracted rationale:
+<unk> <unk>
 -------------------------------------
-* Accuracy: 0.578
-* Keep percentage: 0.279
+* Accuracy: 0.594
+* Keep percentage: 0.276
